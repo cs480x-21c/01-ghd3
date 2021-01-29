@@ -47,6 +47,19 @@
             [210, 275],
         ];
         svg.append("polygon").attr("points", triaPoints).style("fill", "red");
+
+        svg.append("line")
+            .attr("x1", 360)
+            .attr("y1", 225)
+            .attr("x2", 385)
+            .attr("y2", 275)
+            .attr("stroke", "black");
+        svg.append("line")
+            .attr("x1", 360)
+            .attr("y1", 275)
+            .attr("x2", 385)
+            .attr("y2", 225)
+            .attr("stroke", "black");
     </script>
 </body>
 
