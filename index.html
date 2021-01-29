@@ -1,7 +1,11 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
+<svg id="frame"></svg>
 
 <script>
   console.log(d3); // test if d3 is loaded
+  var frame = d3.select('#vis')
+  .attr('width', 400)
+  .attr('height', 400)
   
   // Add an SVG
   // Add Rectangles
