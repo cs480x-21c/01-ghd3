@@ -1,10 +1,53 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+    <div id="content" style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        height: 100vh;
+      "></div>
+    <script>
+        console.log(d3); // test if d3 is loaded
+
+        // Add an SVG
+        const svg = d3
+            .select("#content")
+            .append("svg")
+            .attr("width", 500)
+            .attr("height", 500);
+
+        svg
+            .append("circle")
+            .attr("cx", 250)
+            .attr("cy", 250)
+            .attr("r", 25)
+            .style("fill", "blue");
+
+        svg
+            .append("rect")
+            .attr("x", 290)
+            .attr("y", 225)
+            .attr("width", 50)
+            .attr("height", 50)
+            .style("fill", "green");
+
+        const triaPoints = [
+            [185, 225],
+            [160, 275],
+            [210, 275],
+        ];
+        svg.append("polygon").attr("points", triaPoints).style("fill", "red");
+    </script>
+</body>
+
+</html>
