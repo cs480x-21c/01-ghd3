@@ -1,10 +1,79 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src='https://d3js.org/d3.v6.min.js'></script>
+<body>
+  <script>
+    console.log(d3); // test if d3 is loaded
 
-<script>
-  console.log(d3); // test if d3 is loaded
+  // Creating Standard H and W for Webpage
+  var height = 500;
+  var width = 500;
   // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+  var svg = d3.select('body')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+  // Rectanlge --> Sky
+  svg.append('rect')
+    .attr('x', '0')
+    .attr('y', '0')
+    .attr('width', '100%')
+    .attr('height', '100%')
+    .style('fill', '#87ceeb');
+
+  // Rectangle --> House Body
+  svg.append('rect')
+    .attr('x', '25%')
+    .attr('y', '50%')
+    .attr('width', '50%')
+    .attr('height', '100%')
+    .style('fill', 'brown')
+    .style('stroke', 'black');
+  // Circle --> Sun
+  svg.append('circle')
+    .attr('cx', width)
+    .attr('cy', 0)
+    .attr('r', width * .2)
+    .style('fill', '#f5bd1f');
+
+  // Line --> Chimney
+  svg.append('line')
+    .attr('x1', width * .3)
+    .attr('y1', height * .1)
+    .attr('x2', width * .3)
+    .attr('y2', height * .5)
+    .style('stroke', 'black')
+    .style('stroke-width', width * .1);
+
+  // Polygon --> "triangle"/roof
+  var apexX = width/2;
+  var apexY = .15 * height;
+
+  var leftX = .10 * width;
+  var rightY = height/2;
+
+  var rightX = .90 * width;
+  var leftY = height/2;
+
+  var roofPoints = [{x: apexX, y: apexY}, {x: leftX, y: leftY}, {x: rightX, y: rightY}];
+
+  svg.selectAll("polygon")
+    .data([roofPoints])
+    .enter().append("polygon")
+    .attr("points", function(d) {
+      return d.map(function(d) { // This required a little help from StackOverflow --> https://stackoverflow.com/questions/13204562/proper-format-for-drawing-polygon-data-in-d3
+            return [d.x,d.y].join(",");
+        }).join(" ");
+    })
+    .style('fill', '#838383');
+
+    // Rectangle --> Door
+    svg.append('rect')
+      .attr('x', '45%')
+      .attr('y', '70%')
+      .attr('width', '10%')
+      .attr('height', '100%')
+      .style('fill', 'green')
+      .style('stroke', 'green');
+
+  </script>
+</body>
