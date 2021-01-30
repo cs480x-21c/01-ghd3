@@ -25,41 +25,104 @@
             .append("svg")
             .attr("width", 500)
             .attr("height", 500);
+        repeat()
 
-        svg
-            .append("circle")
-            .attr("cx", 250)
-            .attr("cy", 250)
-            .attr("r", 25)
-            .style("fill", "blue");
+        function clear() {
+            d3.selectAll(".shape")
+                .remove();
+            repeat();
+        }
 
-        svg
-            .append("rect")
-            .attr("x", 290)
-            .attr("y", 225)
-            .attr("width", 50)
-            .attr("height", 50)
-            .style("fill", "green");
+        function repeat() {
+            svg
+                .append("circle")
+                .attr("class", "shape")
+                .attr("cx", 250)
+                .attr("cy", 250)
+                .attr("r", 25)
+                .style("fill", "blue")
+                .transition()
+                .duration(750)
+                .delay(250)
+                .style("transform", "translateY(-25px)")
+                .transition()
+                .duration(750)
+                .delay(1250)
+                .style("transform", "translateY(0px)");
 
-        const triaPoints = [
-            [185, 225],
-            [160, 275],
-            [210, 275],
-        ];
-        svg.append("polygon").attr("points", triaPoints).style("fill", "red");
+            svg
+                .append("rect")
+                .attr("class", "shape")
+                .attr("x", 290)
+                .attr("y", 225)
+                .attr("width", 50)
+                .attr("height", 50)
+                .style("fill", "green")
+                .transition()
+                .duration(750)
+                .delay(500)
+                .style("transform", "translateY(-25px)")
+                .transition()
+                .duration(750)
+                .delay(750)
+                .style("transform", "translateY(0px)");
 
-        svg.append("line")
-            .attr("x1", 360)
-            .attr("y1", 225)
-            .attr("x2", 385)
-            .attr("y2", 275)
-            .attr("stroke", "black");
-        svg.append("line")
-            .attr("x1", 360)
-            .attr("y1", 275)
-            .attr("x2", 385)
-            .attr("y2", 225)
-            .attr("stroke", "black");
+            const triaPoints = [
+                [185, 225],
+                [160, 275],
+                [210, 275],
+            ];
+            svg
+                .append("polygon")
+                .attr("class", "shape")
+                .attr("points", triaPoints)
+                .style("fill", "red")
+                .transition()
+                .duration(750)
+                .style("transform", "translateY(-25px)")
+                .transition()
+                .duration(750)
+                .delay(1750)
+                .style("transform", "translateY(0px)")
+                .on("end", clear);
+
+            svg
+                .append("line")
+                .attr("class", "shape")
+                .attr("x1", 360)
+                .attr("y1", 225)
+                .attr("x2", 385)
+                .attr("y2", 275)
+                .attr("stroke", "black")
+                .attr("stroke-width", 2.5)
+                .attr("stroke-linecap", "round")
+                .transition()
+                .duration(750)
+                .delay(750)
+                .style("transform", "translateY(-25px)")
+                .transition()
+                .duration(750)
+                .delay(250)
+                .style("transform", "translateY(0px)");
+            svg
+                .append("line")
+                .attr("class", "shape")
+                .attr("x1", 360)
+                .attr("y1", 275)
+                .attr("x2", 385)
+                .attr("y2", 225)
+                .attr("stroke", "black")
+                .attr("stroke-width", 2.5)
+                .attr("stroke-linecap", "round")
+                .transition()
+                .duration(750)
+                .delay(750)
+                .style("transform", "translateY(-25px)")
+                .transition()
+                .duration(750)
+                .delay(250)
+                .style("transform", "translateY(0px)");
+        }
     </script>
 </body>
 
