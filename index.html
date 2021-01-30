@@ -1,10 +1,47 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<html>
+<head>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <title>Lucas Fernandes Assignment 1</title>
+</head>
+<body>
+  <div id = "svgContainer">
+  </div>
+  <script>
+    console.log(d3); // test if d3 is loaded
+    // Add an SVG
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+    // Add Rectangles
+    var svg = d3.select("#svgContainer")
+      .append("svg")
+      .attr("width", 300)
+      .attr("height", 500);
+    svg.append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", 300)
+      .attr("height", 500)
+      .attr("fill", "yellow");
+    // Add Circles
+    svg.append("circle")
+      .attr("cx", 200)
+      .attr("cy", 95)
+      .attr("r", 20)
+      .attr("fill", "blue");
+    svg.append("circle")
+      .attr("cx", 100)
+      .attr("cy", 175)
+      .attr("r", 20)
+      .attr("fill", "green");
+    // Add Lines
+    svg.append("line")
+      .attr("x1", 100)
+      .attr("y1", 100)
+      .attr("x2", 200)
+      .attr("y2", 200)
+      .style("stroke", "rgb(255,0,0)")
+      .style("stroke-width", 2);
+    // Add Polygons
+
+  </script>
+</body>
+</html>
