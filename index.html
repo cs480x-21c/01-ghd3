@@ -5,10 +5,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assignment 1 - Alan - CS4802</title>
+    <script>
+        (function() {
+            function getInitialColorMode() {
+                const mql = window.matchMedia('(prefers-color-scheme: dark)');
+                const hasMediaQueryPreference = typeof mql.matches === 'boolean';
+                if (hasMediaQueryPreference) {
+                    return mql.matches ? 'dark' : 'light';
+                }
+
+                return 'light';
+            }
+            const colorMode = getInitialColorMode();
+            const root = document.documentElement;
+
+            root.style.setProperty(
+                "--color-background",
+                colorMode === "light" ?
+                "#fafbfc" :
+                "#0d1117"
+            );
+
+            root.style.setProperty("--initial-color-mode", colorMode);
+        })();
+    </script>
     <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
 
-<body>
+<body style="background-color: var(--color-background);">
     <div id="content" style="
         display: flex;
         justify-content: center;
@@ -25,11 +49,10 @@
             .append("svg")
             .attr("width", 500)
             .attr("height", 500);
-        repeat()
+        repeat();
 
         function clear() {
-            d3.selectAll(".shape")
-                .remove();
+            d3.selectAll(".shape").remove();
             repeat();
         }
 
@@ -85,7 +108,7 @@
                 .delay(1750)
                 .style("transform", "translateY(0px)")
                 .on("end", clear);
-
+            const isDark = document.documentElement.style.getPropertyValue("--initial-color-mode") === 'dark';
             svg
                 .append("line")
                 .attr("class", "shape")
@@ -93,7 +116,7 @@
                 .attr("y1", 225)
                 .attr("x2", 385)
                 .attr("y2", 275)
-                .attr("stroke", "black")
+                .attr("stroke", isDark ? "white" : "black")
                 .attr("stroke-width", 2.5)
                 .attr("stroke-linecap", "round")
                 .transition()
@@ -111,7 +134,7 @@
                 .attr("y1", 275)
                 .attr("x2", 385)
                 .attr("y2", 225)
-                .attr("stroke", "black")
+                .attr("stroke", isDark ? "white" : "black")
                 .attr("stroke-width", 2.5)
                 .attr("stroke-linecap", "round")
                 .transition()
