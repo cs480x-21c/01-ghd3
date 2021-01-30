@@ -1,10 +1,86 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<div id="value"></div>
+<svg id="vis"></svg>
+
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+    console.log(d3); // test if d3 is loaded
+
+    var circleData = [10, 78, 15, 67, 100];
+
+    var recData = [1, 5, 200, 250, 350];
+
+
+
+    // Add an SVG
+    var svg = d3.select('#vis')
+        .attr('width', 1000)
+        .attr('height', 800);
+
+    var xscale = d3.scaleLinear()
+        .domain([0, 100])
+        .range([0, 400]);
+
+    var yscale = d3.scaleLinear()
+        .domain([0, 100])
+        .range([0, 400]);
+
+    // Add Circles
+    svg.selectAll('circle')
+        .data(circleData)
+        .enter().append('circle')
+        .attr('cy', 50)
+        .attr('cx', function (d) {
+            console.log(d);
+            return xscale(d);
+        })
+        .attr('r', 10)
+        .attr('fill', 'steelblue')
+        .on('mouseover', function (e, d) {
+            d3.select(this).attr('fill', 'brown');
+
+            d3.select('#value').text(d);
+        }).on('mouseout', function () {
+        d3.select(this)
+            .attr('fill', 'steelblue');
+    })
+
+    // Add Rectangles
+    svg.selectAll('rect')
+        .data(recData)
+        .enter().append('rect')
+        .attr('cy', 200)
+        .attr('cx', function (d) {
+            console.log(d);
+            return xscale(d);
+        })
+        .attr('width', 20)
+        .attr('height', 10)
+        .attr('fill', 'green')
+        .on('mouseover', function (e, d) {
+            d3.select(this).attr('fill', 'red');
+
+            d3.select('#value').text(d);
+        }).on('mouseout', function () {
+        d3.select(this)
+            .attr('fill', 'green');
+    })
+
+    // Add Lines
+    svg.append( 'line')
+        .attr('stroke', 'black')
+        .attr('stroke-width', 8)
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", 400)
+        .attr("y2", 200);
+
+
+    // Add Polygons
+    svg.append('polygon')
+        .attr('points', "110,50 350,57 250,150")
+        .attr('fill', 'purple')
+        .attr('stroke', 'red')
+
+
 </script>
