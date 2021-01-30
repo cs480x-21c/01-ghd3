@@ -1,7 +1,7 @@
 Assignment 1 - Hello World: GitHub and d3  
 ===
 
-This page has a series of shapes moving up and down in a loading like way. Check out the website [here](https://alancuriel.github.io/01-ghd3-1/index.html).
+This page has a series of shapes moving up and down in a loading like way. Check out the website [here](https://alancuriel.github.io/01-ghd3-1/).
 
 There is a red triangle, followed by a blue circle, then a green square, and a black 'x'.
 
