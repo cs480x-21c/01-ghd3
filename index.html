@@ -21,6 +21,7 @@
   var yscale = d3.scaleLinear()
       .domain([0,100])
       .range([0,450]);
+
   // Add Rectangles
   var mainBackgroud = svg.append('rect')
     .attr('x', 0)
@@ -39,6 +40,7 @@
       .attr('height', 28)
       .attr('fill', '#b9c3c4');
 
+  //dark trim of the white stairs
   svg.selectAll('nonexistent')
         .data([98])
         .enter().append('rect')
@@ -78,16 +80,63 @@
       .attr('width', 800)
       .attr('height',10)
       .attr('fill', '#969c9c');
+
+      svg.selectAll('nonexistent')
+        .data([15])
+        .enter().append('circle')
+        .attr('cx', 400)
+        .attr('cy', function(d){return yscale(d);})
+        .attr('r', 37)
+        .attr('fill', '#aa7d79');
 */
   // Add Circles
+
+
+
   svg.selectAll('nonexistent')
     .data([15])
-    .enter().append('circle')
+    .enter().append('ellipse')
     .attr('cx', 400)
     .attr('cy', function(d){return yscale(d);})
-    .attr('r', 37)
+    .attr('rx', 32)
+    .attr('ry', 38)
     .attr('fill', '#aa7d79');
-  /*
+//eyes
+svg.selectAll('nonexistent')
+      .data([49, 51])
+      .enter().append('circle')
+      .attr('cx', function(d){return xscale(d);})
+      .attr('cy', 65)
+      .attr('r', 3)
+      .attr('fill', 'black');
+
+//mask
+
+
+//body
+/*
+var poly ="50,50 200,50 250,100 250,150 20,50"
+svg.append('polygon')
+                .attr('points', poly)
+                .attr('stroke', '#f00')
+                .attr('fill', 'none');*/
+/* guide used for poly: https://lucidar.me/en/d3.js/part-06-basic-shapes/*/
+
+svg.selectAll('nonexistent')
+    .data([" 200,50 250,100 250,150 20,50"])
+    .enter()
+    .append('polygon')
+              .attr('points', function(d){return d} )
+              .attr('stroke', '#f00')
+              .attr('fill', 'blue');
+svg.selectAll('nonexistent')
+                  .data(["292,187 271,157 300,83 434,79 271,157 "])
+                  .enter()
+                  .append('polygon')
+                            .attr('points', function(d){return d} )
+                            .attr('stroke', '#f00')
+                            .attr('fill', '#535250');
+
   .on('mouseover', function(e, d) {
     d3.select(this).attr('fill', 'brown');
       d3.select('#value').text(d);
