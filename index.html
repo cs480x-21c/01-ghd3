@@ -32,9 +32,9 @@
   .attr('y', 150)
   .attr('width', 20)
   .attr('height', 20)
-  .attr('fill', 'green')
+  .attr('fill', '#6564A6')
   .on('mouseover', function() {
-    d3.select(this).attr('fill', 'red')
+    d3.select(this).attr('fill', '#6564A6')
   })
 
 
@@ -46,7 +46,7 @@
   .attr('cx', function(d) { return xscale(d) })
   .attr('cy', 200)
   .attr('r', 10)
-  .attr('fill', 'steelblue')
+  .attr('fill', '#30C0D9')
   .on('mouseover', function() {
     d3.select(this).attr('fill', 'brown')
   })
@@ -58,7 +58,7 @@
   .attr('y1', 250)
   .attr('x2', 400)
   .attr('y2', 250)
-  .style('stroke', 'orange')
+  .style('stroke', '#81F495')
   .style('stroke-width', 10)
 
 
@@ -68,7 +68,7 @@
 
   svg.append('path')
   .attr('d', line(hull))
-  .attr('fill', 'yellow')
+  .attr('fill', '#F3E43E')
 
   
   // Text
