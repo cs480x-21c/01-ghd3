@@ -84,6 +84,8 @@
 
 
     // Draw an Olympus 35RC 35mm shutter priority rangefinder camera
+
+    // body
     svg.append('rect')
         .attr('width', 400)
         .attr('height', 250)
@@ -100,46 +102,130 @@
         .attr('fill', 'black')
         .attr('stroke', 'black')
 
+    // lens
     svg.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 90 )
         .attr('fill', 'silver')
         .attr('stroke', 'black')
+
     svg.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 88 )
         .attr('fill', 'black')
         .attr('stroke', 'black')
+
     svg.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 84 )
         .attr('fill', 'silver')
         .attr('stroke', 'black')
+
     svg.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 80 )
         .attr('fill', 'black')
         .attr('stroke', 'black')
+
     svg.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 76 )
         .attr('fill', 'silver')
         .attr('stroke', 'black')
+
     svg.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 70 )
         .attr('fill', 'black')
         .attr('stroke', 'black')
+
     svg.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 35 )
         .attr('fill', 'steelblue')
+        .attr('stroke', 'black')
+
+    // rangefinder
+
+    svg.append('rect')
+        .attr( 'x', 280)
+        .attr('y',60 )
+        .attr('width', 80)
+        .attr('height', 40)
+        .attr('fill', 'lightgray')
+
+    // 11 rectangles for the rangefinder element
+
+
+    svg.append('rect')
+        .attr( 'x', 285)
+        .attr('y',72 )
+        .attr('width', 20)
+        .attr('height', 15)
+        .attr('fill', 'darkgray')
+
+    // viewfinder
+    svg.append('rect')
+        .attr( 'x', 375 )
+        .attr('y', 55 )
+        .attr('width', 100)
+        .attr('height', 55)
+        .attr('fill', 'black')
+
+    svg.append('rect')
+        .attr( 'x', 382 )
+        .attr('y', 60 )
+        .attr('width', 65)
+        .attr('height', 35)
+        .attr('fill', 'steelblue')
+
+    // topplate components
+
+    // shutter release
+    svg.append('rect')
+        .attr( 'x', 180 )
+        .attr('y', 30 )
+        .attr('width', 15)
+        .attr('height', 20)
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+    svg.append('rect')
+        .attr( 'x', 175 )
+        .attr('y', 44 )
+        .attr('width', 25)
+        .attr('height', 6)
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+    // shutter speed dial
+    svg.append('rect')
+        .attr( 'x', 205 )
+        .attr('y', 38 )
+        .attr('width', 60)
+        .attr('height', 12)
+        .attr('fill', 'black')
+
+    // hotshoe
+    svg.append('polygon')
+        .attr('points', "280,50 280,40 285,35 295,35 295,40 285,40 285,50 ")
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+    svg.append('polygon')
+        .attr('points', "350,50 350,40 345,35 335,35 335,40 345,40 345,50 ")
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+    // film winder
+    svg.append('polygon')
+        .attr('points', "420,50 480,50 480,45 475, 38 425, 38 420, 45")
+        .attr('fill', 'silver')
         .attr('stroke', 'black')
 </script>
