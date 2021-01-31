@@ -84,3 +84,19 @@ Remember, it is up to *you* to define what constitutes a technical and design ac
 Be ambitious as these are designed to allow you to shape your learning.
 These are the only way to move from B to A territory.
 
+
+Possible achievements
+- dev backend (host locally using npm http server, automatic updates on save using nodemon)
+maybe
+- make a color scheme
+- Load in json for polygons
+
+
+Sources
+- https://www.tutorialsteacher.com/d3js/function-of-data-in-d3js
+- http://using-d3js.com/05_09_polygons.html
+
+
+
+
+
