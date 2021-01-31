@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body></body>
+</html>
+
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
 <script>
@@ -7,4 +13,27 @@
   // Add Circles
   // Add Lines
   // Add Polygons
+  let svgHeight = 480;
+  let svgWidth = 640;
+  let svg = d3.select("body").append("svg");
+
+  svg.attr('width', svgWidth)
+  .attr('height', svgHeight);
+
+  svg.style('border', '1px solid red');
+  svg.style('display', 'block');
+  svg.style('margin', '0 auto');
+
+  /** Create svg elements for all drums */
+  let bass = svg.append('g');
+
+  bass.append('circle')
+  .attr('cx', '320')
+  .attr('cy', '316')
+  .attr('r', '100');
+
+  bass.on('click', () => {
+    console.log("bass got clicked!");
+  })
+
 </script>
