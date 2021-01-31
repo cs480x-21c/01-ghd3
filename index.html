@@ -24,6 +24,9 @@
   svg.style('display', 'block');
   svg.style('margin', '0 auto');
 
+  //the amount of displacement used in animations
+  let animationWeight = 5;
+
   /** Create svg elements for all drums */
 
   //lines for UI
@@ -130,14 +133,14 @@
   bass.append('circle')
   .attr('cx', '320')
   .attr('cy', '316')
-  .attr('r', '100');
+  .attr('r', '100')
   
   bass.append('circle')
   .attr('cx', '320')
   .attr('cy', '316')
   .attr('r', '88')
   .attr('stroke', 'white')
-  .attr('stroke-width', '1');
+  .attr('stroke-width', '1')
 
   //Tom-tom left
   let leftTom = svg.append('g');
@@ -267,7 +270,26 @@
 
   //All drums' event handlers
   bass.on('click', () => {
-    console.log("bass got clicked!");
+    
+    let origWidth = bass.node().getBoundingClientRect().width;
+    let origHeight = bass.attr('height');
+    let origX = bass.attr('x');
+    let origY = bass.attr('y');
+
+    console.log(origWidth);
+
+    console.log('bass clicked');
+    bass.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.1) translate(-25,-25)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+;
+
+    //console.log(bass.)
+
   })
 
 </script>
