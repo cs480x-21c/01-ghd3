@@ -11,40 +11,65 @@
 
 
   // Data
-  var squareData = [89, 33, 45, 22, 1]
-  var circleData = [19, 50, 2, 73, 62]
+  var squareData = []
+  var circleData = []
   var polygonData = [ [0, 325], [25, 325], [12.5, 300] ]
   var txtData = ['CS 4802 - BioVisualization']
+
+  // Settings
+  var numPrimitives = 50
+  var width = document.getElementById('vis').clientWidth
+  var height = document.getElementById('vis').clientWidth
 
 
   // Helper functions
   var xscale = d3.scaleLinear()
   .domain([0, 100])
-  .range([0, 400])
+  .range([0, width])
+
+  function populateWithPrimitives(primitiveData) {
+    for (var i = 0 ; i < numPrimitives ; i++) {
+      primitiveData.push({x: Math.floor(Math.floor(Math.random() * 101)), y: Math.floor(Math.floor(Math.random() * 101))})
+    }
+  }
 
 
   // Add Rectangles
+  // svg.selectAll('rect')
+  // .data(squareData)
+  // .enter()
+  // .append('rect')
+  // .attr('x', function(d) { return xscale(d) })
+  // .attr('y', 150)
+  // .attr('width', 20)
+  // .attr('height', 20)
+  // .attr('fill', '#6564A6')
+  // .on('mouseover', function() {
+  //   d3.select(this).attr('fill', '#6564A6')
+  // })
+
+  populateWithPrimitives(squareData)
+
   svg.selectAll('rect')
   .data(squareData)
   .enter()
   .append('rect')
-  .attr('x', function(d) { return xscale(d) })
-  .attr('y', 150)
+  .attr('x', function(d) { return xscale(d.x) })
+  .attr('y', function(d) { return xscale(d.y) })
   .attr('width', 20)
   .attr('height', 20)
   .attr('fill', '#6564A6')
-  .on('mouseover', function() {
-    d3.select(this).attr('fill', '#6564A6')
-  })
 
 
   // Add Circles
+  populateWithPrimitives(circleData)
+
   svg.selectAll('circle')
   .data(circleData)
   .enter()
   .append('circle')
-  .attr('cx', function(d) { return xscale(d) })
-  .attr('cy', 200)
+  .attr('cx', function(d) { return xscale(d.x) })
+  .attr('cy', function(d) { return xscale(d.y) })
   .attr('r', 10)
   .attr('fill', '#30C0D9')
   .on('mouseover', function() {
