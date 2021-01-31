@@ -12,17 +12,13 @@
 
   // Data
   var squareData = [89, 33, 45, 22, 1]
-  var circleData = [19, 50, 2, 73]
-  var polygonData = [ [200, 10], [250, 190], [160, 210] ]
+  var circleData = [19, 50, 2, 73, 62]
+  var polygonData = [ [0, 325], [25, 325], [12.5, 300] ]
   var txtData = ['CS 4802 - BioVisualization']
 
 
   // Helper functions
   var xscale = d3.scaleLinear()
-  .domain([0, 100])
-  .range([0, 400])
-
-  var yscale = d3.scaleLinear()
   .domain([0, 100])
   .range([0, 400])
 
@@ -33,7 +29,7 @@
   .enter()
   .append('rect')
   .attr('x', function(d) { return xscale(d) })
-  .attr('y', 50)
+  .attr('y', 150)
   .attr('width', 20)
   .attr('height', 20)
   .attr('fill', 'green')
@@ -47,9 +43,9 @@
   .data(circleData)
   .enter()
   .append('circle')
-  .attr('cx', 100)
-  .attr('cy', function(d) { return yscale(d) })
-  .attr('r', 5)
+  .attr('cx', function(d) { return xscale(d) })
+  .attr('cy', 200)
+  .attr('r', 10)
   .attr('fill', 'steelblue')
   .on('mouseover', function() {
     d3.select(this).attr('fill', 'brown')
@@ -58,12 +54,12 @@
 
   // Add Lines
   svg.append('line')
+  .attr('x1', 0)
+  .attr('y1', 250)
+  .attr('x2', 400)
+  .attr('y2', 250)
   .style('stroke', 'orange')
   .style('stroke-width', 10)
-  .attr('x1', 0)
-  .attr('y1', 0)
-  .attr('x2', 400)
-  .attr('y2', 400)
 
 
   // Add Polygons
@@ -83,10 +79,12 @@
   .text(function (d) {
     return d
   })
-  .style('font-size', 20)
+  .attr('text-anchor', 'middle')
+  .attr('x', '50%')
+  .attr('y', '10%')
+  .style('font-size', 32)
   .style('fill', 'white')
-  .attr('x', 100)
-  .attr('y', 100)
+  .style('font-weight', 700)
 
 </script>
 
