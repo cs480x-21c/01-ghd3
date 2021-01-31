@@ -68,6 +68,13 @@
   .attr('y2', '430')
   .attr('stroke', 'black');
 
+  svg.append('line')
+  .attr('x1', '149.44')
+  .attr('y1', '367.75')
+  .attr('x2', '184.44')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
   //bass
   svg.append('line')
   .attr('x1', '243.64')
@@ -270,13 +277,6 @@
 
   //All drums' event handlers
   bass.on('click', () => {
-    
-    let origWidth = bass.node().getBoundingClientRect().width;
-    let origHeight = bass.attr('height');
-    let origX = bass.attr('x');
-    let origY = bass.attr('y');
-
-    console.log(origWidth);
 
     console.log('bass clicked');
     bass.transition()
