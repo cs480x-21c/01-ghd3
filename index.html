@@ -1,10 +1,79 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<svg id="vis"></svg>
+
 <script>
   console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+  // Add an SVG         X
+  // Add Rectangles     X
+  // Add Circles        X
+  // Add Lines          X
+  // Add Polygons       X
+  
+  var wid = window.innerWidth;
+  var hgt = window.innerHeight;
+  var smWdHt = Math.min(wid, hgt);
+
+  var svg = d3.select('#vis')
+    .attr('width',  wid)
+    .attr('height', hgt);
+
+  svg.append("polygon")
+   .attr("points", "0,0 "+wid+",0 0,"+hgt)
+   .attr('fill', '#EEEEEE');
+
+  svg.append('rect')
+    .attr('x', wid/4)
+    .attr('y', hgt/4)
+    .attr('width', wid/2)
+    .attr('height', hgt/2)
+    .attr('stroke', 'black')
+    .attr('fill', '#45FF96');
+
+  svg.append('circle')
+    .attr('cx', wid/2)
+    .attr('cy', hgt/2)
+    .attr('r', smWdHt/6)
+    .attr('stroke', 'black')
+    .attr('fill', 'white')
+    .attr('stroke-width', smWdHt/50);
+
+  var wid2 = .05;
+  var hgt2 = .06;
+  var dif2 = .05;
+  var path = "M" + (wid/2-2*wid2*smWdHt) + " " + (hgt/2+dif2*smWdHt)
+           +" L" + (wid/2-wid2*smWdHt)   + " " + (hgt/2+dif2*smWdHt+hgt2*smWdHt)
+           +" L" + (wid/2)               + " " + (hgt/2+dif2*smWdHt)
+           +" L" + (wid/2+wid2*smWdHt)   + " " + (hgt/2+dif2*smWdHt+hgt2*smWdHt)
+           +" L" + (wid/2+2*wid2*smWdHt) + " " + (hgt/2+dif2*smWdHt);
+  svg.append('path')
+    .attr('d', path)
+    .attr('stroke', 'black')
+    .attr('fill', 'none')
+    .attr('stroke-width', smWdHt/50);
+
+  var polyL = (wid/2-smWdHt*.02)  + "," + (hgt/2-smWdHt*.05)  + " "
+            + (wid/2-smWdHt*.1)   + "," + (hgt/2-smWdHt*.07)  + " "
+            + (wid/2-smWdHt*.09)  + "," + (hgt/2-smWdHt*.035) + " "
+            + (wid/2-smWdHt*.07)  + "," + (hgt/2-smWdHt*.02)  + " "
+            + (wid/2-smWdHt*.058) + "," + (hgt/2-smWdHt*.018) + " "
+            + (wid/2-smWdHt*.04)  + "," + (hgt/2-smWdHt*.022);
+  svg.append("polygon")
+   .attr("points", polyL)
+   .attr('stroke', 'black')
+   .attr('fill', 'black')
+   .attr('stroke-width', smWdHt/200);
+
+  var polyL = (wid/2+smWdHt*.02)  + "," + (hgt/2-smWdHt*.05)  + " "
+            + (wid/2+smWdHt*.1)   + "," + (hgt/2-smWdHt*.07)  + " "
+            + (wid/2+smWdHt*.09)  + "," + (hgt/2-smWdHt*.035) + " "
+            + (wid/2+smWdHt*.07)  + "," + (hgt/2-smWdHt*.02)  + " "
+            + (wid/2+smWdHt*.058) + "," + (hgt/2-smWdHt*.018) + " "
+            + (wid/2+smWdHt*.04)  + "," + (hgt/2-smWdHt*.022);
+  svg.append("polygon")
+   .attr("points", polyL)
+   .attr('stroke', 'black')
+   .attr('fill', 'black')
+   .attr('stroke-width', smWdHt/200);
+  
 </script>
