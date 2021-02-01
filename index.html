@@ -12,16 +12,18 @@
   .style('background-color', 'black')
 
 
-  // Data
-  var squareData = []
-  var circleData = []
-  var polygonData = [ [0, 325], [25, 325], [12.5, 300] ]
-  var txtData = [{title: 'CS 4802 - BioVisualization', label: 'Click me!'}]
-
   // Settings
   var numPrimitives = 500
   var width = document.getElementById('vis').clientWidth
   var height = document.getElementById('vis').clientWidth
+
+
+  // Data
+  var squareData = []
+  var circleData = []
+  // var polygonData = [ [0, 325], [25, 325], [12.5, 300] ]
+  var polygonData = [ [0, height], [width, height], [width/2, 0] ]  
+  var txtData = [{title: 'CS 4802 - BioVisualization', label: 'Click me!'}]
 
 
   // Helper functions
@@ -30,9 +32,23 @@
   .range([0, width])
 
   function populateWithPrimitives(primitiveData) {
+    console.log("populating")
     for (var i = 0 ; i < numPrimitives ; i++) {
       primitiveData.push({x: Math.floor(Math.floor(Math.random() * 101)), y: Math.floor(Math.floor(Math.random() * 101))})
     }
+  }
+
+  function onClickMe() {
+    d3.select('#centerCircle')
+    .transition()
+    .duration(2000)
+    .attr('r', width)
+
+    d3.select('#circleTxt')
+    .transition()
+    .duration(2000)
+    .style('opacity', 0)
+    console.log("why")
   }
 
 
@@ -73,24 +89,44 @@
     .data(['Click me!']);
   var g = nodes.enter().append("g")
 
+
   g.append("circle") 
-  .attr("id", 'hey')
+  .attr("id", 'centerCircle')
   .attr('cx', '50%')
   .attr('cy', '50%')
   .attr('r', 100)
   .attr('fill', 'white')
-  .on('click', function() {
-    d3.select(this)
+  .on('click', function onClickMe() {
+    d3.select('#centerCircle')
     .transition()
     .duration(2000)
     .attr('r', width)
+
+    d3.select('#circleTxt')
+    .transition()
+    .duration(2000)
+    .style('opacity', 0)
+
+    var hull = d3.polygonHull(polygonData)
+    var line = d3.line().curve(d3.curveLinearClosed)
+
+    svg.append('path')
+    .transition()
+    .delay(2000)
+    .duration(1000)
+    .attr('id', 'outerTriangle')
+    .attr('d', line(hull))
+    .attr('fill', '#F3E43E')
+    .attr('opacity', 1)
+
   })
+
 
   g.append('text')
   .text(function (d) {
     return d
   })
-  .attr('id', 'yo')
+  .attr('id', 'circleTxt')
   .attr('text-anchor', 'middle')
   .attr('x', '50%')
   .attr('y', '50%')
@@ -98,6 +134,17 @@
   .style('fill', 'black')
   .style('font-family', 'Fraunces')
   .style('font-weight', 500)
+  .on('click', function () {
+    d3.select('#centerCircle')
+    .transition()
+    .duration(2000)
+    .attr('r', width)
+
+    d3.select('#circleTxt')
+    .transition()
+    .duration(2000)
+    .style('opacity', 0)
+  })
   
   
   // Add Lines
@@ -111,12 +158,6 @@
 
 
   // Add Polygons
-  // var hull = d3.polygonHull(polygonData)
-  // var line = d3.line().curve(d3.curveLinearClosed)
-
-  // svg.append('path')
-  // .attr('d', line(hull))
-  // .attr('fill', '#F3E43E')
 
   
   // Text
