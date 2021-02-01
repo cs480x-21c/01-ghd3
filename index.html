@@ -1,43 +1,49 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
-<svg id="vis">
+<svg id="vis"> </svg>
 
-</svg>
 <script>
+  /*
+  Using the code provided in class*/
   console.log(d3); // test if d3 is loaded
-  var circle = [10]
-  var rectangleBackground = [0, 33, 66]
+  var circle = [10];
+  var rectangleBackground = [0, 33, 66];
 
-  var rectangleBackgroundSeat = [20, 50, 80]
-  // Add an SVG
+  var rectangleBackgroundSeat = [20, 50, 80];
+
+  var entireWidth = 1600;
+  var entireHeight = 900;
   var svg = d3.select('#vis')
-    .attr('width', 800)
-    .attr('height', 450);
+    .attr('width', entireWidth)
+    .attr('height', entireHeight);
 
   var xscale = d3.scaleLinear()
     .domain([0,100])
-    .range([0,800]);
+    .range([0,entireWidth]);
 
   var yscale = d3.scaleLinear()
       .domain([0,100])
-      .range([0,450]);
+      .range([0,entireHeight]);
 
   // Add Rectangles
   var mainBackgroud = svg.append('rect')
     .attr('x', 0)
     .attr('y', 0)
-    .attr('width', 800)
-    .attr('height', 450 )
+    .attr('width', entireWidth)
+    .attr('height', entireHeight)
     .attr('fill', '#a3a8a2');
 
+  var whiteStairsInfo = [{start:150, height:67},
+                         {start:478, height:67},
+                         {start:815, height:67}]
   //Adding White Stairs
-  svg.selectAll('nonexistent')
-    .data([15, 53, 88, 94])
+  var whiteStairs = svg.selectAll('nonexistent')
+    .data(whiteStairsInfo)
     .enter().append('rect')
       .attr('x', 0)
-      .attr('y', function(d){return yscale(d);})
-      .attr('width', 800)
-      .attr('height', 28)
+      .attr('y', function(d){return d.start})
+      .attr('width', entireWidth)
+      .attr('height', function(d){return d.height})
       .attr('fill', '#b9c3c4');
 
   //dark trim of the white stairs
@@ -47,7 +53,7 @@
           .attr('x', 0)
           .attr('y', function(d){return yscale(d);})
           .attr('width', 800)
-          .attr('height', 10)
+          .attr('height', 16)
           .attr('fill', '#969c9c');
 
   /*
@@ -89,26 +95,33 @@
         .attr('r', 37)
         .attr('fill', '#aa7d79');
 */
-  // Add Circles
 
+// Add Circles
 
+  var elipses = [{cx: 730, cy: 172, rx:54, ry:77, fill: '#aa7d79'} // HEAD
 
+                  ]
+
+    svg.selectAll('nonexistent')
+      .data(elipses)
+      .enter().append('ellipse')
+      .attr('cx', function(d){return d.cx})
+      .attr('cy', function(d){return d.cy})
+      .attr('rx', function(d){return d.rx})
+      .attr('ry', function(d){return d.ry})
+      .attr('fill', function(d){return d.fill});
+  //EYES
+  var circles= [{cx: 708, cy: 166, r:3,  fill: 'black'}, // left EYES
+                {cx: 748, cy: 166, r:3,  fill: 'black'} //Right eye
+                ]
   svg.selectAll('nonexistent')
-    .data([15])
-    .enter().append('ellipse')
-    .attr('cx', 400)
-    .attr('cy', function(d){return yscale(d);})
-    .attr('rx', 32)
-    .attr('ry', 38)
-    .attr('fill', '#aa7d79');
-//eyes
-svg.selectAll('nonexistent')
-      .data([49, 51])
-      .enter().append('circle')
-      .attr('cx', function(d){return xscale(d);})
-      .attr('cy', 65)
-      .attr('r', 3)
-      .attr('fill', 'black');
+    .data(circles)
+    .enter().append('circle')
+    .attr('cx', function(d){return d.cx})
+    .attr('cy', function(d){return d.cy})
+    .attr('r', function(d){return d.r})
+    .attr('fill', function(d){return d.fill});
+
 
 //mask
 
@@ -123,20 +136,13 @@ svg.append('polygon')
 /* guide used for poly: https://lucidar.me/en/d3.js/part-06-basic-shapes/*/
 
 svg.selectAll('nonexistent')
-    .data([" 200,50 250,100 250,150 20,50"])
-    .enter()
-    .append('polygon')
-              .attr('points', function(d){return d} )
-              .attr('stroke', '#f00')
-              .attr('fill', 'blue');
-svg.selectAll('nonexistent')
                   .data(["292,187 271,157 300,83 434,79 271,157 "])
                   .enter()
                   .append('polygon')
                             .attr('points', function(d){return d} )
                             .attr('stroke', '#f00')
                             .attr('fill', '#535250');
-
+/*
   .on('mouseover', function(e, d) {
     d3.select(this).attr('fill', 'brown');
       d3.select('#value').text(d);
@@ -147,4 +153,6 @@ svg.selectAll('nonexistent')
 */
   // Add Lines
   // Add Polygons
+
+
 </script>
