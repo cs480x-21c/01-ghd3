@@ -90,6 +90,8 @@ Possible achievements
 maybe
 - make a color scheme
 - Load in json for polygons
+- reactive to page change
+- num polygons based on page size
 
 
 Sources

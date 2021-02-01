@@ -1,3 +1,5 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces&display=swap" rel="stylesheet">
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
 <svg id="vis"></svg>
@@ -14,10 +16,10 @@
   var squareData = []
   var circleData = []
   var polygonData = [ [0, 325], [25, 325], [12.5, 300] ]
-  var txtData = ['CS 4802 - BioVisualization']
+  var txtData = [{title: 'CS 4802 - BioVisualization', label: 'Click me!'}]
 
   // Settings
-  var numPrimitives = 50
+  var numPrimitives = 500
   var width = document.getElementById('vis').clientWidth
   var height = document.getElementById('vis').clientWidth
 
@@ -35,19 +37,6 @@
 
 
   // Add Rectangles
-  // svg.selectAll('rect')
-  // .data(squareData)
-  // .enter()
-  // .append('rect')
-  // .attr('x', function(d) { return xscale(d) })
-  // .attr('y', 150)
-  // .attr('width', 20)
-  // .attr('height', 20)
-  // .attr('fill', '#6564A6')
-  // .on('mouseover', function() {
-  //   d3.select(this).attr('fill', '#6564A6')
-  // })
-
   populateWithPrimitives(squareData)
 
   svg.selectAll('rect')
@@ -73,43 +62,69 @@
   .attr('r', 10)
   .attr('fill', '#30C0D9')
   .on('mouseover', function() {
-    d3.select(this).attr('fill', 'brown')
+    d3.select(this).attr('fill', 'orange')
   })
 
 
+  var nodes = svg.selectAll("g")
+    .data(['Click me!']);
+  var g = nodes.enter().append("g")
+
+  g.append("circle") 
+  .attr("id", 'hey')
+  .attr('cx', '50%')
+  .attr('cy', '50%')
+  .attr('r', 100)
+  .attr('fill', 'white')
+
+  g.append('text')
+  .text(function (d) {
+    return d
+  })
+  .attr('id', 'yo')
+  .attr('text-anchor', 'middle')
+  .attr('x', '50%')
+  .attr('y', '50%')
+  .style('font-size', 16)
+  .style('fill', 'black')
+  .style('font-family', 'Fraunces')
+  .style('font-weight', 500)
+  
+  
   // Add Lines
-  svg.append('line')
-  .attr('x1', 0)
-  .attr('y1', 250)
-  .attr('x2', 400)
-  .attr('y2', 250)
-  .style('stroke', '#81F495')
-  .style('stroke-width', 10)
+  // svg.append('line')
+  // .attr('x1', 0)
+  // .attr('y1', 250)
+  // .attr('x2', 400)
+  // .attr('y2', 250)
+  // .style('stroke', '#81F495')
+  // .style('stroke-width', 10)
 
 
   // Add Polygons
-  var hull = d3.polygonHull(polygonData)
-  var line = d3.line().curve(d3.curveLinearClosed)
+  // var hull = d3.polygonHull(polygonData)
+  // var line = d3.line().curve(d3.curveLinearClosed)
 
-  svg.append('path')
-  .attr('d', line(hull))
-  .attr('fill', '#F3E43E')
+  // svg.append('path')
+  // .attr('d', line(hull))
+  // .attr('fill', '#F3E43E')
 
   
   // Text
-  svg.selectAll('text')
-  .data(txtData)
-  .enter()
+  svg
   .append('text')
+  .data(txtData)
   .text(function (d) {
-    return d
+    return d.title
   })
   .attr('text-anchor', 'middle')
   .attr('x', '50%')
   .attr('y', '10%')
-  .style('font-size', 32)
+  .style('font-size', 42)
   .style('fill', 'white')
+  .style('font-family', 'Fraunces')
   .style('font-weight', 700)
+
 
 </script>
 
