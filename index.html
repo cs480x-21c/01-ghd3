@@ -48,8 +48,11 @@
   .attr('width', 20)
   .attr('height', 20)
   .attr('fill', '#6564A6')
+  .on('mouseover', function() {
+    d3.select(this).attr('fill', '#81F495')
+  })
 
-
+  
   // Add Circles
   populateWithPrimitives(circleData)
 
@@ -76,6 +79,12 @@
   .attr('cy', '50%')
   .attr('r', 100)
   .attr('fill', 'white')
+  .on('click', function() {
+    d3.select(this)
+    .transition()
+    .duration(2000)
+    .attr('r', width)
+  })
 
   g.append('text')
   .text(function (d) {
