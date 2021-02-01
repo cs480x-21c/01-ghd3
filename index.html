@@ -16,7 +16,7 @@
   var svg = d3.select('#vis')
     .attr('width', entireWidth)
     .attr('height', entireHeight);
-
+/*
   var xscale = d3.scaleLinear()
     .domain([0,100])
     .range([0,entireWidth]);
@@ -24,85 +24,36 @@
   var yscale = d3.scaleLinear()
       .domain([0,100])
       .range([0,entireHeight]);
-
-  // Add Rectangles
-  var mainBackgroud = svg.append('rect')
-    .attr('x', 0)
-    .attr('y', 0)
-    .attr('width', entireWidth)
-    .attr('height', entireHeight)
-    .attr('fill', '#a3a8a2');
-
-  var whiteStairsInfo = [{start:150, height:67},
-                         {start:478, height:67},
-                         {start:815, height:67}]
-  //Adding White Stairs
-  var whiteStairs = svg.selectAll('nonexistent')
-    .data(whiteStairsInfo)
-    .enter().append('rect')
-      .attr('x', 0)
-      .attr('y', function(d){return d.start})
-      .attr('width', entireWidth)
-      .attr('height', function(d){return d.height})
-      .attr('fill', '#b9c3c4');
-
-  //dark trim of the white stairs
-  svg.selectAll('nonexistent')
-        .data([98])
-        .enter().append('rect')
-          .attr('x', 0)
-          .attr('y', function(d){return yscale(d);})
-          .attr('width', 800)
-          .attr('height', 16)
-          .attr('fill', '#969c9c');
-
-  /*
-  svg.append('rect')
-      .attr('x', 0)
-      .attr('y', 100)
-      .attr('width', 800)
-      .attr('height', 50)
-      .attr('stroke', '#b9c3c4')
-      .attr('fill', '#b9c3c4');
-
-    svg.append('rect')
-          .attr('x', 0)
-          .attr('y', 250)
-          .attr('width', 800)
-          .attr('height', 50)
-          .attr('stroke', '#b9c3c4')
-          .attr('fill', '#b9c3c4');
-    svg.append('rect')
-                .attr('x', 0)
-                .attr('y', 380)
-                .attr('width', 800)
-                .attr('height',80)
-                .attr('stroke', '#b9c3c4')
-                .attr('fill', '#b9c3c4');
-
-    svg.append('rect')
-      .attr('x', 0)
-      .attr('y', 440)
-      .attr('width', 800)
-      .attr('height',10)
-      .attr('fill', '#969c9c');
-
-      svg.selectAll('nonexistent')
-        .data([15])
-        .enter().append('circle')
-        .attr('cx', 400)
-        .attr('cy', function(d){return yscale(d);})
-        .attr('r', 37)
-        .attr('fill', '#aa7d79');
 */
 
-// Add Circles
+  var rectangles = [{x: 0, y: 0, width: entireWidth, height: entireHeight,
+                      fill: '#a3a8a2'}, //Main Background
+                    {x: 0, y: 150, width: entireWidth, height:67,
+                      fill: '#b9c3c4'}, //first stair
+                    {x: 0, y: 478, width: entireWidth, height:67,
+                      fill: '#b9c3c4'}, //second stair
+                    {x: 0, y: 815, width: entireWidth, height:67,
+                      fill: '#b9c3c4'}, //third stair
+                    {x: 0, y: 880, width: entireWidth, height:16,
+                      fill: '#b9c3c4'} //trim on the end
+                    ]
+//Add Rectangles
+  svg.selectAll('rect')
+                        .data(rectangles)
+                        .enter().append('rect')
+                        .attr('x', function(d){return d.x})
+                        .attr('y', function(d){return d.y})
+                        .attr('width', function(d){return d.width})
+                        .attr('height', function(d){return d.height})
+                        .attr('fill', function(d){return d.fill});
+
+
 
   var elipses = [{cx: 730, cy: 172, rx:54, ry:77, fill: '#aa7d79'} // HEAD
 
                   ]
-
-    svg.selectAll('nonexistent')
+// Add Ellipses
+    svg.selectAll('ellipse')
       .data(elipses)
       .enter().append('ellipse')
       .attr('cx', function(d){return d.cx})
@@ -110,11 +61,13 @@
       .attr('rx', function(d){return d.rx})
       .attr('ry', function(d){return d.ry})
       .attr('fill', function(d){return d.fill});
-  //EYES
+
+
   var circles= [{cx: 708, cy: 166, r:3,  fill: 'black'}, // left EYES
                 {cx: 748, cy: 166, r:3,  fill: 'black'} //Right eye
                 ]
-  svg.selectAll('nonexistent')
+//Add Circles
+  svg.selectAll('circle')
     .data(circles)
     .enter().append('circle')
     .attr('cx', function(d){return d.cx})
