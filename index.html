@@ -35,5 +35,8 @@
         .attr("cx", 300)
         .attr("r", 50);
 
-    // Draw a polygon?
+    // Draw a polygon
+    svg.append("polygon")
+        .style("fill", "purple")
+        .attr("points", "300,50 350,50 385,100 350,150 300,150 265,100 300,50");
 </script>
