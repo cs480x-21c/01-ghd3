@@ -88,13 +88,18 @@ svg.append('polygon')
                 .attr('fill', 'none');*/
 /* guide used for poly: https://lucidar.me/en/d3.js/part-06-basic-shapes/*/
 
-svg.selectAll('nonexistent')
-                  .data(["292,187 271,157 300,83 434,79 271,157 "])
+var polygon = [{points:"677,304 705,375 584,438 542,375 588,239 647,227 656,193 675,191 691,235 738,247 772,235 789,174 806,176 816,212 865,222 911,369 870,439 875,467 841,553 719,435 594,484 584,438 705,375",
+                stroke: 'black', fill: '#535250'},
+                {points:"696,181 727,174 769,179 776,211 765,231 737,247 725,247 710,240 690,225",
+                    stroke: 'white', fill: '#92c8eb'},
+                ]
+svg.selectAll('polygon')
+                  .data(polygon)
                   .enter()
                   .append('polygon')
-                            .attr('points', function(d){return d} )
-                            .attr('stroke', '#f00')
-                            .attr('fill', '#535250');
+                            .attr('points', function(d){return d.points} )
+                            .attr('stroke', function(d){return d.stroke})
+                            .attr('fill', function(d){return d.fill});
 /*
   .on('mouseover', function(e, d) {
     d3.select(this).attr('fill', 'brown');
