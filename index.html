@@ -1,11 +1,10 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
 <script src="svg.js"></script>
-<script src="Shapes/RectangleMaker.js"></script>
-<script src="Shapes/LineMaker.js"></script>
+<script src="Observer/ScoreObserver.js"></script>
+<script src="Shapes/RandomShapeMaker.js"></script>
 
-
-<div id="value"> </div>
+<div id="score"> </div>
 <svg id="vis"> </svg>
 
 <script>
@@ -26,8 +25,14 @@
     let xScale = makeScale(0, width, xData);
     let yScale = makeScale(0, height, yData);
 
+    // Make the Score Observer
+    let score = new ScoreObserver('#score');
+
+    let maker = new RandomShapeMaker();
+    maker.addObserver(score);
+
     // Add Lines
-    let lineMaker = new LineMaker(svg);
+    // let lineMaker = new LineMaker(svg);
 
 
     // Add Rectangles

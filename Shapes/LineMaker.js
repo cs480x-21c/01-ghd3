@@ -23,9 +23,9 @@ class LineMaker
             .attr("y1", 0)
             .attr("x2", 100)
             .attr("y2", 0)
-            .on('mousedown', function (e, d)
+            .on('mouseover', function (e, d)
                 {
-                    console.log("YEYE");
+
                     d3.select(this).attr("x1", e.x);
                     d3.select(this).attr("y1", e.y);
                 });
