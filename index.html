@@ -16,101 +16,180 @@
   var svg = d3.select('#vis')
     .attr('width', entireWidth)
     .attr('height', entireHeight);
-/*
-  var xscale = d3.scaleLinear()
-    .domain([0,100])
-    .range([0,entireWidth]);
-
-  var yscale = d3.scaleLinear()
+  /*
+    var xscale = d3.scaleLinear()
       .domain([0,100])
-      .range([0,entireHeight]);
-*/
+      .range([0,entireWidth]);
 
-  var rectangles = [{x: 0, y: 0, width: entireWidth, height: entireHeight,
-                      fill: '#a3a8a2'}, //Main Background
-                    {x: 0, y: 150, width: entireWidth, height:67,
-                      fill: '#b9c3c4'}, //first stair
-                    {x: 0, y: 478, width: entireWidth, height:67,
-                      fill: '#b9c3c4'}, //second stair
-                    {x: 0, y: 815, width: entireWidth, height:67,
-                      fill: '#b9c3c4'}, //third stair
-                    {x: 0, y: 880, width: entireWidth, height:16,
-                      fill: '#b9c3c4'} //trim on the end
-                    ]
-//Add Rectangles
+    var yscale = d3.scaleLinear()
+        .domain([0,100])
+        .range([0,entireHeight]);
+  */
+
+  var rectangles = [{
+      x: 0,
+      y: 0,
+      width: entireWidth,
+      height: entireHeight,
+      fill: '#a3a8a2'
+    }, //Main Background
+    {
+      x: 0,
+      y: 150,
+      width: entireWidth,
+      height: 67,
+      fill: '#b9c3c4'
+    }, //first stair
+    {
+      x: 0,
+      y: 478,
+      width: entireWidth,
+      height: 67,
+      fill: '#b9c3c4'
+    }, //second stair
+    {
+      x: 0,
+      y: 815,
+      width: entireWidth,
+      height: 67,
+      fill: '#b9c3c4'
+    }, //third stair
+    {
+      x: 0,
+      y: 880,
+      width: entireWidth,
+      height: 16,
+      fill: '#b9c3c4'
+    } //trim on the end
+  ]
+  //Add Rectangles
   svg.selectAll('rect')
-                        .data(rectangles)
-                        .enter().append('rect')
-                        .attr('x', function(d){return d.x})
-                        .attr('y', function(d){return d.y})
-                        .attr('width', function(d){return d.width})
-                        .attr('height', function(d){return d.height})
-                        .attr('fill', function(d){return d.fill});
+    .data(rectangles)
+    .enter().append('rect')
+    .attr('x', function(d) {
+      return d.x
+    })
+    .attr('y', function(d) {
+      return d.y
+    })
+    .attr('width', function(d) {
+      return d.width
+    })
+    .attr('height', function(d) {
+      return d.height
+    })
+    .attr('fill', function(d) {
+      return d.fill
+    });
 
 
 
-  var elipses = [{cx: 730, cy: 172, rx:54, ry:77, fill: '#aa7d79'} // HEAD
+  var elipses = [{
+      cx: 730,
+      cy: 172,
+      rx: 54,
+      ry: 77,
+      fill: '#aa7d79'
+    } // HEAD
 
-                  ]
-// Add Ellipses
-    svg.selectAll('ellipse')
-      .data(elipses)
-      .enter().append('ellipse')
-      .attr('cx', function(d){return d.cx})
-      .attr('cy', function(d){return d.cy})
-      .attr('rx', function(d){return d.rx})
-      .attr('ry', function(d){return d.ry})
-      .attr('fill', function(d){return d.fill});
+  ]
+  // Add Ellipses
+  svg.selectAll('ellipse')
+    .data(elipses)
+    .enter().append('ellipse')
+    .attr('cx', function(d) {
+      return d.cx
+    })
+    .attr('cy', function(d) {
+      return d.cy
+    })
+    .attr('rx', function(d) {
+      return d.rx
+    })
+    .attr('ry', function(d) {
+      return d.ry
+    })
+    .attr('fill', function(d) {
+      return d.fill
+    });
 
 
-  var circles= [{cx: 708, cy: 166, r:3,  fill: 'black'}, // left EYES
-                {cx: 748, cy: 166, r:3,  fill: 'black'} //Right eye
-                ]
-//Add Circles
+  var circles = [{
+      cx: 708,
+      cy: 166,
+      r: 3,
+      fill: 'black'
+    }, // left EYES
+    {
+      cx: 748,
+      cy: 166,
+      r: 3,
+      fill: 'black'
+    } //Right eye
+  ]
+  //Add Circles
   svg.selectAll('circle')
     .data(circles)
     .enter().append('circle')
-    .attr('cx', function(d){return d.cx})
-    .attr('cy', function(d){return d.cy})
-    .attr('r', function(d){return d.r})
-    .attr('fill', function(d){return d.fill});
-
-
-//mask
-
-
-//body
-/*
-var poly ="50,50 200,50 250,100 250,150 20,50"
-svg.append('polygon')
-                .attr('points', poly)
-                .attr('stroke', '#f00')
-                .attr('fill', 'none');*/
-/* guide used for poly: https://lucidar.me/en/d3.js/part-06-basic-shapes/*/
-
-var polygon = [{points:"677,304 705,375 584,438 542,375 588,239 647,227 656,193 675,191 691,235 738,247 772,235 789,174 806,176 816,212 865,222 911,369 870,439 875,467 841,553 719,435 594,484 584,438 705,375",
-                stroke: 'black', fill: '#535250'},
-                {points:"696,181 727,174 769,179 776,211 765,231 737,247 725,247 710,240 690,225",
-                    stroke: 'white', fill: '#92c8eb'},
-                ]
-svg.selectAll('polygon')
-                  .data(polygon)
-                  .enter()
-                  .append('polygon')
-                            .attr('points', function(d){return d.points} )
-                            .attr('stroke', function(d){return d.stroke})
-                            .attr('fill', function(d){return d.fill});
-/*
-  .on('mouseover', function(e, d) {
-    d3.select(this).attr('fill', 'brown');
-      d3.select('#value').text(d);
+    .attr('cx', function(d) {
+      return d.cx
     })
-    .on('mouseout', function() {
-      d3.select(this).attr('fill', 'steelblue');
-      });
-*/
+    .attr('cy', function(d) {
+      return d.cy
+    })
+    .attr('r', function(d) {
+      return d.r
+    })
+    .attr('fill', function(d) {
+      return d.fill
+    });
+
+
+  //mask
+
+
+  //body
+  /*
+  var poly ="50,50 200,50 250,100 250,150 20,50"
+  svg.append('polygon')
+                  .attr('points', poly)
+                  .attr('stroke', '#f00')
+                  .attr('fill', 'none');*/
+  /* guide used for poly: https://lucidar.me/en/d3.js/part-06-basic-shapes/*/
+
+  var polygon = [{
+      points: "677,304 705,375 584,438 542,375 588,239 647,227 656,193 675,191 691,235 738,247 772,235 789,174 806,176 816,212 865,222 911,369 870,439 875,467 841,553 719,435 594,484 584,438 705,375",
+      stroke: 'black',
+      fill: '#535250'
+    },
+    {
+      points: "696,181 727,174 769,179 776,211 765,231 737,247 725,247 710,240 690,225",
+      stroke: 'white',
+      fill: '#92c8eb'
+    },
+  ]
+  svg.selectAll('polygon')
+    .data(polygon)
+    .enter()
+    .append('polygon')
+    .attr('points', function(d) {
+      return d.points
+    })
+    .attr('stroke', function(d) {
+      return d.stroke
+    })
+    .attr('fill', function(d) {
+      return d.fill
+    });
+  /*
+    .on('mouseover', function(e, d) {
+      d3.select(this).attr('fill', 'brown');
+        d3.select('#value').text(d);
+      })
+      .on('mouseout', function() {
+        d3.select(this).attr('fill', 'steelblue');
+        });
+  */
   // Add Lines
   // Add Polygons
-
-
 </script>
