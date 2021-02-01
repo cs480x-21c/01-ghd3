@@ -6,6 +6,7 @@
   /*
   Using the code provided in class*/
   console.log(d3); // test if d3 is loaded
+
   var circle = [10];
   var rectangleBackground = [0, 33, 66];
 
@@ -113,6 +114,11 @@
       return d.fill
     });
 
+    /*
+    .on('mouseover', function() {
+        d3.select(this).attr('fill', 'steelblue');
+      });*/
+
 
   var circles = [{
       cx: 708,
@@ -157,16 +163,22 @@
                   .attr('fill', 'none');*/
   /* guide used for poly: https://lucidar.me/en/d3.js/part-06-basic-shapes/*/
 
-  var polygon = [{
-      points: "677,304 705,375 584,438 542,375 588,239 647,227 656,193 675,191 691,235 738,247 772,235 789,174 806,176 816,212 865,222 911,369 870,439 875,467 841,553 719,435 594,484 584,438 705,375",
-      stroke: 'black',
-      fill: '#535250'
-    },
+  var polygon = [
     {
       points: "696,181 727,174 769,179 776,211 765,231 737,247 725,247 710,240 690,225",
       stroke: 'white',
       fill: '#92c8eb'
     },
+    {
+      points: "843,555 758,588 758,660 752,669 773,721 723,743 716,671 708,667  696,810 648,807 654,773 621,753 634,591 595,572 574,540 596,480 700,435 730,437",
+      stroke: 'white',
+      fill: 'black'
+    },
+    {
+        points: "677,304 705,375 584,438 542,375 588,239 647,227 656,193 675,191 691,235 738,247 772,235 789,174 806,176 816,212 865,222 911,369 870,439 875,467 841,553 719,435 594,484 584,438 705,375",
+        stroke: 'black',
+        fill: '#535250'
+      }
   ]
   svg.selectAll('polygon')
     .data(polygon)
@@ -181,15 +193,19 @@
     .attr('fill', function(d) {
       return d.fill
     });
+
+
+
   /*
-    .on('mouseover', function(e, d) {
-      d3.select(this).attr('fill', 'brown');
-        d3.select('#value').text(d);
-      })
       .on('mouseout', function() {
         d3.select(this).attr('fill', 'steelblue');
         });
   */
   // Add Lines
   // Add Polygons
+  d3.select("body").selectAll("p")
+    .data([5,3,6])
+    .enter()
+    .append("p")
+    .text("New paragraph!");
 </script>
