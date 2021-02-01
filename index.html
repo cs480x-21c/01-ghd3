@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head></head>
-  <body></body>
+  <body>
+    <div class="container" id="svgContainer">
+      <svg id="svg"></svg>
+    </div>
+  </body>
 </html>
 
 <script src="https://d3js.org/d3.v6.min.js"></script>
@@ -15,14 +19,17 @@
   // Add Polygons
   let svgHeight = 480;
   let svgWidth = 640;
-  let svg = d3.select("body").append("svg");
+  let container = d3.select("#svgContainer");
+
+  container.attr('align', 'center');
+
+  let svg = d3.select("#svg");
 
   svg.attr('width', svgWidth)
-  .attr('height', svgHeight);
+  .attr('height', svgHeight)
 
   svg.style('border', '1px solid red');
   svg.style('display', 'block');
-  svg.style('margin', '0 auto');
 
   //the amount of displacement used in animations
   let animationWeight = 5;
@@ -133,6 +140,10 @@
   .attr('x2', '618.44')
   .attr('y2', '430')
   .attr('stroke', 'black');
+
+  /**
+   * DRUM SVG GROUPS
+   * */
 
   //Bass
   let bass = svg.append('g');
@@ -275,8 +286,8 @@
   .attr('y', '247')
   .attr('fill', '#EEEEEE');
 
-  //All drums' event handlers
-  bass.on('click', () => {
+  //functions for each drum interaction
+  function bassInteract() {
 
     console.log('bass clicked');
     bass.transition()
@@ -286,10 +297,120 @@
     .transition()
     .duration(100)
     .attr('transform', 'scale(1) translate(0,0)')
-;
 
-    //console.log(bass.)
+  }
 
+  function snareInteract() {
+
+    console.log('snare clicked');
+    snare.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.2) translate(-80,-50)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+
+  }
+
+  function leftTomInteract() {
+
+    leftTom.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.2) translate(-38.8,-33.2)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+
+  }
+
+  function rightTomInteract() {
+
+    rightTom.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.2) translate(-65.8,-33.2)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+
+  }
+
+  function hihatInteract() {
+
+    hihat.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.2) translate(-95.8,-33.2)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+
+  }
+
+  function floorTomInteract() {
+    floorTom.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.2) translate(-26.2,-51.2)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+  }
+
+  function cymbalInteract() {
+
+    console.log(cymbal.node().getBBox());
+
+    cymbal.transition()
+    .duration(100)
+    .attr('transform-origin', '80px 35px')
+    .attr('transform', 'rotate(30) translate(25,0)')
+
+    .transition()
+    .duration(250)
+    .attr('transform', 'rotate(0)')
+
+  }
+
+  //All drums' event handlers
+  bass.on('mousedown', () => {
+    bassInteract();
+  })
+
+  snare.on('mousedown', () => {
+    snareInteract();
+  })
+
+  //toms are the same size, and
+  //can therefore use the same
+  //animation
+  leftTom.on('mousedown', () => {
+    leftTomInteract();
+  })
+
+  rightTom.on('mousedown', () => {
+    rightTomInteract();
+  })
+
+  hihat.on('mousedown', () => {
+    hihatInteract();
+  })
+
+  floorTom.on('mousedown', () => {
+    floorTomInteract();
+  })
+
+  cymbal.on('mousedown', () => {
+    cymbalInteract();
   })
 
 </script>
+
+<style>
+  svg {
+    margin: 0;
+  }
+</style>
+
