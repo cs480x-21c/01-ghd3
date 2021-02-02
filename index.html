@@ -2,9 +2,21 @@
 <html>
   <head></head>
   <body>
+    <h1 class="centered">Drumkit</h1>
+    <p class="centered">a CS480x assignment by Jean-Philippe Pierre</p>
     <div class="container" id="svgContainer">
       <svg id="svg"></svg>
     </div>
+    <b style="text-align:start">Instructions</b>
+    <p>Play one of the drums by clicking on it or by pressing its corresponding key.</p>
+    <br>
+    <b>Controls:</b>
+    <p>Kick Drum - B</p>
+    <p>Snare - N</p>
+    <p>Low Tom - V</p>
+    <p>Left Tom - G</p>
+    <p>Right Tom - H</p>
+    <p>Cymbal - F</p>
   </body>
 </html>
 
@@ -25,11 +37,12 @@
 
   let svg = d3.select("#svg");
 
-  svg.attr('width', svgWidth)
-  .attr('height', svgHeight)
+  svg.style('width', svgWidth)
+  .style('height', svgHeight)
 
   svg.style('border', '1px solid red');
   svg.style('display', 'block');
+  svg.style('margin-bottom', '40px');
 
   /**
    * Audio references for each
@@ -501,11 +514,17 @@
 </script>
 
 <style>
+  html {
+    font-family: Arial;
+  }
   svg {
     margin: 0;
   }
   .clickable:hover {
     cursor: pointer;
+  }
+  .centered {
+    text-align: center;
   }
 </style>
 
