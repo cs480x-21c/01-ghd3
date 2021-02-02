@@ -2,6 +2,7 @@
 
 <script src="svg.js"></script>
 <script src="Shapes/RandomShapeMaker.js"></script>
+<script src="Shapes/ShapeController.js"></script>
 <script src="Score.js"></script>
 
 <div id="score"> </div>
@@ -25,10 +26,6 @@
     // Add an SVG
     let svg = makeSVG2D(width, height);
 
-    // Makes the x and y scales
-    let xScale = makeScale(0, width, xData);
-    let yScale = makeScale(0, height, yData);
-
+    // Create (and start) the maker
     let maker = new RandomShapeMaker(svg, width, height, 10, 1);
-
 </script>
