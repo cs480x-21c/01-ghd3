@@ -15,11 +15,11 @@ class ScoreObserver
 
     /**
      *
-     * @param score increase (optional)
+     * @param increase
      */
-    notify()
+    notify(increase)
     {
-        this.score += arguments[0];
+        this.score += increase;
         d3.select(this.idString).text("score: " + this.score);
     }
 }

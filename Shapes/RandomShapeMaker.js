@@ -62,14 +62,14 @@ class RandomShapeMaker
             }
 
             // for testing individual shapes
-            //this.makeRandomLine();
+            this.makeRandomLine(i);
             //this.makeRandomRectangle();
             //this.makeRandomCircle();
             //this.makeRandomPolygon();
         }
     }
 
-    makeRandomLine()
+    makeRandomLine(id)
     {
         // Lines can be really long
         this.svg.append('line')
@@ -78,10 +78,20 @@ class RandomShapeMaker
             .attr("x1", d3.randomInt(0, this.width)())
             .attr("y1", d3.randomInt(0, this.height)())
             .attr("x2", d3.randomInt(0, this.width)())
-            .attr("y2", d3.randomInt(0, this.height)());
+            .attr("y2", d3.randomInt(0, this.height)())
+            .attr("id", "L" + id)
+            .on("mousedown", function (e, d)
+            {
+                removeShape('line', this.id);
+            });
     }
 
-    makeRandomRectangle()
+    removessd()
+    {
+        this.notifyAll(1);
+    }
+
+    makeRandomRectangle(id)
     {
         // Rectangles can be really big
         // Rectangles can cover each-other
@@ -90,10 +100,15 @@ class RandomShapeMaker
             .style("stroke-width", d3.randomInt(2, 10))
             .style("fill", this.randomColor())
             .attr("width", d3.randomInt(0, this.width)())
-            .attr("height", d3.randomInt(0, this.height)());
+            .attr("height", d3.randomInt(0, this.height)())
+            .attr("id", "R" + id)
+            .on("mousedown", function (e, d)
+            {
+                removeShape('rect', this.id);
+            });
     }
 
-    makeRandomCircle()
+    makeRandomCircle(id)
     {
         // Circles can cover each-other, but it's not that bad
         this.svg.append('circle')
@@ -102,10 +117,15 @@ class RandomShapeMaker
             .style("fill", this.randomColor())
             .attr("cx", d3.randomInt(0, this.width)())
             .attr("cy", d3.randomInt(0, this.height)())
-            .attr("r", d3.randomInt(10, 100));
+            .attr("r", d3.randomInt(10, 100))
+            .attr("id", "C" + id)
+            .on("mousedown", function (e, d)
+            {
+                removeShape('circle', this.id);
+            });
     }
 
-    makeRandomPolygon()
+    makeRandomPolygon(id)
     {
         // polygons can be really big
         this.svg.append('polygon')
@@ -122,6 +142,11 @@ class RandomShapeMaker
                     points += points + [d3.randomInt(0, width)(), d3.randomInt(0, height)()].join(",") + " ";
                 }
                 return points;
+            })
+            .attr("id", "R" + id)
+            .on("mousedown", function (e, d)
+            {
+                removeShape('polygon', this.id);
             });
     }
 
@@ -154,4 +179,12 @@ class RandomShapeMaker
             o.notify(increase);
         })
     }
+
+
+
+}
+
+function removeShape(typeString, id)
+{
+    d3.select("#vis").select(typeString + '#' + id).remove();
 }
