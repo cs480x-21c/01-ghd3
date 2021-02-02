@@ -1,10 +1,43 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+<head>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+  <p> Hello World!</p>
+
+  <svg id='vis'></svg>
+
+  <script>
+    console.log(d3); // test if d3 is loaded
+    // Add an SVG
+    // Add Rectangles
+    // Add Circles
+    // Add Lines
+    // Add Polygons
+    var data = [50, 47, 96, 2, 5]
+
+    var svg = d3.select('#vis')
+      .attr('width', 400)
+      .attr('height', 400);
+
+    var xscale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, 400]);
+
+    var yscale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, 400]);
+
+    svg.selectAll('circle')
+      .data(data)
+      .enter().append('circle')
+      .attr('cx', 100)
+      .attr('cy', 100)
+      .attr('r', 5);
+  </script>
+</body>
+
+</html>
