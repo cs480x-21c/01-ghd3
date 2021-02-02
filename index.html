@@ -31,8 +31,18 @@
   svg.style('border', '1px solid red');
   svg.style('display', 'block');
 
-  //the amount of displacement used in animations
-  let animationWeight = 5;
+  /**
+   * Audio references for each
+   * audio resource.
+   * */
+  let bassAudio = new Audio('kick.wav');
+  let leftTomAudio = new Audio('tom1.wav');
+  let rightTomAudio = new Audio('tom2.wav');
+  let floorTomAudio = new Audio('floortom.wav');
+  let snareAudio = new Audio('snare.wav');
+  let cymbalAudio = new Audio('cymbal.wav');
+  let hihatAudio = new Audio('hihat.wav');
+  
 
   /** Create svg elements for all drums */
 
@@ -298,6 +308,12 @@
     .duration(100)
     .attr('transform', 'scale(1) translate(0,0)')
 
+    if(bassAudio.paused) {
+      bassAudio.play();
+    } else {
+      bassAudio.currentTime = 0;
+    }
+
   }
 
   function snareInteract() {
@@ -311,6 +327,12 @@
     .duration(100)
     .attr('transform', 'scale(1) translate(0,0)')
 
+    if(snareAudio.paused) {
+      snareAudio.play();
+    } else {
+      snareAudio.currentTime = 0;
+    }
+
   }
 
   function leftTomInteract() {
@@ -322,6 +344,12 @@
     .transition()
     .duration(100)
     .attr('transform', 'scale(1) translate(0,0)')
+
+    if(leftTomAudio.paused) {
+      leftTomAudio.play();
+    } else {
+      leftTomAudio.currentTime = 0;
+    }
 
   }
 
@@ -335,6 +363,12 @@
     .duration(100)
     .attr('transform', 'scale(1) translate(0,0)')
 
+    if(rightTomAudio.paused) {
+      rightTomAudio.play();
+    } else {
+      rightTomAudio.currentTime = 0;
+    }
+
   }
 
   function hihatInteract() {
@@ -347,6 +381,12 @@
     .duration(100)
     .attr('transform', 'scale(1) translate(0,0)')
 
+    if(hihatAudio.paused) {
+      hihatAudio.play();
+    } else {
+      hihatAudio.currentTime = 0;
+    }
+
   }
 
   function floorTomInteract() {
@@ -357,6 +397,13 @@
     .transition()
     .duration(100)
     .attr('transform', 'scale(1) translate(0,0)')
+
+    if(floorTomAudio.paused) {
+      floorTomAudio.play();
+    } else {
+      floorTomAudio.currentTime = 0;
+    }
+
   }
 
   function cymbalInteract() {
@@ -371,6 +418,12 @@
     .transition()
     .duration(250)
     .attr('transform', 'rotate(0)')
+
+    if(cymbalAudio.paused) {
+      cymbalAudio.play();
+    } else {
+      cymbalAudio.currentTime = 0;
+    }
 
   }
 
