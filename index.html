@@ -28,8 +28,16 @@
     // Make the Score Observer
     let score = new ScoreObserver('#score');
 
-    let maker = new RandomShapeMaker();
+    let maker = new RandomShapeMaker(svg, width, height, 10, 1);
     maker.addObserver(score);
+
+
+    // console.log(d3.select('#vis').style("width"));
+    // console.log(svg.);
+    // console.log(svg.clientWidth);
+    // console.log(svg.offsetWidth);
+
+    //console.log(svg.getBBox().height);
 
     // Add Lines
     // let lineMaker = new LineMaker(svg);
@@ -43,10 +51,7 @@
     // svg.selectAll('circle')
     //     .data(xData)
     //     .enter().append('circle')
-    //     .attr('cy', 100)
-    //     .attr('cx', function(d) { console.log(d); return svg.xScale(d); } )
-    //     .attr('r', 10)
-    //     .attr('fill', 'steelblue')
+    //
     //     .on('mouseover', function(e, d) {
     //         d3.select(this).attr('fill', 'brown');
     //
