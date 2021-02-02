@@ -1,6 +1,4 @@
 
-//let gWidth = 0;
-//let gHeight = 0;
 
 class RandomShapeMaker
 {
@@ -35,8 +33,8 @@ class RandomShapeMaker
         // Makes the shapes for the first round
         this.makeShapes();
 
-        // Observers
-        this.observerList = [];
+        // Score start
+        announceScore(0);
     }
 
     makeShapes()
@@ -44,25 +42,27 @@ class RandomShapeMaker
         // Makes a random shape, selects the type first
         for (let i = 0; i < this.shapes; i++)
         {
-            switch (d3.randomInt(0, this.NUMBER_OF_SHAPES)) {
+            let shape = d3.randomInt(0, this.NUMBER_OF_SHAPES)();
+            switch (shape)
+            {
                 case this.LINE:
-                    // this.makeRandomLine();
+                    this.makeRandomLine(i);
                     break;
                 case this.RECTANGLE:
-                    // ???
+                    this.makeRandomRectangle(i);
                     break;
                 case this.CIRCLE:
-                    // ???
+                    this.makeRandomCircle(i);
                     break;
                 case this.POLYGON:
-                    // ???
+                    this.makeRandomPolygon(i);
                     break;
                 default:
                     break;
             }
 
-            // for testing individual shapes
-            this.makeRandomLine(i);
+            // for testing individual shape types
+            //this.makeRandomLine(i);
             //this.makeRandomRectangle();
             //this.makeRandomCircle();
             //this.makeRandomPolygon();
@@ -83,12 +83,8 @@ class RandomShapeMaker
             .on("mousedown", function (e, d)
             {
                 removeShape('line', this.id);
+                announceScore(1);
             });
-    }
-
-    removessd()
-    {
-        this.notifyAll(1);
     }
 
     makeRandomRectangle(id)
@@ -105,6 +101,7 @@ class RandomShapeMaker
             .on("mousedown", function (e, d)
             {
                 removeShape('rect', this.id);
+                announceScore(2);
             });
     }
 
@@ -122,6 +119,7 @@ class RandomShapeMaker
             .on("mousedown", function (e, d)
             {
                 removeShape('circle', this.id);
+                announceScore(3);
             });
     }
 
@@ -147,6 +145,7 @@ class RandomShapeMaker
             .on("mousedown", function (e, d)
             {
                 removeShape('polygon', this.id);
+                announceScore(4);
             });
     }
 
@@ -158,33 +157,7 @@ class RandomShapeMaker
     {
         return this.COLORS[d3.randomInt(0, this.COLORS.length)()];
     }
-
-    // Observer methods
-
-    addObserver(observer)
-    {
-        this.observerList.push(observer);
-    }
-
-    removeObserver(observer)
-    {
-        this.observerList.splice(this.observerList.indexOf(observer, 1));
-    }
-
-    notifyAll(increase)
-    {
-        // notify all observers
-        this.observerList.forEach(function(o, i)
-        {
-            o.notify(increase);
-        })
-    }
-
-
-
 }
 
-function removeShape(typeString, id)
-{
-    d3.select("#vis").select(typeString + '#' + id).remove();
-}
+
+

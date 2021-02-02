@@ -1,8 +1,8 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
 <script src="svg.js"></script>
-<script src="Observer/ScoreObserver.js"></script>
 <script src="Shapes/RandomShapeMaker.js"></script>
+<script src="Score.js"></script>
 
 <div id="score"> </div>
 <svg id="vis"> </svg>
@@ -18,6 +18,10 @@
     const width = 1000;
     const height = 750;
 
+    // Set the global ID for the SVG and score ID
+    gSvgID = "#vis";
+    gScoreID = "#score";
+
     // Add an SVG
     let svg = makeSVG2D(width, height);
 
@@ -25,46 +29,6 @@
     let xScale = makeScale(0, width, xData);
     let yScale = makeScale(0, height, yData);
 
-    // Make the Score Observer
-    let score = new ScoreObserver('#score');
-
     let maker = new RandomShapeMaker(svg, width, height, 10, 1);
-    maker.addObserver(score);
 
-
-    // console.log(d3.select('#vis').style("width"));
-    // console.log(svg.);
-    // console.log(svg.clientWidth);
-    // console.log(svg.offsetWidth);
-
-    //console.log(svg.getBBox().height);
-
-    // Add Lines
-    // let lineMaker = new LineMaker(svg);
-
-
-    // Add Rectangles
-    //new RectangleMaker(svg).make();
-
-    // var data = [10, 78, 15, 67, 100];
-    //
-    // svg.selectAll('circle')
-    //     .data(xData)
-    //     .enter().append('circle')
-    //
-    //     .on('mouseover', function(e, d) {
-    //         d3.select(this).attr('fill', 'brown');
-    //
-    //         d3.select('#value').text(d);
-    //     }).on('mouseout', function() {
-    //     d3.select(this)
-    //         .attr('fill', 'steelblue');
-    // })
-
-
-  // Add Circles
-
-
-
-  // Add Polygons
 </script>
