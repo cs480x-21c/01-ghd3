@@ -299,7 +299,6 @@
   //functions for each drum interaction
   function bassInteract() {
 
-    console.log('bass clicked');
     bass.transition()
     .duration(100)
     .attr('transform', 'scale(1.1) translate(-25,-25)')
@@ -318,7 +317,6 @@
 
   function snareInteract() {
 
-    console.log('snare clicked');
     snare.transition()
     .duration(100)
     .attr('transform', 'scale(1.2) translate(-80,-50)')
@@ -408,8 +406,6 @@
 
   function cymbalInteract() {
 
-    console.log(cymbal.node().getBBox());
-
     cymbal.transition()
     .duration(100)
     .attr('transform-origin', '80px 35px')
@@ -427,7 +423,8 @@
 
   }
 
-  //All drums' event handlers
+  //event handlers
+  //MOUSE HANDLERS
   bass.on('mousedown', () => {
     bassInteract();
   })
@@ -436,9 +433,6 @@
     snareInteract();
   })
 
-  //toms are the same size, and
-  //can therefore use the same
-  //animation
   leftTom.on('mousedown', () => {
     leftTomInteract();
   })
@@ -458,6 +452,47 @@
   cymbal.on('mousedown', () => {
     cymbalInteract();
   })
+
+  //KEY HANDLER
+  document.onkeydown = (event) => {
+
+    if(!event.repeat) {
+
+      switch(event.key) {
+
+        case 'b':
+          bassInteract();
+          break;
+        
+        case 'n':
+          snareInteract();
+          break;
+        
+        case 'm':
+          hihatInteract();
+          break;
+        
+        case 'v':
+          floorTomInteract();
+          break;
+
+        case 'f':
+          cymbalInteract();
+          break;
+
+        case 'g':
+          leftTomInteract();
+          break;
+
+        case 'h':
+          rightTomInteract();
+          break;
+
+      }
+
+    }
+
+  };
 
   //attribute the clickable
   //class to all drums
