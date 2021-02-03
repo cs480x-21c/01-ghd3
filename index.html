@@ -1,10 +1,351 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<html>
+<head>
+    <script src='https://d3js.org/d3.v4.min.js'></script>
+    <script> console.log(d3)</script>
+</head>
+<body>
+
+<h1>CS 480x: Data Visualization</h1>
+<h2>Assignment 1, Danya Baron</h2>
+<h3> Hover over circles!</h3>
 
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+    d3.select('h1').style('color', 'darkblue');
+    d3.select('h1').style('font-size', '24px');
 </script>
+
+<style>
+  h1 {
+    padding-top: 15px;
+    padding-left: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  h2 {
+    padding-top: 15px;
+    padding-left: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  h3 {
+    padding-top: 15px;
+    padding-left: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  text {
+    /* font-size: 50px; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: antiquewhite;
+  }
+
+
+</style>
+
+<div id="svgcontainer">
+
+<div id="neptuneZoom"></div>
+    
+</div>
+
+  <script>
+   // create svg element:
+var svg = d3.select("#svgcontainer").append("svg").attr("width", 1700).attr("height", 1400)
+
+
+// neptune
+svg.append('circle')
+  .attr('cx', 1600)
+  .attr('cy', 200)
+  .attr('r', 50)
+  .attr('stroke', 'black')
+  .attr('fill', '#259BEB')
+  .on('mouseover', function() {
+    d3.select(this)
+    .transition()
+    .duration(100)
+    .attr('r', 30)
+    .attr('fill', '#545CEB');
+  })
+  
+  .on('mouseout', function() {
+      // return the mouseover'd element
+      // to being smaller and black
+      d3.select(this)
+        .transition()
+        .duration(200)
+        .attr('r', 50)
+        .attr('stroke', 'black')
+        .attr('fill', '#259BEB');
+    })
+
+    svg.append('text')
+    .attr("x", 1575)
+     .attr("y", 275)
+     .attr("stroke", "#000000")
+     .text("Neptune");
+
+//uranus
+svg.append('circle')
+  .attr('cx', 1410)
+  .attr('cy', 200)
+  .attr('r', 50)
+  .attr('stroke', 'black')
+  .attr('fill', '#AAB5B5')
+  .on('mouseover', function() {
+    d3.select(this)
+    .transition()
+    .duration(200)
+    .attr('r', 30)
+    .attr('fill', '#EB8FDC');
+  })
+  
+  .on('mouseout', function() {
+      // return the mouseover'd element
+      // to being smaller and black
+      d3.select(this)
+        .transition()
+        .duration(200)
+        .attr('r', 50)
+        .attr('stroke', 'black')
+        .attr('fill', '#AAB5B5');
+    })
+  
+
+  svg.append('text')
+    .attr("x", 1385)
+     .attr("y", 275)
+     .attr("stroke", "#000000")
+     .text("Uranus");
+
+  // saturn
+  svg.append('circle')
+  .attr('cx', 1200)
+  .attr('cy', 200)
+  .attr('r', 100)
+  .attr('stroke', 'black')
+  .attr('fill', '#A89F8D')
+  .on('mouseover', function() {
+    d3.select(this)
+    .transition()
+    .duration(200)
+    .attr('r', 50)
+    .attr('fill', '#B8FC65');
+  })
+  
+  .on('mouseout', function() {
+      // return the mouseover'd element
+      // to being smaller and black
+      d3.select(this)
+        .transition()
+        .duration(100)
+        .attr('r', 100)
+        .attr('stroke', 'black')
+        .attr('fill', '#A89F8D');
+    })
+  
+  svg.append('text')
+    .attr("x", 1180)
+     .attr("y", 330)
+     .attr("stroke", "#000000")
+     .text("Saturn");
+
+ // jupiter
+ svg.append('circle')
+  .attr('cx', 870)
+  .attr('cy', 200)
+  .attr('r', 135)
+  .attr('stroke', 'black')
+  .attr('fill', '#F59C2F')
+  .on('mouseover', function() {
+    d3.select(this)
+    .transition()
+    .duration(200)
+    .attr('r', 70)
+    .attr('fill', '#6DD4FF');
+  })
+  
+  .on('mouseout', function() {
+      // return the mouseover'd element
+      // to being smaller and black
+      d3.select(this)
+        .transition()
+        .duration(100)
+        .attr('r', 135)
+        .attr('stroke', 'black')
+        .attr('fill', '#F59C2F');
+    })
+
+  svg.append('text')
+    .attr("x", 850)
+     .attr("y", 360)
+     .attr("stroke", "#000000")
+     .text("Jupiter");
+
+
+  // mars
+  svg.append('circle')
+  .attr('cx', 620)
+  .attr('cy', 200)
+  .attr('r', 25)
+  .attr('stroke', 'black')
+  .attr('fill', '#E83925')
+  .on('mouseover', function() {
+    d3.select(this)
+    .transition()
+    .duration(200)
+    .attr('r', 70)
+    .attr('fill', '#FF54BF');
+  })
+  
+  .on('mouseout', function() {
+      // return the mouseover'd element
+      // to being smaller and black
+      d3.select(this)
+        .transition()
+        .duration(100)
+        .attr('r', 25)
+        .attr('stroke', 'black')
+        .attr('fill', '#E83925');
+    })
+
+  svg.append('text')
+    .attr("x", 600)
+     .attr("y", 270)
+     .attr("stroke", "#000000")
+     .text("Mars");
+
+  // earth 
+  svg.append('circle')
+  .attr('cx', 475)
+  .attr('cy', 200)
+  .attr('r', 35)
+  .attr('stroke', 'black')
+  .attr('fill', '#25B05F')
+  .on('mouseover', function() {
+    d3.select(this)
+    .transition()
+    .duration(200)
+    .attr('r', 70)
+    .attr('fill', '#A7FFBB');
+  })
+  
+  .on('mouseout', function() {
+      // return the mouseover'd element
+      // to being smaller and black
+      d3.select(this)
+        .transition()
+        .duration(100)
+        .attr('r', 35)
+        .attr('stroke', 'black')
+        .attr('fill', '#25B05F');
+    })
+
+  svg.append('text')
+    .attr("x", 460)
+     .attr("y", 270)
+     .attr("stroke", "#000000")
+     .text("Earth");
+
+
+  // venus 
+  svg.append('circle')
+  .attr('cx', 340)
+  .attr('cy', 200)
+  .attr('r', 32)
+  .attr('stroke', 'black')
+  .attr('fill', '#EBB54C')
+  .on('mouseover', function() {
+    d3.select(this)
+    .transition()
+    .duration(200)
+    .attr('r', 70)
+    .attr('fill', '#FF691C');
+  })
+  
+  .on('mouseout', function() {
+      // return the mouseover'd element
+      // to being smaller and black
+      d3.select(this)
+        .transition()
+        .duration(100)
+        .attr('r', 32)
+        .attr('stroke', 'black')
+        .attr('fill', '#EBB54C');
+    })
+
+  svg.append('text')
+    .attr("x", 320)
+     .attr("y", 270)
+     .attr("stroke", "#000000")
+     .text("Venus");
+
+  // mercury
+  svg.append('circle')
+  .attr('cx', 230)
+  .attr('cy', 200)
+  .attr('r', 22)
+  .attr('stroke', 'black')
+  .attr('fill', '#B38268')
+  .on('mouseover', function() {
+    d3.select(this)
+    .transition()
+    .duration(200)
+    .attr('r', 70)
+    .attr('fill', '#040AFF');
+  })
+  
+  .on('mouseout', function() {
+      d3.select(this)
+        .transition()
+        .duration(100)
+        .attr('r', 22)
+        .attr('stroke', 'black')
+        .attr('fill', '#B38268');
+    })
+
+  svg.append('text')
+    .attr("x", 200)
+     .attr("y", 270)
+     .attr("stroke", "#000000")
+     .text("Mercury");
+
+  // sun
+  svg.append('circle')
+  .attr('cx', 70)
+  .attr('cy', 200)
+  .attr('r', 120)
+  .attr('stroke', 'black')
+  .attr('fill', '#FAD53A')
+  .on('mouseover', function() {
+    d3.select(this)
+    .transition()
+    .duration(200)
+    .attr('r', 70)
+    .attr('fill', '#BEB3FF');
+  })
+  
+  .on('mouseout', function() {
+      d3.select(this)
+        .transition()
+        .duration(100)
+        .attr('r', 120)
+        .attr('stroke', 'black')
+        .attr('fill', '#FAD53A');
+    })
+
+  svg.append('text')
+    .attr("x", 67)
+     .attr("y", 365)
+     .attr("stroke", "#000000")
+     .text("Sun");
+
+
+  </script>
+
+
+<script>
+    
+</script>
+</body>
+</html
