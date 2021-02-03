@@ -4,19 +4,26 @@
   <body>
     <h1 class="centered">Drumkit</h1>
     <p class="centered">a CS480x assignment by Jean-Philippe Pierre</p>
+    <b style="text-align:start">Instructions</b>
+    <p>Play one of the drums by clicking on it or by pressing its corresponding key.</p>
+    <p>Enable autoplay to ensure this website works correctly.</p>
     <div class="container" id="svgContainer">
       <svg id="svg"></svg>
     </div>
-    <b style="text-align:start">Instructions</b>
-    <p>Play one of the drums by clicking on it or by pressing its corresponding key.</p>
-    <br>
     <b>Controls:</b>
-    <p>Kick Drum - B</p>
-    <p>Snare - N</p>
-    <p>Low Tom - V</p>
-    <p>Left Tom - G</p>
-    <p>Right Tom - H</p>
-    <p>Cymbal - F</p>
+    <table>
+      <tr>
+        <td><p>Kick Drum - B</p></td>
+        <td><p>Snare - N</p></td>
+        <td><p>Hi-hat - M</p></td>
+        <td><p>Low Tom - V</p></td>
+      </tr>
+      <tr>
+        <td><p>Left Tom - G</p></td>
+        <td><p>Right Tom - H</p></td>
+        <td><p>Cymbal - F</p></td>
+      </tr>
+    </table>
   </body>
 </html>
 
@@ -524,6 +531,10 @@
     cursor: pointer;
   }
   .centered {
+    text-align: center;
+  }
+  table {
+    width: 50%;
     text-align: center;
   }
 </style>
