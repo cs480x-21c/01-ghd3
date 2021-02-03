@@ -14,8 +14,8 @@ Here is the working link for the website: https://suryanshg.github.io/01-ghd3/
 
 Technical Achievement Description
 ---
-During this project, I learned basic Javascript from scratch as well as some basics of the library d3.js. I also experimented with data binding in implementing some shapes in d3 through the use of functions.
+During this project, I learned basic JavaScript from scratch as well as some basics of the library d3.js. I also experimented with data binding in implementing some shapes in d3 through the use of functions. For implementing the y coordinates for circles and rectangles, I made use of the pseudo-random function of JavaScript.
 
 Design Achievement Description
 ---
-During the project, I created a basic scatterplot using the shapes described above. I also made use of the "mouseover" and "mouseout" features to implement visual effects such as changing color of the shapes circle, rectangle and polygon.
+During the project, I created a basic scatterplot using the shapes described above. I also made use of the "mouseover" and "mouseout" features to implement visual effects such as changing color of the shapes circle, rectangle and polygon. 
