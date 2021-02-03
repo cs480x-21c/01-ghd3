@@ -32,7 +32,7 @@ GitHub Details
 - Fork the GitHub Repository for Assignment 1. You now have a copy associated with your username.
 - Make changes to index.html to fulfill the project requirements. 
 - Make sure your "main" branch matches your "gh-pages" branch. See the GitHub Guides referenced above if you need help.
-- Edit the README.md with a link to your gh-pages site "http://YourUsernameGoesHere.github.io/01-ghd3/index.html".
+- Edit the README.md with a link to your gh-pages site "https://nyoma-diamond.github.io/01-ghd3/index.html".
 
 Submission Details
 ---
@@ -83,4 +83,3 @@ Design Achievement Description -- 12
 Remember, it is up to *you* to define what constitutes a technical and design achievements.
 Be ambitious as these are designed to allow you to shape your learning.
 These are the only way to move from B to A territory.
-

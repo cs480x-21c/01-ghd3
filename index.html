@@ -55,7 +55,7 @@
 		.x(d => xscale(d))
 		.y(() => yscale(y++) + 25);
 
-	svg.append('path')
+	svg.append('path') //reference: https://observablehq.com/@d3/line-chart
 		.datum(values)
 		.attr('fill', 'none')
 		.attr('stroke', 'black')
