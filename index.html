@@ -10,6 +10,8 @@
     <div class="container" id="svgContainer">
       <svg id="svg"></svg>
     </div>
+    <label for="showTips">Disable tooltips</label>
+    <input type="checkbox" id='showTips' onclick="toggleTips()"/>
     <b>Controls:</b>
     <table>
       <tr>
@@ -30,6 +32,20 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
 <script>
+
+  function toggleTips() {
+
+    let checked = d3.select('#showTips').node().checked;
+    console.log(checked);
+    let changeTo = 'block';
+    if(checked) {
+      changeTo = 'none';
+    }
+
+    d3.selectAll('text').style('display', changeTo);
+
+  }
+
   console.log(d3); // test if d3 is loaded
   // Add an SVG
   // Add Rectangles
@@ -190,6 +206,14 @@
   .attr('stroke', 'white')
   .attr('stroke-width', '1')
 
+  //bass tooltip
+  svg.append('text')
+  .attr('x', '315')
+  .attr('y', '320')
+  .attr('class', 'tooltips')
+  .attr('fill', 'white')
+  .text('B');
+
   //Tom-tom left
   let leftTom = svg.append('g');
 
@@ -207,6 +231,13 @@
   .attr('y', '145')
   .attr('fill', 'white');
 
+  //left tom tooltip
+  svg.append('text')
+  .attr('x', '225')
+  .attr('y', '180')
+  .attr('class', 'tooltips')
+  .attr('fill', 'white')
+  .text('G');
 
   //Tom-tom right
   let rightTom = svg.append('g');
@@ -224,6 +255,14 @@
   .attr('x', '355')
   .attr('y', '145')
   .attr('fill', 'white');
+
+  //right tom tooltip
+  svg.append('text')
+  .attr('x', '395')
+  .attr('y', '180')
+  .attr('class', 'tooltips')
+  .attr('fill', 'white')
+  .text('H');
 
   //snare
   let snare = svg.append('g');
@@ -277,6 +316,14 @@
   .attr('y', '245')
   .attr('fill', 'white');
 
+  //snare tooltip
+  svg.append('text')
+  .attr('x', '480')
+  .attr('y', '220')
+  .attr('class', 'tooltips')
+  .attr('fill', 'black')
+  .text('N');
+
   //hi-hat
   let hihat = svg.append('g');
 
@@ -290,6 +337,14 @@
   616.79,193.5, 631,193.5, 631,188, 532,188`)
   .attr('fill', '#FFE896');
 
+  //snare tooltip
+  svg.append('text')
+  .attr('x', '570')
+  .attr('y', '160')
+  .attr('class', 'tooltips')
+  .attr('fill', 'black')
+  .text('M');
+
   //cymbal
   let cymbal = svg.append('g');
 
@@ -297,6 +352,14 @@
   .attr('points', `5.14,89.34, 25.59,93.65, 53.48,91.87, 98.83,101.44,
   123.92,114.4, 147.68,119.41, 146.55,124.79, 4,94.72`)
   .attr('fill', '#FFE896');
+
+  //cymbal tooltip
+  svg.append('text')
+  .attr('x', '75')
+  .attr('y', '80')
+  .attr('class', 'tooltips')
+  .attr('fill', 'black')
+  .text('F');
 
   //floor tom
 
@@ -315,6 +378,14 @@
   .attr('x', '84')
   .attr('y', '247')
   .attr('fill', '#EEEEEE');
+
+  //floor tom tooltip
+  svg.append('text')
+  .attr('x', '142')
+  .attr('y', '315')
+  .attr('class', 'tooltips')
+  .attr('fill', 'white')
+  .text('V');
 
   //functions for each drum interaction
   function bassInteract() {
@@ -532,6 +603,11 @@
   }
   .centered {
     text-align: center;
+  }
+  .tooltips {
+    font-size: 25px;
+    user-select: none;
+    display: block;
   }
   table {
     width: 50%;
