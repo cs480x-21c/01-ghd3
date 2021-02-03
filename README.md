@@ -9,7 +9,8 @@ To practice with databinding I worked with professor's code example from the fir
 I used this website to make an ellipse: https://www.tutorialsteacher.com/d3js/create-svg-elements-in-d3js.
 I used this website to make the star shaped polygon found on the turtle's back: https://www.w3schools.com/graphics/svg_polygon.asp.
 
-This is the link to see the project: https://vygrasso.github.io/01-ghd3/index
+This is the link to see the project: https://vygrasso.github.io/01-ghd3/index.
+I attached two screenshots of the project as separate attachments.
 
 Technical Achievements:
 ---
