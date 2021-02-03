@@ -84,3 +84,7 @@ Remember, it is up to *you* to define what constitutes a technical and design ac
 Be ambitious as these are designed to allow you to shape your learning.
 These are the only way to move from B to A territory.
 
+References
+---
+* https://www.d3indepth.com/selections/
+* Code from 1st lecture of class: 
