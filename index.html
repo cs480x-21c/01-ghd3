@@ -1,10 +1,159 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<svg id="vis"></svg>
+
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+  world_width = 500
+  world_height = 500
+  trunk_width = 40
+
+  var svg = d3.select('#vis')
+      .attr('width', world_width)
+      .attr('height', world_height)
+
+  // Ground
+  svg.append('line')
+    .style('stroke', 'green')
+    .attr("stroke-width", 5)
+    .attr('x1', 0)
+    .attr('y1', 500)
+    .attr('x2', 500)
+    .attr('y2', 500);
+  svg.append('line')
+    .style('stroke', 'green')
+    .attr("stroke-width", 1)
+    .attr('x1', 200)
+    .attr('y1', 450)
+    .attr('x2', 300)
+    .attr('y2', 450)
+
+  // Trunk
+  svg.append('rect')
+    .attr('x', world_width/2 - trunk_width/2)
+    .attr('y', 250)
+    .attr('width', trunk_width)
+    .attr('height', 200)
+    .attr('stroke', '#363300')
+    .attr('fill', '#523314')
+  svg.append('rect')
+    .attr('x', world_width/2 - trunk_width/2 + 6)
+    .attr('y', 250)
+    .attr('width', 20)
+    .attr('height', 200)
+    .attr('fill', '#4d3319')
+  svg.append('rect')
+    .attr('x', world_width/2 - trunk_width/2)
+    .attr('y', 250)
+    .attr('width', 10)
+    .attr('height', 200)
+    .attr('fill', '#453321')
+
+  // Owl Hole
+  svg.append('polygon')
+    .attr('points', "235,340 240,380 250,385 265,382, 263,360, 255,335")
+    .attr('stroke', '#30261d')
+    .attr('fill', '#3b2611')
+    .on('mouseover', function(d) {
+      d3.select(this).attr('stroke', '#804000')
+    })
+    .on('mouseout', function() {
+      d3.select(this).attr('stroke', '#30261d');
+    })
+    .on('click', function() {
+      svg.append('circle')
+        .attr('cx', 244)
+        .attr('cy', 350)
+        .attr('r', 3)
+        .attr('stroke', '#ffcc00')
+        .attr('stroke-width', '1.3')
+        .attr('fill', '#000000')
+
+      svg.append('circle')
+        .attr('cx', 254)
+        .attr('cy', 350)
+        .attr('r', 3)
+        .attr('stroke', '#ffcc00')
+        .attr('stroke-width', '1.3')
+        .attr('fill', '#000000')
+
+      svg.append('polygon')
+        .attr('points', "249,355 247,358 249,362 251,358")
+        .attr('fill', '#ffcc00')
+
+    })
+
+  // Foliage
+  d3.csv("leaves.csv").then(function(leaves){
+    
+    // Set scale
+    var xscale = d3.scaleLinear()
+      .domain([0, world_width])
+      .range([0, world_width])
+    var yscale = d3.scaleLinear()
+      .domain([0, world_height])
+      .range([0, world_height])
+    
+    // Create leaves and apples on the tree
+    var foliage = svg.selectAll('circle')
+      .data(leaves)
+      .enter().append('circle')
+      .attr('cx', function (d) {return xscale(d.xleaves); })
+      .attr('cy', function (d) {return yscale(d.yleaves); })
+      .attr('r', 10)
+
+      // Fill color
+      .attr('fill', function (d) {
+        if (d.color == 0){
+          return 'red'
+        } else if (d.color == 1){
+          return '#009933'
+        } else if (d.color == 2){
+          return '#006400'
+        } else if (d.color == 3){
+          return '#006400'
+        } else if (d.color == 4){
+          return '#003300'}
+      })
+
+      // Chance of leaves/apples falling on mouseover
+      .on('mouseover', function(d) {
+        var leaf = d3.select(this)
+
+        randFall = Math.floor(Math.random() * 4) // random int from 0-4
+        if (randFall == 0) {
+          function fallLoop(leaf) {
+
+            setTimeout(function() {
+              var grounds = [450,455,460,465,470,475,480,485,490,495,500]
+              if (leaf.attr('cy') <= grounds[Math.floor(Math.random() * grounds.length)]) { // if leaf is above ground
+                if (leaf.attr('fill') == 'red') {
+                  var new_cy = +leaf.attr('cy') + +4 // increase y alot if apple
+                } else {
+                var new_cy = +leaf.attr('cy') + +1.2 // increase y
+                }
+                leaf.attr('cy', new_cy) // set y to new_cy
+
+                // Wind drift
+                randDrift = Math.floor(Math.random() * 2) // {0: none, 1: left, 2: right}
+                if (randFall == 1 && leaf.attr('fill') != 'red') {
+                  var new_cx = +leaf.attr('cx') + -0.5 // decrease x
+                  leaf.attr('cx', new_cx)
+                } else if (randFall == 2 && leaf.attr('fill') != 'red') {
+                  var new_cx = +leaf.attr('cx') + +0.5 // increase x
+                  leaf.attr('cx', new_cx)
+                }
+
+                fallLoop(leaf) // loop again
+              } else { // if leave is not above ground
+                return leaf
+              }
+              return leaf
+            }, 10) // milliseconds of timeout
+          }
+          fallLoop(leaf) // start the fallLoop
+        }
+      })
+
+  }) // close foliage function
+  
 </script>
