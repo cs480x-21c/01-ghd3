@@ -22,7 +22,10 @@
   var squareData = []
   var circleData = []
   // var polygonData = [ [0, 325], [25, 325], [12.5, 300] ]
-  var polygonData = [ [0, height], [width, height], [width/2, 0] ]  
+  // var polygonData = [ [0, height], [width, height], [width/2, 0] ]  
+  var polygonData = [ [0, 500], [500, 500], [500/2, 0] ]  
+  var polygonData2 = [ [width/4, height/2], [width*.75, height/2], [width/2, height] ]  
+
   var txtData = [{title: 'CS 4802 - BioVisualization', label: 'Click me!'}]
 
 
@@ -119,6 +122,8 @@
     .attr('fill', '#F3E43E')
     .attr('opacity', 1)
 
+    sierpinskiTriangle(5, 500, 500, hull, line)
+
   })
 
 
@@ -174,6 +179,48 @@
   .style('fill', 'white')
   .style('font-family', 'Fraunces')
   .style('font-weight', 700)
+
+
+
+
+
+  function sierpinskiTriangle(numIterations, width, height, hull, line) {
+    var iteration = 0
+    var maxHeight = height
+    
+    while (iteration < numIterations) {
+      width = width/2
+      height = (height / 2) + maxHeight/2
+      if (iteration === 0) {
+        height = 250
+      }
+
+      var coordinates = calculateNewCoordinates(width, height, maxHeight)
+      var fill = 'blue'
+    
+      var hull = d3.polygonHull(coordinates)
+      var line = d3.line().curve(d3.curveLinearClosed)
+
+      if (iteration%2) {
+        fill = 'red'
+      }
+
+      svg.append('path')
+      .transition()
+      .delay(2000)
+      .duration(1000)
+      .attr('d', line(hull))
+      .attr('fill', fill)
+      .attr('opacity', 1)
+
+      iteration++
+    }
+  }
+
+  function calculateNewCoordinates(width, height, maxHeight) {
+    console.log([ [width/2, height], [width*1.5, height], [width, maxHeight] ])
+    return [ [width/2, height], [width*1.5, height], [width, maxHeight] ]
+  }
 
 
 </script>
