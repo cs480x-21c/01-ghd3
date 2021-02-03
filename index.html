@@ -1,10 +1,91 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
-
+<div id="shapes"></div>
 <script>
   console.log(d3); // test if d3 is loaded
+
+  var dataCircle = [100,200,300,400,500,600,700]
+  var dataRect = [50,150,250,350,450,550,650]
+  var dataLine = [{"x1":400,"y1":0,"x2":400,"y2":400},
+                  {"x1":0,"y1":400,"x2":400,"y2":400},
+                  {"x1":800,"y1":400,"x2":400,"y2":400},
+                  {"x1":400,"y1":800,"x2":400,"y2":400}]
+  var dataPolygon = ["400,0 375,25 425,25","0,400 25,375 25,425","800,400 775,375 775,425","400,800 375,775 425,775"]
+
   // Add an SVG
+  var svg = d3.select("#shapes")
+  .append("svg")
+  .attr("width",800)
+  .attr("height",800)
+
   // Add Rectangles
+  svg.selectAll('rect')
+  .data(dataRect)
+  .enter()
+  .append('rect')
+  .attr('x',function(d){
+    return d
+  })
+  .attr('y',function(){
+    return Math.floor(Math.random()*700)+1
+  })
+  .attr('width',50)
+  .attr('height',25)
+  .attr('fill','lightblue')
+  .on('mouseover',function(e){
+    d3.select(this).attr('fill','darkblue')
+  }).on('mouseout',function(e){
+    d3.select(this).attr('fill','lightblue')
+  })
+
   // Add Circles
+  svg.selectAll('circle')
+  .data(dataCircle)
+  .enter().append('circle')
+  .attr('cx',function(d){
+    return d
+  })
+  .attr('cy',function(){
+    return Math.floor(Math.random()*700)+1
+  })
+  .attr('r',25)
+  .attr('fill','lightgreen')
+  .on('mouseover',function(e){
+    d3.select(this).attr('fill','darkgreen')
+  }).on('mouseout',function(e){
+    d3.select(this).attr('fill','lightgreen')
+  })
+
   // Add Lines
+  svg.selectAll('line')
+  .data(dataLine)
+  .enter()
+  .append('line')
+  .attr('x1',function(d){
+    return d.x1
+  })
+  .attr('y1',function(d){
+    return d.y1
+  })
+  .attr('x2',function(d){
+    return d.x2
+  })
+  .attr('y2',function(d){
+    return d.y2
+  })
+  .attr('stroke','black')
+
   // Add Polygons
+  svg.selectAll('polygon')
+  .data(dataPolygon)
+  .enter()
+  .append('polygon')
+  .attr('points',function(d){
+    return d
+  })
+  .attr('fill','red')
+  .on('mouseover',function(e){
+    d3.select(this).attr('fill','brown')
+  }).on('mouseout',function(e){
+    d3.select(this).attr('fill','red')
+  })
 </script>
