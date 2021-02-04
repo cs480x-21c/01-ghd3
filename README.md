@@ -1,7 +1,8 @@
 Assignment 1 - Hello World: GitHub and d3  
 ===
+github-page: <a href="https://fish1natank.github.io/01-ghd3-1/" target="_blank">Home Page</a>
 
-<a href="https://fish1natank.github.io/01-ghd3-1/LampSimulator.html" onclick="window.open('example.html', '_self');">Lamp Simulator</a>
+Lamp Simulator: <a href="https://fish1natank.github.io/01-ghd3-1/LampSimulator.html" target="_blank">Play here</a>
 
 ---
 
