@@ -27,6 +27,7 @@
   var polygonData2 = [ [width/4, height/2], [width*.75, height/2], [width/2, height] ]  
 
   var txtData = [{title: 'CS 4802 - BioVisualization', label: 'Click me!'}]
+  var txtData2 = [{title: 'Assignment 1 - Hello World: GitHub and d3'}]
 
 
   // Helper functions
@@ -180,6 +181,19 @@
   .style('font-family', 'Fraunces')
   .style('font-weight', 700)
 
+  svg
+  .append('text')
+  .data(txtData2)
+  .text(function (d) {
+    return d.title
+  })
+  .attr('text-anchor', 'middle')
+  .attr('x', '50%')
+  .attr('y', '15%')
+  .style('font-size', 30)
+  .style('fill', 'white')
+  .style('font-family', 'Fraunces')
+
 
 
 
@@ -189,7 +203,7 @@
     var maxHeight = height
 
     drawBottomLeftTriangles(width, height, maxHeight, iteration, numIterations)
-    drawBottomRightTriangles(width, height, maxHeight, width, iteration, numIterations)
+    // drawBottomRightTriangles(width, height, maxHeight, width, iteration, numIterations)
     drawTopTriangles(width, height, maxHeight, width, iteration, numIterations)
 
   }
@@ -233,13 +247,27 @@
   function drawBottomRightTriangles (width, height, maxHeight, maxWidth, iteration, numIterations) {
     while (iteration < numIterations) {
 
+      width = width / 2 + maxWidth / 2
+
       // width = (width/2) + maxWidth/2
-      width = (width/2) 
+      // width = (width/2) + maxWidth/2
+      // let x = width/2
+      // let y = x/2
+      // let z = x + y
+      // let a = y/2
+      // let b = z - a
+      // let c = z + a
       height = (height / 2) + maxHeight/2
       if (iteration === 0) {
         height = 250
-        // width = 250
-      }
+        width = 250
+      } 
+      // else {
+      //   b = b + width
+      //   z = x + width
+      //   c = c + width
+      // }
+      // width = width/2
 
       coordinates = calculateBottomRightCoordinates(width, height, maxHeight, maxWidth, iteration) 
 
@@ -263,23 +291,24 @@
     }
   }
 
-  function calculateBottomRightCoordinates(width, height, maxHeight, maxWidth, iteration) {
-    // console.log( [  [width*1.25, height], [width+250, maxHeight], [width*1.5, height] ])
+  function calculateBottomRightCoordinates( width, height, maxHeight, maxWidth, iteration) {
+    // console.log( [  [(width/2)+250, height], [width+250, maxHeight], [(width*1.5)+250, height] ])
     // console.log( [ [width/2, height], [width*1.5, height], [width, maxHeight] ])
     // return [ [width*0.75, height], [width, maxHeight], [width*1.25, height] ] // close
-    return [ [(maxWidth/2)*1.25, height], [(maxWidth/2)*1.5, maxHeight], [(maxWidth/2)*1.75, height] ] // closer
+    if (iteration === 0) {
+      return [ [(width/2), height], [width, maxHeight], [(width*1.5), height] ] // closer
+    }
+    // return [ [(width/2)+(width/4), height], [width, maxHeight], [(width*1.5)-(width/4), height] ] // closer
+    return [ [(width/2)+(maxWidth/4), height], [width, maxHeight], [(width*1.5)-(maxWidth/4), height] ] // closer
+    
+    // return [ [(width*2), height], [width, maxHeight], [(width/1.5), height] ] // closer
   }
 
   function drawTopTriangles (width, height, maxHeight, maxWidth, iteration, numIterations) {
     while (iteration < numIterations) {
 
-      width = width / iteration///2  //+ 250/(iteration+1) //+ maxWidth/4
-      height = (height / 2) //+ maxHeight/2
-      if (iteration === 0) {
-       // height = 250
-        width = 250
-      }
-
+      width = (width / 2) //+ (maxWidth / 4) 
+      height = (height / 2) 
       console.log("width = " + width)
 
       coordinates = calculateTopCoordinates(width, height, maxHeight, maxWidth, iteration) 
@@ -305,11 +334,31 @@
   }
 
   function calculateTopCoordinates(width, height, maxHeight, maxWidth, iteration) {
-    console.log( [  [width*0.75, height/2], [width, height], [width*1.25, height/2]])
-    // console.log( [ [width/2, height], [width*1.5, height], [width, maxHeight] ])
-    // return [ [width*0.75, height], [width, maxHeight], [width*1.25, height] ] // close
-    return [ [width*0.75, height/2], [width, height], [width*1.25, height/2] ] 
-                                        // good
+    // console.log([[width*0.5, height/2], [maxWidth/2, height], [width, height/2]])
+    // return [ [width*0.5, height/2], [maxWidth/2, height], [width, height/2] ] 
+                                        // now its good
+
+    // var offset = maxWidth/(iteration + 2)
+    var offset = maxWidth/4
+
+    if (iteration === 0) {
+      console.log( [ [width*0.5, height], [maxWidth/2, height*2], [width*1.5, height] ]) 
+      return [ [width*0.5, height], [maxWidth/2, height*2], [width*1.5, height] ] 
+    }
+
+    if (iteration === 1) {
+      console.log( [ [width*1.5, height], [maxWidth/2, height*2], [width*2.5, height] ] )
+      return [ [width*1.5, height], [maxWidth/2, height*2], [width*2.5, height] ] 
+
+    }
+
+    console.log( [ [(maxWidth/2) - (width/2), height], [maxWidth/2, height*2], [(maxWidth/2) + (width/2), height] ] )
+    return [ [(maxWidth/2) - (width/2), height], [maxWidth/2, height*2], [(maxWidth/2) + (width/2), height] ] 
+  
+    // recent // return [ [width*1.5, height], [maxWidth/2, maxHeight/(iteration*2)], [width*2.5, height] ] 
+
+    // return [ [width*0.5 + width*0.25, height], [maxWidth/2, maxHeight], [width*1.5 - width*0.25, height] ] 
+
   }
 
 
