@@ -51,7 +51,7 @@ First, I created a folder called "imgs" which would hold any images I wanted to 
 Then, I loaded the image (svg.append('image)')) and scaled / positioned it correctly. This will
 be useful to know for future project when I want to add icons!
 
--- Online Resources Used:
+-- Online Resources Used --:
 http://using-d3js.com/05_09_polygons.html
 -
 https://www.d3indepth.com/shapes/
