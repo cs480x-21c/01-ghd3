@@ -122,7 +122,7 @@
     .attr('fill', '#F3E43E')
     .attr('opacity', 1)
 
-    sierpinskiTriangle(5, 500, 500, hull, line)
+    sierpinskiTriangle(10, 500, 500, hull, line)
 
   })
 
@@ -187,21 +187,30 @@
   function sierpinskiTriangle(numIterations, width, height, hull, line) {
     var iteration = 0
     var maxHeight = height
-    
+
+    drawBottomLeftTriangles(width, height, maxHeight, iteration, numIterations)
+    drawBottomRightTriangles(width, height, maxHeight, width, iteration, numIterations)
+    drawTopTriangles(width, height, maxHeight, width, iteration, numIterations)
+
+  }
+
+  function drawBottomLeftTriangles (width, height, maxHeight, iteration, numIterations) {
     while (iteration < numIterations) {
+
       width = width/2
       height = (height / 2) + maxHeight/2
       if (iteration === 0) {
         height = 250
       }
 
-      var coordinates = calculateNewCoordinates(width, height, maxHeight)
+      coordinates = calculateBottomLeftCoordinates(width, height, maxHeight, iteration) 
+
       var fill = 'blue'
-    
+      
       var hull = d3.polygonHull(coordinates)
       var line = d3.line().curve(d3.curveLinearClosed)
 
-      if (iteration%2) {
+      if (iteration % 2) {
         fill = 'red'
       }
 
@@ -212,14 +221,95 @@
       .attr('d', line(hull))
       .attr('fill', fill)
       .attr('opacity', 1)
-
       iteration++
     }
   }
 
-  function calculateNewCoordinates(width, height, maxHeight) {
-    console.log([ [width/2, height], [width*1.5, height], [width, maxHeight] ])
+  function calculateBottomLeftCoordinates(width, height, maxHeight, iteration) {
+    // console.log( [ [width/2, height], [width*1.5, height], [width, maxHeight] ])
     return [ [width/2, height], [width*1.5, height], [width, maxHeight] ]
+  }
+
+  function drawBottomRightTriangles (width, height, maxHeight, maxWidth, iteration, numIterations) {
+    while (iteration < numIterations) {
+
+      // width = (width/2) + maxWidth/2
+      width = (width/2) 
+      height = (height / 2) + maxHeight/2
+      if (iteration === 0) {
+        height = 250
+        // width = 250
+      }
+
+      coordinates = calculateBottomRightCoordinates(width, height, maxHeight, maxWidth, iteration) 
+
+      var fill = 'green'
+      
+      var hull = d3.polygonHull(coordinates)
+      var line = d3.line().curve(d3.curveLinearClosed)
+
+      if (iteration % 2) {
+        fill = 'gray'
+      }
+
+      svg.append('path')
+      .transition()
+      .delay(2000)
+      .duration(1000)
+      .attr('d', line(hull))
+      .attr('fill', fill)
+      .attr('opacity', 1)
+      iteration++
+    }
+  }
+
+  function calculateBottomRightCoordinates(width, height, maxHeight, maxWidth, iteration) {
+    // console.log( [  [width*1.25, height], [width+250, maxHeight], [width*1.5, height] ])
+    // console.log( [ [width/2, height], [width*1.5, height], [width, maxHeight] ])
+    // return [ [width*0.75, height], [width, maxHeight], [width*1.25, height] ] // close
+    return [ [(maxWidth/2)*1.25, height], [(maxWidth/2)*1.5, maxHeight], [(maxWidth/2)*1.75, height] ] // closer
+  }
+
+  function drawTopTriangles (width, height, maxHeight, maxWidth, iteration, numIterations) {
+    while (iteration < numIterations) {
+
+      width = width / iteration///2  //+ 250/(iteration+1) //+ maxWidth/4
+      height = (height / 2) //+ maxHeight/2
+      if (iteration === 0) {
+       // height = 250
+        width = 250
+      }
+
+      console.log("width = " + width)
+
+      coordinates = calculateTopCoordinates(width, height, maxHeight, maxWidth, iteration) 
+
+      var fill = 'orange'
+      
+      var hull = d3.polygonHull(coordinates)
+      var line = d3.line().curve(d3.curveLinearClosed)
+
+      if (iteration % 2) {
+        fill = 'black'
+      }
+
+      svg.append('path')
+      .transition()
+      .delay(2000)
+      .duration(1000)
+      .attr('d', line(hull))
+      .attr('fill', fill)
+      .attr('opacity', 1)
+      iteration++
+    }
+  }
+
+  function calculateTopCoordinates(width, height, maxHeight, maxWidth, iteration) {
+    console.log( [  [width*0.75, height/2], [width, height], [width*1.25, height/2]])
+    // console.log( [ [width/2, height], [width*1.5, height], [width, maxHeight] ])
+    // return [ [width*0.75, height], [width, maxHeight], [width*1.25, height] ] // close
+    return [ [width*0.75, height/2], [width, height], [width*1.25, height/2] ] 
+                                        // good
   }
 
 
