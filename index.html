@@ -1,10 +1,85 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<svg id="vis"> </svg>
+
 <script>
   console.log(d3); // test if d3 is loaded
+
+  // Add data for shapes
+  var circles = [[60, 10],  [30, 30], [160, 100], [275, 25]];
+  var rectangles = [[100, 250, 50, 20], [10, 50, 15, 50]];
+  var lines = [[60, 10, 30, 30], [30, 30, 160, 100], [160, 100, 275, 25]];
+  var polygon = "140,50 90,238 230,118 50,118 210,238";
+
   // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
+  var svg = d3.select("#vis")
+      .attr('width', 600)
+      .attr('height', 600);
+
+  var xScale = d3.scaleLinear()
+      .domain([0,300])
+      .range([0, 600]);
+
+  var yScale = d3.scaleLinear()
+      .domain([0,300])
+      .range([0, 600]);
+
   // Add Polygons
+  svg.selectAll('polygon')
+      .data(polygon)
+      .enter().append('polygon')
+      .attr('points', polygon)
+      .attr('fill', 'darkcyan')
+      .attr('fill-rule', 'nonzero')
+      .on('mouseover', function(e, d){
+          d3.select(this).attr('stroke-width', 3).attr('stroke', 'khaki');
+      })
+      .on('mouseout', function(e, d){
+          d3.select(this).attr('stroke-width', 0);
+      });
+
+  // Add Rectangles
+  svg.selectAll('rect')
+      .data(rectangles)
+      .enter().append('rect')
+      .attr('x', function(d) {return xScale(d[0]);})
+      .attr('y', function(d) {return yScale(d[1]);})
+      .attr('width', function(d) {return xScale(d[2]);})
+      .attr('height', function(d) {return yScale(d[3]);})
+      .attr('fill', 'pink')
+      .attr('stroke', 'blue')
+      .attr('stroke-width', 5)
+      .on('mouseover', function(e, d){
+          d3.select(this).attr('fill', 'red');
+      })
+      .on('mouseout', function(e, d){
+          d3.select(this).attr('fill', 'pink');
+      });
+
+  // Add Lines
+  svg.selectAll('line')
+      .data(lines)
+      .enter().append('line')
+      .attr('x1', function(d) {return xScale(d[0]);})
+      .attr('y1', function(d) {return yScale(d[1]);})
+      .attr('x2', function(d) {return xScale(d[2]);})
+      .attr('y2', function(d) {return yScale(d[3]);})
+      .attr('stroke', 'black')
+      .attr('stroke-width', 2);
+
+  // Add Circles
+  svg.selectAll('circle')
+      .data(circles)
+      .enter().append('circle')
+      .attr('cx', function(d) {return xScale(d[0]);})
+      .attr('cy', function(d) {return yScale(d[1]);})
+      .attr('r', 10)
+      .attr('fill', 'steelblue')
+      .on('mouseover', function(e, d){
+          d3.select(this).attr('fill', 'brown').attr('r', 15);
+      })
+      .on('mouseout', function(e, d){
+          d3.select(this).attr('fill', 'steelblue').attr('r', 10);
+      });
+
 </script>
