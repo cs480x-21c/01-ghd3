@@ -81,6 +81,5 @@ Technical Achievement Desription -- 12
 Design Achievement Description -- 12
 
 Remember, it is up to *you* to define what constitutes a technical and design achievements.
-Be ambitious as these are designed to allow you to shape your learning.
-These are the only way to move from B to A territory.
+
 
