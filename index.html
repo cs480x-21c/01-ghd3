@@ -6,20 +6,13 @@
 <script>
     console.log(d3); // test if d3 is loaded
 
-    var circleData = [10, 78, 15, 67, 100];
-
-    var recData = [1, 5, 200, 250, 350];
-
-    var olympusData = [ 100 ]
-
-    var canonData = [10, 100, 200 ]
-
     // Add an SVG
     var svg = d3.select('#vis')
         // .append("svg")
         .attr('width', 2000)
         .attr('height', 1600);
 
+    // create camera grouping
     var camera = svg.append("g")
 
 
@@ -31,118 +24,29 @@
         .domain([0, 100])
         .range([0, 400]);
 
-    // Add Circles
-    // svg.selectAll('circle')
-    //     .data(olympusData)
-    //     .enter().append('circle')
-    //     .attr('cy', 50)
-    //     .attr('cx', function (d) {
-    //         console.log(d);
-    //         return xscale(d);
-    //     })
-    //     .attr('r', 10)
-    //     .attr('fill', 'steelblue')
-    //     .on('mouseover', function (e, d) {
-    //         d3.select(this).attr('fill', 'brown');
-    //
-    //         d3.select('#value').text(d);
-    //     }).on('mouseout', function () {
-    //     d3.select(this)
-    //         .attr('fill', 'steelblue');
-    // })
 
-    // Add Rectangles
-    // svg.selectAll('rect')
-    //     .data(canonData)
-    //     .enter().append('rect')
-    //     .attr('y', 200)
-    //     .attr('x', function (d) {
-    //         console.log(d);
-    //         return xscale(d);
-    //     })
-    //     .attr('width', 40)
-    //     .attr('height', 20)
-    //     .attr('fill', 'green')
-    //     .on('mouseover', function (e, d) {
-    //         d3.select(this).attr('fill', 'red');
-    //
-    //         d3.select('#value').text(d);
-    //     }).on('mouseout', function () {
-    //     d3.select(this)
-    //         .attr('fill', 'green');
-    // })
+    // have 3 rectangles bound to data, switch colors on mouse over and delete on click
+    svg.selectAll('rect')
+        .data([5, 60, 105])
+        .enter().append('rect')
+        .attr('width', 20)
+        .attr('height', 10)
+        .attr('y', 650)
+        .attr('fill', '#AB2A2A')
+        .attr('x', function (d) {
+            console.log(d);
+            return xscale(d);
+        })
+        .on('mouseover', function (e, d) {
+            d3.select(this).attr('fill', '#5DAB2A');
+        }).on('mouseout', function () {
+        d3.select(this)
+            .attr('fill', '#AB2A2A')
 
-    // Add Lines
-    // svg.append( 'line')
-    //     .attr('stroke', 'black')
-    //     .attr('stroke-width', 8)
-    //     .attr("x1", 0)
-    //     .attr("y1", 0)
-    //     .attr("x2", 400)
-    //     .attr("y2", 200);
-
-
-    // Add Polygons
-    // svg.append('polygon')
-    //     .attr('points', "110,50 350,57 250,150")
-    //     .attr('fill', 'purple')
-    //     .attr('stroke', 'red')
-
-
-    // svg.selectAll('circle')
-    //     .data(circleData)
-    //     .enter().append('circle')
-    //     .attr('cy', 500)
-    //     .attr('cx', function (d) {
-    //         console.log(d);
-    //         return xscale(d);
-    //     })
-    //     .attr('r', 10)
-    //     .attr('fill', 'steelblue')
-    //     .on('mouseover', function (e, d) {
-    //         d3.select(this).attr('fill', 'brown');
-    //
-    //         d3.select('#value').text(d);
-    //     }).on('mouseout', function () {
-    //     d3.select(this)
-    //         .attr('fill', 'steelblue');
-    // })
-    // svg.selectAll('p')
-    //     .data([25, 50, 100])
-    //     .enter().append('circle')
-    //     .attr('r', 50)
-    //     .attr('cy', 75)
-    //     .attr('cx', function (d) {
-    //         console.log(d);
-    //         return xscale(d);
-    //     })
-    // svg.selectAll('p')
-    //     .data([5, 10, 15])
-    //     .enter().append('rect')
-    //     .attr('width', 20)
-    //     .attr('height', 10)
-    //     .attr('y', 10)
-    //     .attr('x', function (d) {
-    //         console.log(d);
-    //         return xscale(d);
-    //     })
-
-
-    // svg.selectAll('circle')
-    //     .data(canonData)
-    //     .enter().append('svg:image')
-    //     .attr("xlink:href", "resources/A1.jpg")
-
-        // .attr('r', 10)
-        // .attr('fill', 'steelblue')
-        // .on('mouseover', function (e, d) {
-        //     d3.select(this).attr('fill', 'brown');
-        //
-        //     d3.select('#value').text(d);
-        // }).on('mouseout', function () {
-        // d3.select(this)
-        //     .attr('fill', 'steelblue');
-    // })
+    })
+    .on('click', function(d, i){
+        d3.select(this).remove()
+    });
 
     // Draw an Olympus 35RC 35mm shutter priority rangefinder camera
 
@@ -235,14 +139,7 @@
     //     .attr('width', 20)
     //     .attr('height', 10)
     //     .attr('fill', 'green')
-    //     .on('mouseover', function (e, d) {
-    //         d3.select(this).attr('fill', 'red');
-    //
-    //         d3.select('#value').text(d);
-    //     }).on('mouseout', function () {
-    //     d3.select(this)
-    //         .attr('fill', 'green');
-    // })
+
     // for( i = 0; i < 11; i++){
     // svg.append('rect')
     //     .attr( 'x', 285 + i )
@@ -317,14 +214,6 @@
         .attr('fill', 'silver')
         .attr('stroke', 'black')
 
-    svg.selectAll('camera')
-        .data([1, 50])
-        .enter().append('camera')
-        .attr('y', 50)
-        .attr('x', function (d) {
-            console.log(d);
-            return xscale(d);
-        })
 
     // Dividing Line
 
@@ -346,16 +235,7 @@
 
 
 
-    svg.selectAll('p')
-        .data(canonData)
-        .enter().append('svg:img')
-        .attr("xlink:href", "resources/A1.jpg")
-        .attr('x', function (d) {
-            console.log(d);
-            return xscale(d);
-        })
-        .attr( 'y', 400 )
-        .attr( 'height', 200)
+
 
 
     console.log( 'booga')
