@@ -1,78 +1,104 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
-<svg id="vis"> </svg>
+Enter the maximum integer power to which you wish to take 2<sup>x</sup> of:
+<input type="number" id="numvals" oninput="makesvg()" min="0">
+<br><br>
+
+<svg id="vis1"> </svg>
+<svg id="vis2"> </svg>
 
 <script>
 	console.log(d3); // test if d3 is loaded
-	let values = [1, 2, 4, 8, 16];
-	console.log(values);		
 
-	// Add an SVG
-	let svg = d3.select('#vis')
-		.attr('width', 525)
-		.attr('height', 550);
+	function makesvg(n) {
+		d3.selectAll("svg > *").remove();
 
+		let values = [];
+		for (i = 0; i <= document.getElementById("numvals").value; i++) {
+			values.push(Math.pow(2, i));
+		}
+		console.log(values);		
 
-	let xscale = d3.scaleLinear()
-		.domain([0, 16])
-		.range([0, 500]);
+		const barWidth = 50;
+		const svgDim = 500; 
 
-	let yscale = d3.scaleLinear()
-		.domain([0, 4])
-		.range([0, 500]);	
+		// Add an SVG
+		let svg = d3.select('#vis1')
+			.attr('width', svgDim + (barWidth / 2))
+			.attr('height', svgDim + barWidth);
 
-	let y = 0;
+		let xscale = d3.scaleLinear()
+			.domain([1, Math.max(...values)])
+			.range([0, svgDim]);
 
+		let yscale = d3.scaleLinear()
+			.domain([0, values.length-1])
+			.range([0, svgDim]);	
 
-	// Add Rectangles
-	svg.selectAll('rect')
-		.data(values)
-		.enter().append('rect')
-		.attr('x', 0)
-		.attr('y', () => yscale(y++))
-		.attr('width', d => xscale(d))
-		.attr('height', 50)
-		.attr('fill', 'steelblue');
+		let y = 0;
 		
 
 
-	// Add Circles
-	y = 0;
-	
-	svg.selectAll('circle')
-		.data(values)
-		.enter().append('circle')
-		.attr('cx', d => xscale(d))
-		.attr('cy', () => yscale(y++) + 25)
-		.attr('r', 25)
-		.attr('fill', 'mediumorchid');
-	
-
-	// Add Lines
-	y = 0;
-
-	let line = d3.line()
-		.x(d => xscale(d))
-		.y(() => yscale(y++) + 25);
-
-	svg.append('path') //reference: https://observablehq.com/@d3/line-chart
-		.datum(values)
-		.attr('fill', 'none')
-		.attr('stroke', 'black')
-		.attr('stroke-width', '2')
-		.attr('stroke-linejoin', 'round')
-		.attr('stroke-linecap', 'round')
-		.attr('d', line);
+		// Add Rectangles
+		svg.selectAll('rect')
+			.data(values)
+			.enter().append('rect')
+			.attr('x', 0)
+			.attr('y', () => yscale(y++))
+			.attr('width', d => xscale(d))
+			.attr('height', barWidth)
+			.attr('fill', 'steelblue');
 
 
-	// Add Polygons
-	y = 0;
 
-	svg.append('polygon')
-		.data(values)
-		.attr('points', "300,10 400,200 360,100 400,120 200,300")
-		.attr('fill', 'maroon');
-	  
+		// Add Circles
+		y = 0;
+		
+		svg.selectAll('circle')
+			.data(values)
+			.enter().append('circle')
+			.attr('cx', d => xscale(d))
+			.attr('cy', () => yscale(y++) + (barWidth / 2))
+			.attr('r', (barWidth / 2))
+			.attr('fill', 'mediumorchid');
+		
+
+		
+		// Add Polygons
+		svg = d3.select('#vis2')
+			.attr('width', svgDim + (barWidth / 2))
+			.attr('height', svgDim + barWidth);
+
+		y = -1;
+
+		let points = "";
+		values.forEach(d => points += Math.floor(xscale(d)) + "," + (Math.floor(yscale(++y)) + (barWidth / 2)) + " ");
+
+		points += Math.floor(xscale(values[0])) + "," + (Math.floor(yscale(y)) + (barWidth / 2));
+
+		svg.append('polygon')
+			.data(values)
+			.attr('points', points)
+			.attr('fill', 'maroon');
+
+
+		// Add Lines
+		y = 0;
+
+		let line = d3.line()
+			.x(d => xscale(d))
+			.y(() => yscale(y++) + (barWidth / 2));
+
+		svg.append('path') //reference: https://observablehq.com/@d3/line-chart
+			.datum(values)
+			.attr('fill', 'none')
+			.attr('stroke', 'black')
+			.attr('stroke-width', '5')
+			.attr('stroke-linejoin', 'round')
+			.attr('stroke-linecap', 'round')
+			.attr('d', line);
+	}
+		
 
 	
 </script>
