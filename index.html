@@ -2,6 +2,7 @@
 
 <div id="value"></div>
 <svg id="vis"></svg>
+<svg id="camera"></svg>
 
 <script>
     console.log(d3); // test if d3 is loaded
@@ -16,6 +17,8 @@
     var svg = d3.select('#vis')
         .attr('width', 1000)
         .attr('height', 800);
+
+    var camera = svg.append("g")
 
     var xscale = d3.scaleLinear()
         .domain([0, 100])
@@ -85,8 +88,9 @@
 
     // Draw an Olympus 35RC 35mm shutter priority rangefinder camera
 
+
     // body
-    svg.append('rect')
+    camera.append('rect')
         .attr('width', 400)
         .attr('height', 250)
         .attr('x', 100)
@@ -94,7 +98,7 @@
         .attr('fill', 'silver')
         .attr('stroke', 'black')
 
-    svg.append('rect')
+    camera.append('rect')
         .attr('width', 400)
         .attr('height', 160)
         .attr('x', 100)
@@ -103,49 +107,49 @@
         .attr('stroke', 'black')
 
     // lens
-    svg.append('circle')
+    camera.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 90 )
         .attr('fill', 'silver')
         .attr('stroke', 'black')
 
-    svg.append('circle')
+    camera.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 88 )
         .attr('fill', 'black')
         .attr('stroke', 'black')
 
-    svg.append('circle')
+    camera.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 84 )
         .attr('fill', 'silver')
         .attr('stroke', 'black')
 
-    svg.append('circle')
+    camera.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 80 )
         .attr('fill', 'black')
         .attr('stroke', 'black')
 
-    svg.append('circle')
+    camera.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 76 )
         .attr('fill', 'silver')
         .attr('stroke', 'black')
 
-    svg.append('circle')
+    camera.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 70 )
         .attr('fill', 'black')
         .attr('stroke', 'black')
 
-    svg.append('circle')
+    camera.append('circle')
         .attr('cx', 300 )
         .attr('cy', 195 )
         .attr('r', 35 )
@@ -154,7 +158,7 @@
 
     // rangefinder
 
-    svg.append('rect')
+    camera.append('rect')
         .attr( 'x', 280)
         .attr('y',60 )
         .attr('width', 80)
@@ -163,8 +167,35 @@
 
     // 11 rectangles for the rangefinder element
 
+    // svg.selectAll('rect')
+    //     .data(recData)
+    //     .enter().append('rect')
+    //     .attr('cy', 200)
+    //     .attr('cx', function (d) {
+    //         console.log(d);
+    //         return xscale(d);
+    //     })
+    //     .attr('width', 20)
+    //     .attr('height', 10)
+    //     .attr('fill', 'green')
+    //     .on('mouseover', function (e, d) {
+    //         d3.select(this).attr('fill', 'red');
+    //
+    //         d3.select('#value').text(d);
+    //     }).on('mouseout', function () {
+    //     d3.select(this)
+    //         .attr('fill', 'green');
+    // })
+    // for( i = 0; i < 11; i++){
+    // svg.append('rect')
+    //     .attr( 'x', 285 + i )
+    //     .attr('y',62 )
+    //     .attr('width', 5)
+    //     .attr('height', 12)
+    //     .attr('fill', 'darkgray')
+    // }
 
-    svg.append('rect')
+    camera.append('rect')
         .attr( 'x', 285)
         .attr('y',72 )
         .attr('width', 20)
@@ -172,14 +203,14 @@
         .attr('fill', 'darkgray')
 
     // viewfinder
-    svg.append('rect')
+    camera.append('rect')
         .attr( 'x', 375 )
         .attr('y', 55 )
         .attr('width', 100)
         .attr('height', 55)
         .attr('fill', 'black')
 
-    svg.append('rect')
+    camera.append('rect')
         .attr( 'x', 382 )
         .attr('y', 60 )
         .attr('width', 65)
@@ -189,14 +220,14 @@
     // topplate components
 
     // shutter release
-    svg.append('rect')
+    camera.append('rect')
         .attr( 'x', 180 )
         .attr('y', 30 )
         .attr('width', 15)
         .attr('height', 20)
         .attr('fill', 'silver')
         .attr('stroke', 'black')
-    svg.append('rect')
+    camera.append('rect')
         .attr( 'x', 175 )
         .attr('y', 44 )
         .attr('width', 25)
@@ -205,7 +236,7 @@
         .attr('stroke', 'black')
 
     // shutter speed dial
-    svg.append('rect')
+    camera.append('rect')
         .attr( 'x', 205 )
         .attr('y', 38 )
         .attr('width', 60)
@@ -213,19 +244,22 @@
         .attr('fill', 'black')
 
     // hotshoe
-    svg.append('polygon')
+    camera.append('polygon')
         .attr('points', "280,50 280,40 285,35 295,35 295,40 285,40 285,50 ")
         .attr('fill', 'silver')
         .attr('stroke', 'black')
 
-    svg.append('polygon')
+    camera.append('polygon')
         .attr('points', "350,50 350,40 345,35 335,35 335,40 345,40 345,50 ")
         .attr('fill', 'silver')
         .attr('stroke', 'black')
 
     // film winder
-    svg.append('polygon')
+    camera.append('polygon')
         .attr('points', "420,50 480,50 480,45 475, 38 425, 38 420, 45")
         .attr('fill', 'silver')
         .attr('stroke', 'black')
+
+
+
 </script>
