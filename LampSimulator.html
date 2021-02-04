@@ -1,0 +1,290 @@
+<title>Lamp Simulator</title>
+
+<style>
+  .center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+  }
+</style>
+<div class="center">
+  <div>
+    <button onClick="updateGraphic();">Update (X)</button>
+    <button onClick="colorManager.changeColorScheme(); updateGraphic();">Color Scheme: index[<span id="colorIndex"></span>] (C)</button>
+  </div>
+
+  <script src="https://d3js.org/d3.v6.js"></script>
+
+  <div>
+    <svg id="lamp"></svg>
+
+    <svg id="bubbles">
+      <text y="15" style="color:black">Color Area</text>
+    </svg>
+  </div>
+
+  <div>
+    <svg id="lines">
+      <text y="15" style="color:black">Artist</text>
+      <path id="linePath"></path>
+    </svg>
+
+    <svg id="poly">
+      <text y="15" style="color:black">Award</text>
+    </svg>
+  </div>
+</div>
+
+<script>
+  /* Nicolas Fish
+  *  Lamp Simulator
+  *  refrences
+  *  https://bl.ocks.org/d3indepth/16c3036242d93526f3e18c60266b154e
+  *  https://bl.ocks.org/d3indepth/9d9f03a0016bc9df0f13b0d52978c02f
+  */
+
+  //util
+  function rnd(x) {return Math.floor(Math.random() * x);}
+
+  // SVGs
+  var height = 500;
+  var width = height;
+
+  var lampsvg = d3.select('#lamp')
+      .attr("width", width)
+      .attr("height", height);
+
+  var svg = d3.select('#bubbles')
+      .attr("width", width)
+      .attr("height", height)
+  
+  var lampsvg = d3.select('#lines')
+      .attr("width", width)
+      .attr("height", height/2);
+
+  var svg = d3.select('#poly')
+      .attr("width", width)
+      .attr("height", height/2)
+
+  // colors
+  class ColorManager{
+    constructor(){
+      this._colorSchemes = [
+        d3.interpolateInferno,
+        d3.interpolateCubehelixDefault,
+        d3.interpolateRdYlBu
+      ];
+
+      this._colorIndex = 0;
+      this._colors = this._colorSchemes[this._colorIndex];
+    }
+
+    get color(){
+      return this._colors;
+    }
+
+    get colorIndex(){
+      return this._colorIndex;
+    }
+
+    changeColorScheme(){
+      if(this._colorIndex >= this._colorSchemes.length -1) {
+        this._colorIndex = 0;
+      } else {
+        this._colorIndex++;
+      }
+      this._colors = this._colorSchemes[this._colorIndex]
+
+      document.getElementById("colorIndex").innerHTML = this._colorIndex;
+    }
+  }
+
+  let colorManager = new ColorManager();
+  document.getElementById("colorIndex").innerHTML = colorManager.colorIndex;
+
+  // Game
+  // rectangles (Lamp)
+  var squareData = [];
+  var numRects = 7, maxSize = width, minSize = 20;
+
+  function randomiseSquares() {
+    squareData = [];
+    for(var i=0; i<numRects; i++) {
+      squareData.push({
+        x: maxSize / 2,
+        y: maxSize / 2,
+        width: rnd(maxSize - minSize) + minSize,
+        height: rnd(maxSize - minSize) + minSize,
+        fill: colorManager.color(Math.random()) // scheme color
+      });
+    }
+    updateSquares()
+  }
+
+  function updateSquares() {
+
+    var g = d3.select('#lamp')
+      .selectAll('rect')
+      .data(squareData);
+
+    // Enter
+    g.enter()
+      .append('rect')
+      .attr('x', width / 2)
+      .attr('y', height / 2)
+      .attr('width', 0)
+      .attr('height', 0)
+      .style('fill', 'white')
+
+      .merge(g) // combines both enter and update after this line
+      .transition()
+      .duration(1500)
+      .attr('x', function(d) {return d.x - d.width / 2;})
+      .attr('y', function(d) {return d.y - d.height / 2;})
+      .attr('width', function(d) {return d.width;})
+      .attr('height', function(d) {return d.height;})
+      .style('fill', function(d) {return d.fill;});
+
+    // Exit //not in use
+    g.exit()
+      .transition()
+      .duration(1500)
+      .attr('x', width / 2)
+      .attr('y', height / 2)
+      .style('opacity', 0)
+      .remove()
+  }
+
+  // circles (Area chart)
+  var circleData = [];
+
+  function createCircles() {
+    circleData = [];
+    for(var i=0; i<numRects; i++) {
+      circleData.push({
+        x: rnd(100),
+        y: rnd(100),
+        r: (squareData[i].width * squareData[i].height) * 0.0005,
+        fill: squareData[i].fill
+      });
+    }
+
+    var simulation = d3.forceSimulation(circleData)
+      .velocityDecay(0.4) // friction
+      .force('charge', d3.forceManyBody().strength(30))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collision', d3.forceCollide().radius(function(d) {return d.r}))
+      .on('tick', ticked);
+  }  
+
+  function ticked() {
+    var g = d3.select('#bubbles')
+      .selectAll('circle')
+      .data(circleData)
+
+    // Enter
+    g.enter()
+      .append('circle')
+      .attr('cx', width / 2)
+      .attr('cy', height / 2)
+      .attr('r', 0)
+      .style('fill', 'white')
+
+      .merge(g) // combines both enter and update after this line
+      .attr('cx', function(d) {return d.x})
+      .attr('cy', function(d) {return d.y})
+      .attr('r', function(d) { return d.r})
+      .style('fill', function(d) {return d.fill;})
+
+    // Exit //not in use
+    g.exit()
+      .transition()
+      .duration(1500)
+      .attr('cy', 0)
+      .attr('r', 0)
+      .style('opacity', 0)
+      .remove()
+  }
+
+  // lines (Signature)
+  var numLinePoints = 10;
+  var linePoints = [];
+
+  function createLinePoints(){
+    linePoints = [];
+    for(var i=0; i<numLinePoints; i++){
+      linePoints.push([
+        (rnd(100) + i * rnd(width/numLinePoints)),
+        rnd(100) + 20
+      ])
+    }
+    createLine();
+  }
+
+  function createLine(){
+    var lineGenerator = d3.line();
+    var path = lineGenerator(linePoints);
+
+    d3.select('#linePath')
+      .attr('d', path)
+      .attr('fill', "none")
+      .attr('stroke', "black");
+  }
+
+  // poly (Award)
+  var numPoly = 2;
+  var polys = [];
+  var symbolTypes = ['symbolCircle', 'symbolCross', 'symbolDiamond', 'symbolSquare', 'symbolStar', 'symbolTriangle', 'symbolWye'];
+  var symbolGenerator = d3.symbol().size(5000);
+
+  function createPoly(){
+    polys = [];
+    for(var i=0; i<numPoly; i++){
+      polys.push({
+        fill: colorManager.color(Math.random()),
+        size: rnd(3000) - (i * 2000) + 3000,
+        symbol: d3[symbolTypes[rnd(symbolTypes.length)]]
+      })
+    }
+    updatePoly();
+  }
+
+  function updatePoly(){
+    var g = d3.select('#poly')
+	    .selectAll('path')
+      .data(polys)
+    g.enter().append('path')
+      .merge(g)
+      .attr('fill', function(d) {return d.fill})
+      .attr('stroke', "black")
+
+      // function(d) {return d.rotation} does not work :(
+      .attr('transform', 'translate(80,80) rotate('+(rnd(360) - 180)+')')
+
+      .attr('d', symbolGenerator
+          .size(function(d) {return d.size})
+          .type(function(d) {return d.symbol}))
+  }
+  
+  //
+  function updateGraphic(){
+    randomiseSquares();
+    createCircles();
+    createLinePoints();
+    createPoly();
+  }
+
+  // init
+  updateGraphic();
+
+  // Spacebar event
+  document.body.addEventListener("keydown", function(event) {
+      if (event.keyCode == 88) {
+        updateGraphic();
+      }
+      if (event.keyCode == 67) {
+        colorManager.changeColorScheme();
+        updateGraphic();
+      }
+  });
+</script>
