@@ -307,9 +307,8 @@
   function drawTopTriangles (width, height, maxHeight, maxWidth, iteration, numIterations) {
     while (iteration < numIterations) {
 
-      width = (width / 2) //+ (maxWidth / 4) 
-      height = (height / 2) 
-      console.log("width = " + width)
+      width = width / 2
+      height = height / 2 
 
       coordinates = calculateTopCoordinates(width, height, maxHeight, maxWidth, iteration) 
 
@@ -334,31 +333,7 @@
   }
 
   function calculateTopCoordinates(width, height, maxHeight, maxWidth, iteration) {
-    // console.log([[width*0.5, height/2], [maxWidth/2, height], [width, height/2]])
-    // return [ [width*0.5, height/2], [maxWidth/2, height], [width, height/2] ] 
-                                        // now its good
-
-    // var offset = maxWidth/(iteration + 2)
-    var offset = maxWidth/4
-
-    if (iteration === 0) {
-      console.log( [ [width*0.5, height], [maxWidth/2, height*2], [width*1.5, height] ]) 
-      return [ [width*0.5, height], [maxWidth/2, height*2], [width*1.5, height] ] 
-    }
-
-    if (iteration === 1) {
-      console.log( [ [width*1.5, height], [maxWidth/2, height*2], [width*2.5, height] ] )
-      return [ [width*1.5, height], [maxWidth/2, height*2], [width*2.5, height] ] 
-
-    }
-
-    console.log( [ [(maxWidth/2) - (width/2), height], [maxWidth/2, height*2], [(maxWidth/2) + (width/2), height] ] )
     return [ [(maxWidth/2) - (width/2), height], [maxWidth/2, height*2], [(maxWidth/2) + (width/2), height] ] 
-  
-    // recent // return [ [width*1.5, height], [maxWidth/2, maxHeight/(iteration*2)], [width*2.5, height] ] 
-
-    // return [ [width*0.5 + width*0.25, height], [maxWidth/2, maxHeight], [width*1.5 - width*0.25, height] ] 
-
   }
 
 
