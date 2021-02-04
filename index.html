@@ -10,6 +10,8 @@
   var rectangles = [[100, 250, 50, 20], [10, 50, 15, 50]];
   var lines = [[60, 10, 30, 30], [30, 30, 160, 100], [160, 100, 275, 25]];
   var polygon = "140,50 90,238 230,118 50,118 210,238";
+  var mouseOverStar = false;
+  var randColorSet = ['red', 'blue', 'green', 'magenta', 'cyan', 'yellow']
 
   // Add an SVG
   var svg = d3.select("#vis")
@@ -33,9 +35,16 @@
       .attr('fill-rule', 'nonzero')
       .on('mouseover', function(e, d){
           d3.select(this).attr('stroke-width', 3).attr('stroke', 'khaki');
+          mouseOverStar = true;
       })
       .on('mouseout', function(e, d){
           d3.select(this).attr('stroke-width', 0);
+          mouseOverStar = false;
+      })
+      .on('mousedown', function(e, d){
+          if(mouseOverStar) {
+              d3.select(this).attr('fill', randColorSet[Math.floor(Math.random()*randColorSet.length)]);
+          }
       });
 
   // Add Rectangles
