@@ -2,7 +2,6 @@
 
 <div id="value"></div>
 <svg id="vis"></svg>
-<svg id="camera"></svg>
 
 <script>
     console.log(d3); // test if d3 is loaded
@@ -11,14 +10,18 @@
 
     var recData = [1, 5, 200, 250, 350];
 
+    var olympusData = [ 100 ]
 
+    var canonData = [10, 100, 200 ]
 
     // Add an SVG
     var svg = d3.select('#vis')
-        .attr('width', 1000)
-        .attr('height', 800);
+        // .append("svg")
+        .attr('width', 2000)
+        .attr('height', 1600);
 
     var camera = svg.append("g")
+
 
     var xscale = d3.scaleLinear()
         .domain([0, 100])
@@ -30,7 +33,7 @@
 
     // Add Circles
     // svg.selectAll('circle')
-    //     .data(circleData)
+    //     .data(olympusData)
     //     .enter().append('circle')
     //     .attr('cy', 50)
     //     .attr('cx', function (d) {
@@ -50,15 +53,15 @@
 
     // Add Rectangles
     // svg.selectAll('rect')
-    //     .data(recData)
+    //     .data(canonData)
     //     .enter().append('rect')
-    //     .attr('cy', 200)
-    //     .attr('cx', function (d) {
+    //     .attr('y', 200)
+    //     .attr('x', function (d) {
     //         console.log(d);
     //         return xscale(d);
     //     })
-    //     .attr('width', 20)
-    //     .attr('height', 10)
+    //     .attr('width', 40)
+    //     .attr('height', 20)
     //     .attr('fill', 'green')
     //     .on('mouseover', function (e, d) {
     //         d3.select(this).attr('fill', 'red');
@@ -80,14 +83,68 @@
 
 
     // Add Polygons
-    svg.append('polygon')
-        .attr('points', "110,50 350,57 250,150")
-        .attr('fill', 'purple')
-        .attr('stroke', 'red')
+    // svg.append('polygon')
+    //     .attr('points', "110,50 350,57 250,150")
+    //     .attr('fill', 'purple')
+    //     .attr('stroke', 'red')
 
+
+    // svg.selectAll('circle')
+    //     .data(circleData)
+    //     .enter().append('circle')
+    //     .attr('cy', 500)
+    //     .attr('cx', function (d) {
+    //         console.log(d);
+    //         return xscale(d);
+    //     })
+    //     .attr('r', 10)
+    //     .attr('fill', 'steelblue')
+    //     .on('mouseover', function (e, d) {
+    //         d3.select(this).attr('fill', 'brown');
+    //
+    //         d3.select('#value').text(d);
+    //     }).on('mouseout', function () {
+    //     d3.select(this)
+    //         .attr('fill', 'steelblue');
+    // })
+    // svg.selectAll('p')
+    //     .data([25, 50, 100])
+    //     .enter().append('circle')
+    //     .attr('r', 50)
+    //     .attr('cy', 75)
+    //     .attr('cx', function (d) {
+    //         console.log(d);
+    //         return xscale(d);
+    //     })
+    // svg.selectAll('p')
+    //     .data([5, 10, 15])
+    //     .enter().append('rect')
+    //     .attr('width', 20)
+    //     .attr('height', 10)
+    //     .attr('y', 10)
+    //     .attr('x', function (d) {
+    //         console.log(d);
+    //         return xscale(d);
+    //     })
+
+
+    // svg.selectAll('circle')
+    //     .data(canonData)
+    //     .enter().append('svg:image')
+    //     .attr("xlink:href", "resources/A1.jpg")
+
+        // .attr('r', 10)
+        // .attr('fill', 'steelblue')
+        // .on('mouseover', function (e, d) {
+        //     d3.select(this).attr('fill', 'brown');
+        //
+        //     d3.select('#value').text(d);
+        // }).on('mouseout', function () {
+        // d3.select(this)
+        //     .attr('fill', 'steelblue');
+    // })
 
     // Draw an Olympus 35RC 35mm shutter priority rangefinder camera
-
 
     // body
     camera.append('rect')
@@ -260,6 +317,46 @@
         .attr('fill', 'silver')
         .attr('stroke', 'black')
 
+    svg.selectAll('camera')
+        .data([1, 50])
+        .enter().append('camera')
+        .attr('y', 50)
+        .attr('x', function (d) {
+            console.log(d);
+            return xscale(d);
+        })
+
+    // Dividing Line
+
+    svg.append( 'line')
+        .attr('stroke', 'black')
+        .attr('stroke-width', 8)
+        .attr("x1", 0)
+        .attr("y1", 350)
+        .attr("x2", 2000)
+        .attr("y2", 350);
 
 
+    // Canon A1
+    svg.append('svg:image')
+        .attr("xlink:href", "resources/A1.jpg")
+        .attr( 'x', 100)
+        .attr( 'y', 400 )
+        .attr( 'height', 200)
+
+
+
+    svg.selectAll('p')
+        .data(canonData)
+        .enter().append('svg:img')
+        .attr("xlink:href", "resources/A1.jpg")
+        .attr('x', function (d) {
+            console.log(d);
+            return xscale(d);
+        })
+        .attr( 'y', 400 )
+        .attr( 'height', 200)
+
+
+    console.log( 'booga')
 </script>
