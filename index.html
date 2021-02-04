@@ -4,14 +4,14 @@
   <body>
     <h1 class="centered">Drumkit</h1>
     <p class="centered">a CS480x assignment by Jean-Philippe Pierre</p>
-    <b style="text-align:start">Instructions</b>
+    <b>Instructions</b>
     <p>Play one of the drums by clicking on it or by pressing its corresponding key.</p>
     <p>Enable autoplay to ensure this website works correctly.</p>
     <div class="container" id="svgContainer">
       <svg id="svg"></svg>
     </div>
     <label for="showTips">Disable tooltips</label>
-    <input type="checkbox" id='showTips' onclick="toggleTips()"/>
+    <input type="checkbox" id='showTips' onclick="toggleTips()"/><br><br>
     <b>Controls:</b>
     <table>
       <tr>
@@ -33,10 +33,13 @@
 
 <script>
 
+  /**
+   * Toggles whether the tooltips are shown
+   * for each drum
+   * */
   function toggleTips() {
 
     let checked = d3.select('#showTips').node().checked;
-    console.log(checked);
     let changeTo = 'block';
     if(checked) {
       changeTo = 'none';
@@ -63,7 +66,7 @@
   svg.style('width', svgWidth)
   .style('height', svgHeight)
 
-  svg.style('border', '1px solid red');
+  svg.style('border', '1px solid black');
   svg.style('display', 'block');
   svg.style('margin-bottom', '40px');
 
