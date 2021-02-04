@@ -20,19 +20,19 @@ I used random squares to create lamps. These use transitions when generating a n
 Lamps
 ---
 ### Inferno Lamp
-<img src="https://github.com/Fish1naTank/01-ghd3-1/blob/main/Images/InfernoLamp.PNG" alt="InfernoLamp">
+<img src="Images/InfernoLamp.PNG" alt="InfernoLamp">
 
 
 ### CubeHelix Lamp
-<img src="https://github.com/Fish1naTank/01-ghd3-1/blob/main/Images/CubeHelixLamp.PNG" alt="CubeHelixLamp">
+<img src="Images/CubeHelixLamp.PNG" alt="CubeHelixLamp">
 
 
 ### RdYlBu Lamp
-<img src="https://github.com/Fish1naTank/01-ghd3-1/blob/main/Images/RdYlBuLamp.PNG" alt="RdYlBuLamp">
+<img src="Images/RdYlBuLamp.PNG" alt="RdYlBuLamp">
 
 
 ### IMPOSSIBLE Lamp
-<img src="https://github.com/Fish1naTank/01-ghd3-1/blob/main/Images/ImpossibleLamp.PNG" alt="ImpossibleLamp">
+<img src="Images/ImpossibleLamp.PNG" alt="ImpossibleLamp">
 ---
 
 Technical Achievement Description
