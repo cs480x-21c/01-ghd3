@@ -48,7 +48,7 @@ Design Achievement Description
 ---
 Use of color scales.
 
-As fun as random colors are, it is nice if they don’t look horrible next to each other. An easy solution to this it to use a color scale, and D3 has a lot of them (https://github.com/d3/d3-scale-chromatic). I made a ColorManager class that holds an array of selected color scales, and a way to change the color scheme index. Now anytime I wanted a color I would just have to ask the ColorManager and no mater what scheme was used I knew the colors would look better than average.
+As fun as random colors are, it is nice if they don’t look horrible next to each other. An easy solution to this it to use a color scale, and D3 has a lot of them (<a href="https://github.com/d3/d3-scale-chromatic" target="_blank">d3-scale-chromatic</a>). I made a ColorManager class that holds an array of selected color scales, and a way to change the color scheme index. Now anytime I wanted a color I would just have to ask the ColorManager and no mater what scheme was used I knew the colors would look better than average.
 
 ---
 
@@ -56,10 +56,10 @@ Code Refrence
 ---
 D3 in Depth
 
-Transitions: 	https://bl.ocks.org/d3indepth/16c3036242d93526f3e18c60266b154e
+Transitions: 	<a href="https://bl.ocks.org/d3indepth/16c3036242d93526f3e18c60266b154e" target="_blank">bl.ocks.org Transitions</a>
 
-Force:		https://bl.ocks.org/d3indepth/9d9f03a0016bc9df0f13b0d52978c02f
+Force:		<a href="https://bl.ocks.org/d3indepth/9d9f03a0016bc9df0f13b0d52978c02f" target="_blank">bl.ocks.org Force</a>
 
-Lines:		https://bl.ocks.org/d3indepth/dd0e2e52b32f5c646b75acdfcb46864e
+Lines:		<a href="https://bl.ocks.org/d3indepth/dd0e2e52b32f5c646b75acdfcb46864e" target="_blank">bl.ocks.org Lines</a>
 
-Symbols:	https://bl.ocks.org/d3indepth/bae221df69af953fb06351e1391e89a0
+Symbols:	<a href="https://bl.ocks.org/d3indepth/bae221df69af953fb06351e1391e89a0" target="_blank">bl.ocks.org Symbols</a>
