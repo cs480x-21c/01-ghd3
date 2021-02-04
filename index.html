@@ -1,10 +1,25 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<html>
+  <body>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+    <div id="main">
+
+    </div>
+
+
+    <script>
+      //console.log(d3); // test if d3 is loaded
+      // Add an SVG
+      // Add Rectangles
+      // Add Circles
+      // Add Lines
+      // Add Polygons
+      const svg = d3
+        .select("#main")
+        .append("svg")
+        .attr("width", 300)
+        .attr("height", 300)
+    </script>
+
+  </body>
+</html>
