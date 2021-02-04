@@ -28,4 +28,6 @@ Nonnegligible graphic creation (35RC Camera) - the use of multiple primitives, c
 
 Nondefault attributes and colors - the use of attributes such as stroke-width, stroke (for primitives other than lines), and RGB defined colors illustrate that I have learned other graphical tools for visual design in d3js.
 
+Please see the Readme directory for screenshots of the page.
+
 
