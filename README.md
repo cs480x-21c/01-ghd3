@@ -84,3 +84,17 @@ Remember, it is up to *you* to define what constitutes a technical and design ac
 Be ambitious as these are designed to allow you to shape your learning.
 These are the only way to move from B to A territory.
 
+
+
+# README
+
+## Design Achievements
+
+## Tech Achievements
+- implemented favicons for website that are compatible with multiple browser types
+    - The art in the favicon is of the Magic: the Gathering card 'Meren of Clan Nel Toth'. It is illustrated by Mark Winters and is property of Wizards of the Coast LLC.
+    - The favicon set was generated from a jpg file and the code in the head tag were both provided by https://realfavicongenerator.net/
+
+## Misc.
+
+
