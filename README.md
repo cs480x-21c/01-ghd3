@@ -1,7 +1,7 @@
 Assignment 1 - Hello World: GitHub and d3  
 ===
 
-Lamp Simulator: https://fish1natank.github.io/01-ghd3/LampSimulator.html
+Lamp Simulator: https://fish1natank.github.io/01-ghd3-1/LampSimulator.html
 
 ---
 
@@ -20,19 +20,19 @@ I used random squares to create lamps. These use transitions when generating a n
 Lamps
 ---
 ### Inferno Lamp
-![InfernoLamp](https://github.com/Fish1naTank/01-ghd3/blob/main/Images/InfernoLamp.PNG)
+![InfernoLamp](https://github.com/Fish1naTank/01-ghd3-1/blob/main/Images/InfernoLamp.PNG)
 
 
 ### CubeHelix Lamp
-![CubeHelixLamp](https://github.com/Fish1naTank/01-ghd3/blob/main/Images/CubeHelixLamp.PNG)
+![CubeHelixLamp](https://github.com/Fish1naTank/01-ghd3-1/blob/main/Images/CubeHelixLamp.PNG)
 
 
 ### RdYlBu Lamp
-![RdYlBuLamp](https://github.com/Fish1naTank/01-ghd3/blob/main/Images/RdYlBuLamp.PNG)
+![RdYlBuLamp](https://github.com/Fish1naTank/01-ghd3-1/blob/main/Images/RdYlBuLamp.PNG)
 
 
 ### IMPOSSIBLE Lamp
-![ImpossibleLamp](https://github.com/Fish1naTank/01-ghd3/blob/main/Images/ImpossibleLamp.PNG)
+![ImpossibleLamp](https://github.com/Fish1naTank/01-ghd3-1/blob/main/Images/ImpossibleLamp.PNG)
 ---
 
 Technical Achievement Description
