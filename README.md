@@ -1,4 +1,4 @@
-http://romanwicky.github.io/01-ghd3/index.html
+https://romanwicky.github.io/01-ghd3/index.html
 
 ---- DESCRIPTION ----
 
