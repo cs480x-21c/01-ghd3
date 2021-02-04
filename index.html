@@ -21,10 +21,7 @@
   // Data
   var squareData = []
   var circleData = []
-  // var polygonData = [ [0, 325], [25, 325], [12.5, 300] ]
-  // var polygonData = [ [0, height], [width, height], [width/2, 0] ]  
   var polygonData = [ [0, 500], [500, 500], [500/2, 0] ]  
-  var polygonData2 = [ [width/4, height/2], [width*.75, height/2], [width/2, height] ]  
 
   var txtData = [{title: 'CS 4802 - BioVisualization', label: 'Click me!'}]
   var txtData2 = [{title: 'Assignment 1 - Hello World: GitHub and d3'}]
@@ -200,30 +197,29 @@
 
   function sierpinskiTriangle(numIterations, width, height, hull, line) {
     var iteration = 0
-    var maxHeight = height
 
-    drawBottomLeftTriangles(width, height, maxHeight, iteration, numIterations)
-    drawBottomRightTriangles(width, height, maxHeight, width, iteration, numIterations)
-    // drawTopTriangles(width, height, maxHeight, width, iteration, numIterations)
-
+    drawBottomLeftTriangles(width, height, iteration, numIterations)
+    drawBottomRightTriangles(width, height, iteration, numIterations)
+    drawTopTriangles(width, height, iteration, numIterations)
   }
 
-  function drawBottomLeftTriangles (width, height, maxHeight, iteration, numIterations) {
+  function drawBottomLeftTriangles (width, height, iteration, numIterations) {
+    var maxHeight = height
+
     while (iteration < numIterations) {
 
       width = width/2
       height = (height / 2) + maxHeight/2
+
       if (iteration === 0) {
-        height = 250
+        height = maxHeight/2
       }
 
       coordinates = calculateBottomLeftCoordinates(width, height, maxHeight, iteration) 
-
-      var fill = 'blue'
-      
       var hull = d3.polygonHull(coordinates)
       var line = d3.line().curve(d3.curveLinearClosed)
 
+      var fill = 'blue'
       if (iteration % 2) {
         fill = 'red'
       }
@@ -243,39 +239,27 @@
     return [ [width/2, height], [width*1.5, height], [width, maxHeight] ]
   }
 
-
-
-
-
-
-
-
-  function drawBottomRightTriangles (width, height, maxHeight, maxWidth, iteration, numIterations) {
-    var start = 500
+  function drawBottomRightTriangles (width, height, iteration, numIterations) {
+    var maxHeight = height
+    var maxWidth = width
+    var offset = maxHeight
 
     while (iteration < numIterations) {
 
-      //width = width / 2 + maxWidth / 2
-      //width = width + width/(iteration+1)// (maxWidth/(iteration+1))
-      var offset = start / 2
-      start = offset
+      offset = offset / 2
       width = width + offset
       height = (height / 2) + maxHeight/2
 
       if (iteration === 0) {
-        height = 250
-        width = 250
+        height = maxHeight/2
+        width = maxWidth/2
       } 
 
-      console.log('width = ' + width + ' offset = ' + offset)
-
       coordinates = calculateBottomRightCoordinates(width, height, maxHeight, maxWidth, iteration, offset) 
-
-      var fill = 'green'
-      
       var hull = d3.polygonHull(coordinates)
       var line = d3.line().curve(d3.curveLinearClosed)
 
+      var fill = 'green'
       if (iteration % 2) {
         fill = 'gray'
       }
@@ -292,35 +276,23 @@
   }
 
   function calculateBottomRightCoordinates( width, height, maxHeight, maxWidth, iteration, offset) {
-    if (iteration === 0) {
-      console.log([ [(width/2), height], [width, maxHeight], [(width*1.5), height] ])
-      return [ [(width/2), height], [width, maxHeight], [(width*1.5), height] ] 
-    }
-    console.log([ [(width/2)+(maxWidth/4), height], [width, maxHeight], [(width*1.5)-(maxWidth/4), height] ])
-    return [ [width -offset/2, height], [width, maxHeight], [width + offset/2, height] ] // closer
-    
+    return [ [width - offset/2, height], [width, maxHeight], [width + offset/2, height] ] 
   }
 
+  function drawTopTriangles (width, height, iteration, numIterations) {
+    var maxHeight = height
+    var maxWidth = width
 
-
-
-
-
-
-
-  function drawTopTriangles (width, height, maxHeight, maxWidth, iteration, numIterations) {
     while (iteration < numIterations) {
 
       width = width / 2
       height = height / 2 
 
       coordinates = calculateTopCoordinates(width, height, maxHeight, maxWidth, iteration) 
-
-      var fill = 'orange'
-      
       var hull = d3.polygonHull(coordinates)
       var line = d3.line().curve(d3.curveLinearClosed)
 
+      var fill = 'orange'
       if (iteration % 2) {
         fill = 'black'
       }
