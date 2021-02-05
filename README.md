@@ -31,3 +31,19 @@ Design Achievement
 - A border has been places around the SVG canvas to show the user the range in which the shapes can be randomly displayed.
 
 - Added favicon to the top of the page
+
+
+Screenshots
+---
+
+**No lines or polygon drawn**
+
+![Screenshot - No lines or polygon](Screenshot-1.PNG)
+
+**With path drawn**
+
+![Screenshot - Lines Drawn](Screenshot-2.PNG)
+
+**With polygon drawn**
+
+![Screenshot - Polygon Drawn](Screenshot-3.PNG)
