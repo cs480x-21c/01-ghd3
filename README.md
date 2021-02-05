@@ -21,11 +21,15 @@ The following image is what I used to create a model of the solar system order.
 
 ![ScreenShot](https://github.com/danyabaron/01-ghd3/blob/main/solar-sysem.svg)
 \
+
 The following image is a screenshot of my website.
+
 ![ScreenShot](https://github.com/danyabaron/01-ghd3/blob/main/screenshot1.png)
 \
 This image is to show what happens when you hover over the 'Mars' planet. The circle increases in size and changes color.
+
 ![ScreenShot](https://github.com/danyabaron/01-ghd3/blob/main/screenshot2.png)
+
 \
 This project consists of 9 circles that change color when hovered over by a mouse. There are also two lines connecting the 
 circles to portray an axis on which the planets lie on. There are 8 squares/rectangles total which represent asteroids and other objects
