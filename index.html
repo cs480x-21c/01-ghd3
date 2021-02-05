@@ -1,0 +1,392 @@
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
+<div id="value"> </div>
+<svg id="vis"> </svg>
+
+<script>
+  console.log(d3); // test if d3 is loaded
+
+  // Add an SVG and the space to work in
+    var svg = d3.select('#vis')
+      .attr('width', 1500)
+      .attr('height', 1000)
+      .on('mousemove', 
+      function () 
+      { 
+        // Get current mouse position
+       let mousePosition = d3.pointer(event);
+
+        //Make the polygon because color dependent upon mouse location
+        makePolygon(mousePosition);
+      })
+
+    var xscale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, 400]);
+
+    var yscale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, 400]);
+
+
+  //Create the scene
+    //Introduction text here
+    svg   //The Large Heading
+     .append("text")
+     .attr("x", '810') 
+     .attr("y", '60')
+     .attr('fill', 'black')
+     .attr('stroke', 'bold')
+     .attr('font-size', 50)
+     .attr('font-weight', 510)
+     .text('Welcome to the Shy Shapes Lab!')
+
+    svg   //The dividing line to denote the title
+     .append('line')
+     .style("stroke", "black")
+     .style("stroke-width", 2)
+     .attr("x1", 810)
+     .attr("y1", 70)
+     .attr("x2", 1475)
+     .attr("y2", 70); 
+
+    svg   //The first line of the description
+     .append("text")
+     .attr("x", '810') 
+     .attr("y", '100')
+     .attr('fill', 'black')
+     .attr('stroke', 'bold')
+     .attr('font-size', 15)
+     .text('Here, you can freely investigate the provided sample shy shapes in the containers to the left. What are shy shapes')
+    
+     svg   //The second line of the description
+     .append("text")
+     .attr("x", '810') 
+     .attr("y", '115')
+     .attr('fill', 'black')
+     .attr('stroke', 'bold')
+     .attr('font-size', 15)
+     .text('you ask? These are autonomous enetities that react to interaction of some kind! Studying these shapes are of')
+
+     svg   //The third line of the description
+     .append("text")
+     .attr("x", '810') 
+     .attr("y", '130')
+     .attr('fill', 'black')
+     .attr('stroke', 'bold')
+     .attr('font-size', 15)
+     .text('particular interest here in the Shy Shape Lab. Click on the entries (buttons) below to find out more information')
+
+     svg   //The fourth line of the description
+     .append("text")
+     .attr("x", '810') 
+     .attr("y", '145')
+     .attr('fill', 'black')
+     .attr('stroke', 'bold')
+     .attr('font-size', 15)
+     .text('about the shapes and how they react to any interaction. Have fun!')
+
+     //The background boxes
+    svg   //The top-left box
+    .append('rect')
+    .attr('x', 0)
+    .attr('y', 0)
+    .attr('height', 350)
+    .attr('width', 400)
+    .attr('fill', 'gray');
+
+    svg   //The bottom-right box
+    .append('rect')
+    .attr('x', 400)
+    .attr('y', 350)
+    .attr('height', 350)
+    .attr('width', 400)
+    .attr('fill', 'gray')
+
+    
+    svg   //The top-right box
+    .append('rect')
+    .attr('x', 400)
+    .attr('y', 0)
+    .attr('height', 350)
+    .attr('width', 400)
+    .attr('fill', 'tan');
+
+    svg   //The bottom-left box
+    .append('rect')
+    .attr('x', 0)
+    .attr('y', 350)
+    .attr('height', 350)
+    .attr('width', 400)
+    .attr('fill', 'tan');
+
+    //The lines that act as box borders
+    svg   //The top horizontal line
+    .append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 2)
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", 800)
+    .attr("y2", 0); 
+    
+    svg   //The middle horizontal line
+    .append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 2)
+    .attr("x1", 0)
+    .attr("y1", 350)
+    .attr("x2", 800)
+    .attr("y2", 350);
+    
+    svg   //The bottom horizontal line
+    .append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 2)
+    .attr("x1", 0)
+    .attr("y1", 700)
+    .attr("x2", 800)
+    .attr("y2", 700); 
+
+    svg   //The left vertical line
+    .append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 2)
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", 0)
+    .attr("y2", 700); 
+
+    svg   //The middle vertical line
+    .append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 2)
+    .attr("x1", 400)
+    .attr("y1", 0)
+    .attr("x2", 400)
+    .attr("y2", 700); 
+
+    svg   //The right vertical line
+    .append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 2)
+    .attr("x1", 800)
+    .attr("y1", 0)
+    .attr("x2", 800)
+    .attr("y2", 700); 
+
+    //The non-copyright scientist picture
+    svg
+     .append('image')
+     .attr('href', 'science.png.png')
+     .attr('x', 1015)
+     .attr('y', 350)
+     .attr('width', 200)
+     .attr('height', 400);
+
+    //Create the buttons and their text to describe the mysterious creatures
+    svg   // Circle button
+     .append('rect')
+     .attr('x', 900)
+     .attr('y', 235)
+     .attr('height', 60)
+     .attr('width', 175)
+     .attr('fill', 'red')
+     .style('stroke', 'black')
+     .style('stroke-width', 2)
+     .on('click', 
+        function(d, i)  
+        {
+          alert("This species is so shy that it uses its small size to move around its containment if you try to touch it! Interestingly, circle 123 reacts and moves in response to rectangle 635's recovery from a breakdown.");
+        });
+
+      svg.append("text")
+      .attr("x", '920') 
+      .attr("y", '273')
+      .attr('fill', 'black')
+      .attr('stroke', 'none')
+      .attr('font-size', 20)
+      .text('Entry-Circle 123')
+      .on('click', 
+        function(d, i)
+        {
+          alert("This species is so shy that it uses its small size to move around its containment if you try to touch it! Interestingly, circle 123 reacts and moves in response to rectangle 635's recovery from a breakdown.");
+        });  
+
+    svg   // Rectangle button
+     .append('rect')
+     .attr('x', 1150)
+     .attr('y', 235)
+     .attr('height', 60)
+     .attr('width', 175)
+     .attr('fill', 'red')
+     .style('stroke', 'black')
+     .style('stroke-width', 2)
+     .on('click', 
+        function(d, i)
+        {
+          alert("This species is so shy that, when you try to touch it, it breaksdown and becomes to a completely unrecognizable shape! When recovering from a breakdown, it seems to evoke some response in circle 123 - causing it to react as if it were interacted with. Rectangle 635's recovery from a breakdown seems to have some effect on Polygon 004, but this effect is unknown. More investigation is required.");
+        });
+
+      svg.append("text")
+      .attr("x", '1155') 
+      .attr("y", '273')
+      .attr('fill', 'black')
+      .attr('stroke', 'none')
+      .attr('font-size', 20)
+      .text('Entry-Rectanlge 635')
+      .on('click', 
+        function(d, i)
+        {
+          alert("This species is so shy that, when you try to touch it, it breaksdown and becomes to a completely unrecognizable shape! When recovering from a breakdown, it seems to evoke some response in circle 123 - causing it to react as if it were interacted with. Rectangle 635's recovery from a breakdown seems to have some effect on Polygon 004, but this effect is unknown. More investigation is required.");
+        });
+
+    svg   // Line button
+     .append('rect')
+     .attr('x', 900)
+     .attr('y', 335)
+     .attr('height', 60)
+     .attr('width', 175)
+     .attr('fill', 'red')
+     .style('stroke', 'black')
+     .style('stroke-width', 2)
+     .on('click', 
+        function(d, i)
+        {
+          alert("This species is so shy that when you try to touch it, it turns invisible!");
+        });
+
+      svg.append("text")
+      .attr("x", '924') 
+      .attr("y", '372')
+      .attr('fill', 'black')
+      .attr('stroke', 'none')
+      .attr('font-size', 20)
+      .text('Entry-Line 221')
+      .on('click', 
+        function(d, i)
+        {
+          alert("This species is so shy that when you try to touch it, it turns invisible!");
+        });
+
+    svg   // Polygon button
+     .append('rect')
+     .attr('x', 1150)
+     .attr('y', 335)
+     .attr('height', 60)
+     .attr('width', 175)
+     .attr('fill', 'red')
+     .style('stroke', 'black')
+     .style('stroke-width', 2)
+     .on('click', 
+        function(d, i)
+        {
+          alert("This species appears and freezes up once you begin interacting within anything in its vicinity. Polygon 004 is so shy that, as you get close to it, it starts to blush too! Polygon 004 has some reaction to rectangle 635's breakdown as well, but only some instances. More investigation is requiered to understand this anomalous effect.");
+        });
+      
+    svg.append("text")
+      .attr("x", '1160') 
+      .attr("y", '372')
+      .attr('fill', 'black')
+      .attr('stroke', 'none')
+      .attr('font-size', 20)
+      .text('Entry-Polygon 004')
+      .on('click', 
+        function(d, i)
+        {
+          alert("This species appears and freezes up once you begin interacting within anything in its vicinity. Polygon 004 is so shy that, as you get close to it, it starts to blush too! Polygon 004 has some reaction to rectangle 635's breakdown as well, but only some instances. More investigation is requiered to understand this anomalous effect.");
+        });
+
+  //Creating the shapes and shy actions
+    // Add Rectangle
+    svg
+     .append('rect')
+     .attr('x', 500)
+     .attr('y', 235)
+     .attr('height', 70)
+     .attr('width', 115)
+     .attr('fill', 'purple')
+     .on('mouseover',
+        function(d, i)
+        {
+          d3.select(this).attr('fill', 'tan');
+          //d3.select(this).attr('height', 1);
+          d3.select(this).attr('width', 150);
+
+          svg
+          .append('polygon')
+          .attr('points', "500,50 600,200 700,150, 760,280")
+          .attr('fill', 'purple');
+        })
+      .on('mouseout', 
+        function(d,i)
+        {
+          location.reload();
+        });
+
+    // Add Circle that teleports around if you try to touch it
+    svg
+    .append('circle')
+    .attr('cy', (Math.random() * 310) + 20)
+    .attr('cx', Math.floor((Math.random() * 370) + 20))
+    .attr('r', 15)
+    .attr('fill', 'blue')
+    .on('mouseover', 
+      function(d, i) 
+      { 
+        d3.select(this).attr('fill', 'gray'); 
+        
+        svg
+         .append('circle')
+         .attr('cx', Math.floor((Math.random() * 370) + 20))
+         .attr('cy', Math.floor((Math.random() * 310) + 20))
+         .attr('r', 15)
+         .attr('fill', 'blue')
+      })
+    .on('mouseout', function(){location.reload()});
+
+    // Add Line that vanishes if you try to touch it
+    svg
+     .append('line')
+     .style("stroke", "green")
+     .style("stroke-width", 20)
+     .attr("x1", 65)
+     .attr("y1", 388)
+     .attr("x2", 300)
+     .attr("y2", 684)
+     .on("mouseover", function(d, i) {d3.select(this).style('stroke', 'tan')} )
+     .on("mouseout", function(d, i) {d3.select(this).style('stroke', 'green')} );
+
+    // Add Polygon that blushes as you move closer to it
+    function makePolygon(position)
+    {
+      var color = polygonBlush(position);
+
+      svg    
+      .append('polygon')
+      .attr('points', "500,450 550,450 575,500 550,550 500,550, 475,500")
+      .attr('fill', color)
+    }
+
+    function polygonBlush(position)
+    {
+      var midpointX = 525;
+      var midpointY = 500;
+      let redHue = 1
+
+      let distance = Math.sqrt(Math.pow((midpointX - position[0]), 2) + Math.pow((midpointY - position[1]), 2));
+
+      if(distance > 255)
+      {
+        redHue = 0;
+      }
+      else
+      {
+        redHue = 255 - distance;
+      }
+
+      let color = "rgb(" + redHue + "," + 0 + "," + 0 + ")";
+      return color
+    }
+
+</script>
