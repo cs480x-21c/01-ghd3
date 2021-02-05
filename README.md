@@ -23,4 +23,5 @@ References
 ---
 * https://www.w3schools.com/graphics/svg_intro.asp
 * https://www.d3indepth.com/selections/
+* https://developer.mozilla.org/en-US/docs/Web/SVG/Element
 * Code from 1st lecture of class: https://wpi0-my.sharepoint.com/personal/ltharrison_wpi_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fltharrison%5Fwpi%5Fedu%2FDocuments%2Fcs480x%2D21c%2F28%2DJan%2D2021%2Fcode%20scraps%2Ezip&parent=%2Fpersonal%2Fltharrison%5Fwpi%5Fedu%2FDocuments%2Fcs480x%2D21c%2F28%2DJan%2D2021&originalPath=aHR0cHM6Ly93cGkwLW15LnNoYXJlcG9pbnQuY29tLzp1Oi9nL3BlcnNvbmFsL2x0aGFycmlzb25fd3BpX2VkdS9FVHVuSktVRXg2MUFycEs3TEdqQS1QY0JkaUNBbEhvczJpc09wNTZSbkN5ZlZBP3J0aW1lPXZRTVhwSURKMkVn
