@@ -1,10 +1,105 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+<head>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+
+  <svg id='vis'></svg>
+
+  <script>
+
+    console.log(d3);
+
+    var data1 = [10, 20, 30, 70, 50];
+    var data2 = [15, 25, 35, 55];
+    var data3 = [10, 20, 30, 70, 50];
+    var data4 = [10, 20, 30, 70, 50];
+
+
+    var svg = d3.select('#vis')
+      .attr('width', 500)
+      .attr('height', 500)
+
+    //background
+    svg.append('rect')
+      .attr('height', '100%')
+      .attr('width', '100%')
+      .append('animate')
+      .attr('attributeName', 'fill')
+      .attr('values', 'midnightblue;azure;midnightblue')
+      .attr('dur', '10s')
+      .attr('repeatCount', 'indefinite')
+
+    var xscale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, 400]);
+
+    var yscale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, 400]);
+
+    //roof
+    svg.append("polygon")
+      .attr("points", "200,300 350,200 500,300")
+      .attr('fill', 'pink')
+
+    //sun
+    svg.append('circle')
+      .attr('cx', 700)
+      .attr('cy', 600)
+      .attr('r', 50)
+      .attr('fill', 'gold')
+      .append('animate')
+      .attr('attributeName', 'cy')
+      .attr('attributeType', 'XML')
+      .attr('values', '600;100;600')
+      .attr('dur', '10s')
+      .attr('repeatCount', 'indefinite')
+
+    //house
+    svg.append('rect')
+      .attr('x', 200)
+      .attr('y', 300)
+      .attr('height', 200)
+      .attr('width', 300)
+      .attr('fill', 'cornflowerblue')
+
+    //top of roof
+    svg.append('line')
+      .attr('x1', 200)
+      .attr('y1', 300)
+      .attr('x2', 350)
+      .attr('y2', 200)
+      .attr('stroke', 'black')
+
+    svg.append('line')
+      .attr('x1', 350)
+      .attr('y1', 200)
+      .attr('x2', 500)
+      .attr('y2', 300)
+      .attr('stroke', 'black')
+
+    //grass
+    svg.append('rect')
+      .attr('x', 0)
+      .attr('y', 500)
+      .attr('height', 300)
+      .attr('width', '100%')
+      .attr('fill', 'seagreen')
+
+
+
+
+    var svg = d3.select('#vis')
+      .attr('width', 1000)
+      .attr('height', 800)
+
+
+
+  </script>
+</body>
+
+</html>
