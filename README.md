@@ -20,4 +20,6 @@ https://drive.google.com/file/d/1dY7ZI5Dma-cl45vsAk0cJ_S1vhs2d4ev/view?usp=shari
 https://drive.google.com/file/d/1DGx41tiJJXxfWZjEYcLWrPFjNDmaNsOK/view?usp=sharing
 https://drive.google.com/file/d/1ui7DtxsQ3kti7sQ76rCez7x3cSZ6XOLn/view?usp=sharing
 
-
+Sources
+---
+The polygon code is a combination of material from https://www.d3-graph-gallery.com/graph/shape.html and https://stackoverflow.com/questions/13204562/proper-format-for-drawing-polygon-data-in-d3, although the former does not contain guides for how to create a polygon and the latter does so using data binding. The latter source, along with the code for the steel blue circles in-class example, also formed the basis for the data binding statements.
