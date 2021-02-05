@@ -1,11 +1,16 @@
 # README
 Assignment 1 - Hello World: GitHub and d3  
 ===
-https://hcaouette.github.io/01-ghd3/
+https://hcaouette.github.io/01-ghd3/  
 Author: Hunter Caouette
 ===
+This website is designed to take a decklist of Magic: the Gathering cards and represent some information about the decks "converted mana cost".  
+By using the histogram of converted mana costs you can highlight a selection of the cards that have that mana cost.  
+By using the scatterplot, you can find highlight individual cards in the decklist (and show the preview card in the card_box svg) based on their mana cost and color. The x-axis of the scatterplot is the order in which the cards appear in the decklist.  
+Similarly, selecting a card in the decklist panel will show that cards image in the card_box svg.  
+===
 ## Tech Achievements
-- implemented favicons for website that are compatible with multiple browser types
+- I implemented favicons for the website that are compatible with multiple browser types.
     - The art in the favicon is of the Magic: the Gathering card 'Meren of Clan Nel Toth'. It is illustrated by Mark Winters and is property of Wizards of the Coast LLC.
     - The favicon set was generated from a jpg file and the code in the head tag were both provided by https://realfavicongenerator.net/
 - I made an interactive 'scatterplot' which highlights a cards name when you hover over the corresponding dot.
