@@ -91,8 +91,14 @@
       rx: 54,
       ry: 77,
       fill: '#aa7d79'
-    } // HEAD
-
+    }, // HEAD
+    {
+      cx: 692,
+      cy: 372,
+      rx: 40,
+      ry: 60,
+      fill: '#514138'
+      }
   ]
   // Add Ellipses
   svg.selectAll('ellipse')
@@ -114,10 +120,10 @@
       return d.fill
     });
 
-    /*
-    .on('mouseover', function() {
-        d3.select(this).attr('fill', 'steelblue');
-      });*/
+  /*
+  .on('mouseover', function() {
+      d3.select(this).attr('fill', 'steelblue');
+    });*/
 
 
   var circles = [{
@@ -163,8 +169,7 @@
                   .attr('fill', 'none');*/
   /* guide used for poly: https://lucidar.me/en/d3.js/part-06-basic-shapes/*/
 
-  var polygon = [
-    {
+  var polygon = [{
       points: "696,181 727,174 769,179 776,211 765,231 737,247 725,247 710,240 690,225",
       stroke: 'white',
       fill: '#92c8eb'
@@ -175,10 +180,10 @@
       fill: 'black'
     },
     {
-        points: "677,304 705,375 584,438 542,375 588,239 647,227 656,193 675,191 691,235 738,247 772,235 789,174 806,176 816,212 865,222 911,369 870,439 875,467 841,553 719,435 594,484 584,438 705,375",
-        stroke: 'black',
-        fill: '#535250'
-      }
+      points: "584,438 542,375 588,239 647,227 656,193 675,191 691,235 738,247 772,235 789,174 806,176 816,212 865,222 911,369 870,439 875,467 841,553 719,435 594,484 584,438",
+      stroke: 'black',
+      fill: '#535250'
+    }
   ]
   svg.selectAll('polygon')
     .data(polygon)
@@ -195,17 +200,81 @@
     });
 
 
+  var lines = [{
+    x1: 748,
+    y1: 411,
+    x2: 870,
+    y2: 440,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 758,
+    y1: 358,
+    x2: 748,
+    y2: 411,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 758,
+    y1: 358,
+    x2: 843,
+    y2: 352,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 827,
+    y1: 305,
+    x2: 843,
+    y2: 352,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 584,
+    y1: 438,
+    x2: 702,
+    y2: 352,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 677,
+    y1: 306,
+    x2: 702,
+    y2: 352,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 677,
+    y1: 306,
+    x2: 590,
+    y2: 356,
+    stroke: 'black',
+    strokeW: 1
+  }
+  ];
+  svg.selectAll('line').data(lines).enter().append('line')
+    .attr('x1', function(d) {
+      return d.x1
+    })
+    .attr('y1', function(d) {
+      return d.y1
+    })
+    .attr('x2', function(d) {
+      return d.x2
+    })
+    .attr('y2', function(d) {
+      return d.y2
+    })
+    .attr('stroke', function(d) {
+      return d.stroke
+    })
+    .attr('stroke-width', function(d) {
+      return d.strokeW
+    });
 
-  /*
-      .on('mouseout', function() {
-        d3.select(this).attr('fill', 'steelblue');
-        });
-  */
-  // Add Lines
-  // Add Polygons
-  d3.select("body").selectAll("p")
-    .data([5,3,6])
-    .enter()
-    .append("p")
-    .text("New paragraph!");
 </script>
