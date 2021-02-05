@@ -6,19 +6,31 @@
 
     </div>
 
-
     <script>
+
       //console.log(d3); // test if d3 is loaded
       // Add an SVG
-      // Add Rectangles
-      // Add Circles
-      // Add Lines
-      // Add Polygons
       const svg = d3
         .select("#main")
         .append("svg")
         .attr("width", 300)
         .attr("height", 300)
+
+      // Add Rectangles
+
+      // Add Circles
+      svg
+        .append("circle")
+        .attr("cx", 50)
+        .attr("cy", 50)
+        .attr("r", 25)
+        .style("fill", "red");
+      // Add Lines
+      // Add Polygons
+
+
+
+      console.log("hi")
     </script>
 
   </body>
