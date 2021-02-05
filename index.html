@@ -1,31 +1,25 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>WebGL Example File</title>
 
-<script src="svg.js"></script>
-<script src="Shapes/RandomShapeMaker.js"></script>
-<script src="Shapes/ShapeController.js"></script>
-<script src="Score.js"></script>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
 
-<div id="score"> </div>
-<svg id="vis"> </svg>
+        <script src="ShapeGameSrc/svgControl.js"></script>
+        <script src="ShapeGameSrc/RandomShapeMaker.js"></script>
+        <script src="ShapeGameSrc/Start.js"></script>
 
-<script>
-    console.log(d3); // test if d3 is loaded
+    </head>
 
-    // Gets all the data used
-    let xData = [0, 100];
-    let yData = [0, 100];
+    <body>
+        <form name="GameMenu" id="GameMenu">
+            <label> shapes to make: </label>
+            <input type="text" id="shapesToMake" name="shapesToMake" value="10"> <br>
+            <input type="button" id="drawButton" name="start" value="start" onclick="startGame()">
+            <div id="timer"> </div>
+        </form>
 
-    // data constants
-    const width = 1000;
-    const height = 750;
-
-    // Set the global ID for the SVG and score ID
-    gSvgID = "#vis";
-    gScoreID = "#score";
-
-    // Add an SVG
-    let svg = makeSVG2D(width, height);
-
-    // Create (and start) the maker
-    let maker = new RandomShapeMaker(svg, width, height, 10, 1);
-</script>
+        <svg id="vis"> </svg>
+    </body>
+</html>

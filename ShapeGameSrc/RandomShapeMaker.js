@@ -1,4 +1,15 @@
+/**
+ * RandomShapeMaker.js
+ * date created: 1/29/2021
+ * Author: Benjamin M'Sadoques
+ *
+ * Provides the class that draws random shapes on the svg
+ * It can draw lines, rectangles, circles, and polygons
+ */
 
+/**
+ * Draws random shapes when make shapes is called
+ */
 class RandomShapeMaker
 {
     // constants
@@ -9,33 +20,23 @@ class RandomShapeMaker
     POLYGON = 3;
     COLORS = [];
 
-    constructor(svg, width, height, startShapes, shapeIncreasePerLevel)
+    constructor(svg, width, height, startShapes)
     {
         // Colors to choose from
         this.COLORS.push("rgb(255, 200, 200)", "rgb(200, 255, 200)", "rgb(200, 200, 250)",
             "rgb(200, 255, 255)");
 
-        // svg to draw on
         this.svg = svg;
-
-        // Bounds to place shapes
-        // gWidth = width;
-        // gHeight = height;
         this.width = width;
         this.height = height;
 
-        // Shapes to make
+        // ShapeGameSrc to make
         this.shapes = startShapes;
-        this.shapeIncreasePerLevel = startShapes;
-        this.shapesLeft = this.shapes;
-
-        // Makes the shapes for the first round
-        this.makeShapes();
-
-        // Score start
-        announceScore(0);
     }
 
+    /**
+     * makes the amount of shapes that was set in the constructor
+     */
     makeShapes()
     {
         // Makes a random shape, selects the type first
@@ -59,15 +60,22 @@ class RandomShapeMaker
                 default:
                     break;
             }
-
-            // for testing individual shape types
-            //this.makeRandomLine(i);
-            //this.makeRandomRectangle();
-            //this.makeRandomCircle();
-            //this.makeRandomPolygon();
         }
     }
 
+    /**
+     * Gets a random color from a list of colors
+     * @returns a random rgb color from the internal list
+     */
+    randomColor()
+    {
+        return this.COLORS[d3.randomInt(0, this.COLORS.length)()];
+    }
+
+    /**
+     * Creates a random line within the svg
+     * @param id the shape's id used when removed (must not conflict with other shape IDs)
+     */
     makeRandomLine(id)
     {
         // Lines can be really long
@@ -82,10 +90,13 @@ class RandomShapeMaker
             .on("mousedown", function (e, d)
             {
                 removeShape('line', this.id);
-                announceScore(1);
             });
     }
 
+    /**
+     * Creates a random rectangle within the svg
+     * @param id the shape's id used when removed (must not conflict with other shape IDs)
+     */
     makeRandomRectangle(id)
     {
         // Rectangles can be really big
@@ -100,10 +111,13 @@ class RandomShapeMaker
             .on("mousedown", function (e, d)
             {
                 removeShape('rect', this.id);
-                announceScore(2);
             });
     }
 
+    /**
+     * Creates a random circle within the svg
+     * @param id the shape's id used when removed (must not conflict with other shape IDs)
+     */
     makeRandomCircle(id)
     {
         // Circles can cover each-other, but it's not that bad
@@ -118,10 +132,13 @@ class RandomShapeMaker
             .on("mousedown", function (e, d)
             {
                 removeShape('circle', this.id);
-                announceScore(3);
             });
     }
 
+    /**
+     * Creates a random line within the svg
+     * @param id the shape's id used when removed (must not conflict with other shape IDs)
+     */
     makeRandomPolygon(id)
     {
         // polygons can be really big
@@ -136,7 +153,7 @@ class RandomShapeMaker
                 let points = "";
                 for (let p = 0; p < sides; p++)
                 {
-                    points += points + [d3.randomInt(0, width)(), d3.randomInt(0, height)()].join(",") + " ";
+                    points += points + [d3.randomInt(0, gSVGWidth)(), d3.randomInt(0, gSVGHeight)()].join(",") + " ";
                 }
                 return points;
             })
@@ -144,17 +161,7 @@ class RandomShapeMaker
             .on("mousedown", function (e, d)
             {
                 removeShape('polygon', this.id);
-                announceScore(4);
             });
-    }
-
-    /**
-     * Gets a random color from a list of colors
-     * @returns a random rgb color from the internal list
-     */
-    randomColor()
-    {
-        return this.COLORS[d3.randomInt(0, this.COLORS.length)()];
     }
 }
 
