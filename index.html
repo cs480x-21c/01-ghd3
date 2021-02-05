@@ -12,9 +12,14 @@
   <srcipt src="deck.js"></srcipt>
 
   <style>
+    body{
+      background-color: ffdde2;
+    }
     div {
       /* border:3px solid purple; */
       overflow: hidden;
+      background-color: #fff1f3;
+      /* background-color: #f1faff; */
     }
     svg{
       /* border:3px solid orange; */
@@ -28,6 +33,7 @@
       height: min-content;
       float:left;
       border:3px solid purple;
+      /* overflow: scroll; */
     }
     #mana_curve{
       width:min-content;
@@ -42,8 +48,10 @@
       height: min-content;
     }
     #card_box{
-      width: 150px;
-      height: 210px;
+      /* width: 150px;
+      height: 210px; */
+      width:488px;
+      height:680px;
       border:3px solid orange;
     }
 
@@ -68,6 +76,7 @@
   var deck_box
   var mana_curve
   var color_pie
+  
 
   const deck_prom = d3.csv("korvold.csv");
   deck_prom.then( function(data){
@@ -102,6 +111,16 @@
   }
   function load_mana_scatterplot(decklist){
     var border_offset=5
+    var width = 1200
+    var height = 125
+    console.log(decklist.length)
+    var xscale = d3.scaleLinear()
+        .domain([-1, decklist.length])//the provided x-scale
+        .range([0, width]);
+    var yscale = d3.scaleLinear()
+        .domain([-1, 10])//the provded y-scale
+        .range([0, height]);
+
     mana_scatterplot = d3.select("#mana_scatterplot").append("svg")
         .attr('class','cartesian')
         .attr('width',1200)
@@ -126,8 +145,10 @@
         .data(decklist)
         .enter()
         .append('circle')
-        .attr('cx',function(d,i){ return (i*12)+5;})
-        .attr('cy',function(d){ return 10*d.cmc + 5;})
+        // .attr('cx',function(d,i){ return (i*12)+5;})
+        // .attr('cy',function(d){ return 10*d.cmc + 5;})
+        .attr('cx',function(d,i){ return xscale(i);})
+        .attr('cy',function(d){ return yscale(d.cmc);})
         // .attr('cx',function(d){ return 10*d.cmc + 5;})
         // .attr('cy',function(d,i){ return (i*6)+5;})
         .style('fill',function(d){
@@ -146,13 +167,14 @@
             default: return "gold";break;
           }
         })
+        .style('fill-opacity',"75%")
         .attr('r',function(d){
           return (3+(2*parseInt(d.cmc)));// * (50*(d.quantity-1)) ;
         })
         .on('mouseover',function(e, d){
           id_name = "#"+processCardID(d.cardname);
-          d3.select(id_name).style('color','pink');
-          d3.select(this).attr('fill', 'pink');
+          d3.select(id_name).style('color','red');
+          // d3.select(this).attr('fill', 'red');
           console.log(d.cardname);
           d3.select("#card_box").append("image").attr("xlink:href",d.img)
         })
@@ -193,7 +215,7 @@
         for (var o=0; o<decklist.length; o++){
           if (decklist[o].cmc == cmc_id){
             id_name = "#"+processCardID(decklist[o].cardname);
-            d3.select(id_name).style('color','pink');
+            d3.select(id_name).style('color','red');
           }
         }
       })
