@@ -6,7 +6,7 @@ Project Description
 
 I implemented drawing circles, rectangles, lines, polygons using SVG and d3.js. I created a scene on my HTML page in which a sun rises and sets over a scene. I animated a yellow circle to rise and fall, and I also changed the color of a rectangle that represents the sky so that it looks like the rising and setting of the sun changes the color of the sky. I implemented a circle to represent the sun. I implemented 3 rectangles to represent grass, sky, and the base of a house. I implemented one polygon to represent the roof of the house. I implemented two black lines that overlap the top parts of the roof that act as an outline. 
 
-Link To Hosted Files:
+Link: http://haleyhauptfeld.com/01-ghd3/index.html
 ---
 
 Technical Achievement
