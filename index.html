@@ -1,10 +1,76 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<html>
+  <head>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+  </head>
+  <body>
+    <h1>Pop the bubbles!</h1>
+    <script>
+      console.log(d3); // test if d3 is loaded
+      // Add an SVG
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+      var width = 1280
+      var height = 720
+
+      var svg = d3.select("body").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+      // Add Rectangles
+      var recw = 800
+      var rech = 450
+
+      svg.append('rect')
+      .attr('x',width/2 - recw/2)
+      .attr('y',height/2 - rech/2)
+      .attr('width',recw)
+      .attr('height',rech)
+      .style('stroke','black')
+      .style('stroke-width', 1)
+      .attr('fill', 'white');
+
+      // Add Circles
+      var startx = width/2 - recw/2
+      var starty = height/2 - rech/2
+      var endx = startx + recw
+      var endy = starty + rech
+      var rad = recw/32
+
+      for (let stepx = rad; stepx < recw; stepx = stepx + recw/16)
+      {
+        for (let stepy = rad; stepy < rech; stepy = stepy + rech/9)
+        {
+          svg.append("circle")
+          .attr("cx", startx + stepx)
+          .attr("cy", starty + stepy)
+          .attr("r", rad)
+          .style("fill", "#67D3FF")
+          .style('stroke','black')
+          .on("mouseover", function(d) {
+            d3.select(this).style("fill", "yellow").style("cursor", "pointer");
+          })
+          .on("mouseout", function(d) {
+            d3.select(this).style("fill", "#67D3FF").style("cursor", "default");
+          })
+          .on("click", function(d) {
+            d3.select(this).style("visibility", "hidden");
+          });
+        }
+      }
+      // Add Lines
+      svg.append('line')
+      .style("stroke", "lightblue")
+      .style("stroke-width", 10)
+      .attr("x1", 0)
+      .attr("y1", 0)
+      .attr("x2", startx - 100)
+      .attr("y2", starty - 50);
+
+      // Add Polygons
+      svg.append("polygon")
+      .attr("points", "150,50 200,135 100,100")
+      .style("fill", "lightblue")
+      .style("stroke", "black");
+
+    </script>
+  </body>
+</html>
