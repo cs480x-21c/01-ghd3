@@ -7,7 +7,7 @@ Some images of the product (scary I know)
 ![](./DVPic1.png "Default Load")
 ![](./DVPic2.png "After Changing Color")
 
-Techical Achiievements 
+Techical Achievements 
 
 Clicking on the eyes will change the color from blue to red and back. You can also change the color of the body, to the same red or blue as the eyes.
 
