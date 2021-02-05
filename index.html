@@ -14,10 +14,12 @@
 
     <body>
         <form name="GameMenu" id="GameMenu">
+            <label> Welcome to shape clicker!</label> <br> <br>
             <label> shapes to make: </label>
             <input type="text" id="shapesToMake" name="shapesToMake" value="10"> <br>
-            <input type="button" id="drawButton" name="start" value="start" onclick="startGame()">
-            <div id="timer"> </div>
+            <input type="button" id="startGameButton" name="start" value="start" onclick="startGame(this)">
+            <input type="button" id="stopGameButton" name="stop" value="stop" disabled onclick="stopGame(this)"> <br>
+            <div id="timerDisplay"> </div>
         </form>
 
         <svg id="vis"> </svg>

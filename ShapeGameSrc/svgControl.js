@@ -42,3 +42,11 @@ function removeShape(typeString, id)
 {
     d3.select(gSVGId).select(typeString + '#' + id).remove();
 }
+
+/**
+ * Removed all the shapes from the svg
+ */
+function removeAllShapes()
+{
+    d3.select(gSVGId).selectAll("svg > *").remove();
+}
