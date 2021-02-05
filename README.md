@@ -1,5 +1,14 @@
-Assignment 1 - Hello World: GitHub and d3  
+Alexander Bell's Assignment 1 - Hello World: GitHub and d3  
 ===
+
+[http://abell625.github.io/01-ghd3/index.html](http://abell625.github.io/01-ghd3/index.html)
+
+![Image before user interaction](https://github.com/abell625/01-ghd3/blob/main/Image1.PNG?raw=true)
+
+![Image after some user interaction](https://github.com/abell625/01-ghd3/blob/main/Image2.png?raw=true)
+
+Original README
+---
 
 This is a starting project to make sure you can write and host a webpage that generates graphics using d3. 
 
