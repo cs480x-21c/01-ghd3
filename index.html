@@ -89,7 +89,7 @@
       cx: 730,
       cy: 172,
       rx: 54,
-      ry: 77,
+      ry: 70,
       fill: '#aa7d79'
     } // HEAD
   ]
@@ -176,11 +176,6 @@
       points: "584,438 542,375 588,239 647,227 656,193 675,191 691,235 738,247 772,235 789,174 806,176 816,212 865,222 911,369 870,439 875,467 841,553 719,435 594,484 584,438",
       stroke: 'black',
       fill: '#535250' // body
-    },
-    {
-      points: "700,345 683,303 718,288 776,301 829,336 817,357 767,366 743,343 710,340",
-      stroke: 'black',
-      fill: 'grey' // mitten left
     }
   ]
   svg.selectAll('polygon')
@@ -276,10 +271,26 @@
     });
 
     var images = [{
-      link: 'images/mittenL.png',
-      x: 699,
-      y: 300,
-      width: 100,
+      link: 'images/mittenRIghtHand.png',
+      x: 670,
+      y: 270,
+      width: 120,
+      height:120,
+      transform: ''//does not rotate 'rotate(180)'
+    },
+    {
+      link: 'images/mittenLeftHand.png',
+      x: 650,
+      y: 330,
+      width: 120,
+      height:120,
+      transform: ''//does not rotate 'rotate(180)'
+    },
+    {
+      link: 'images/glasses.png',
+      x: 690,
+      y: 115,
+      width: 80,
       height:100,
       transform: ''//does not rotate 'rotate(180)'
     }];

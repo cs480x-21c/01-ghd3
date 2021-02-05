@@ -5,6 +5,8 @@ Author: Elene Kavtaradze
 Link to gh-pages: https://ekavtaradze.github.io/01-ghd3/
 Link to repo: https://github.com/ekavtaradze/01-ghd3
 
+Hair: http://clipart-library.com/clipart/1061909.htm
+Mittens: https://www.pinclipart.com/pindetail/iTxxwbm_mittens-clipart-brown-mittens-brown-transparent-free-brown/
 
 Description:
 Screenshots:
