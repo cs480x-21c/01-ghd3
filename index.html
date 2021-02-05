@@ -1,15 +1,51 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+
+<div id="value"> </div>
+<svg id="vis"> </svg>
+
 <script>
   console.log(d3); // test if d3 is loaded
-  // Add an SVG
 
+  var data = [10, 78, 15, 67, 93];
+
+  var width = 1000;
+  var height = 1000;
+
+  // Add an SVG
+  var svg = d3.select('#vis')
+      .attr('width', width)
+      .attr('height', height);
+
+  var xscale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, width]);
+
+  var yscale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, height]);
   // Add Rectangles
 
   // Add Circles
+  svg.selectAll('circle')
+      .data(data)
+      .enter().append('circle')
+      .attr('cy', 100)
+      .attr('cx', function(d) { console.log(d); return xscale(d); } )
+      .attr('r', 10)
+      .attr('fill', 'steelblue')
+      .on('mouseover', function(e, d) {
+          d3.select(this).attr('fill', 'brown');
+          d3.select('#value').text(d);
+      }).on('mouseout', function() {
+      d3.select(this)
+          .attr('fill', 'steelblue');
+  })
 
   // Add Lines
 
   // Add Polygons
 
 </script>
+
+
