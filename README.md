@@ -5,7 +5,7 @@ Assignment 1 - Hello World: GitHub and d3
 https://hcaouette.github.io/01-ghd3/  
 Author: Hunter Caouette
 ===  
-
+## Website Description  
 This website is designed to take a decklist of Magic: the Gathering cards and represent some information about the decks "converted mana cost".  
 By using the histogram of converted mana costs you can highlight a selection of the cards that have that mana cost.  
 By using the scatterplot, you can find highlight individual cards in the decklist (and show the preview card in the card_box svg) based on their mana cost and color. The x-axis of the scatterplot is the order in which the cards appear in the decklist.  
