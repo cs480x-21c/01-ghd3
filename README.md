@@ -4,8 +4,8 @@ Link for the site [GithubIO](https://njwood.github.io/01-ghd3/)
 
 Some images of the product (scary I know)
 
-![](./DVPic1.png "Default Load")
-![](./DVPic2.png "After Changing Color")
+![Image 1](DVPic1.PNG "Default Load")
+![Image 2](DVPic2.PNG "After Changing Color")
 
 Techical Achievements 
 
