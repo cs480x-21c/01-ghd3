@@ -52,7 +52,7 @@
   polyVis.selectAll('polygon').data(dataArr).enter().append('polygon')
       .attr('points', "500,50 700,50 700,150 650,250 550,250 500,150")
       .attr('stroke', 'black')
-      .attr('fill', '#50dbb3');
+      .attr('fill', '#faebd7');
   polyVis.selectAll('circle').data(eyesX).enter().append('circle')
       .attr('cx', function (d, i) {return d+300}).attr('cy', '100')
       .attr('r', function (d, i) {return eyeR[i]})
