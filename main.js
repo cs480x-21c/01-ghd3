@@ -1,8 +1,12 @@
+// Track currently selected object
 let selected = null;
 
+// select() sets the currently selected object and related information
 function select(selection, selectionName) {
+    // Update currently selected object
     selected = selection;
 
+    // Update selection text
     d3.select("#selection")
         .text("Selected: " + selectionName);
 
@@ -17,7 +21,9 @@ function select(selection, selectionName) {
     }
 }
 
+// setupInputCallbacks() sets up the callbacks on the slider & color input
 function setupInputCallbacks() {
+    // Set up slider to update opacity of selected object
     d3.select("#opacitySlider")
         .on("input", function(e) {
             if (selected) {
@@ -27,6 +33,7 @@ function setupInputCallbacks() {
             }
         });
 
+    // Set up color input to update color of selected object
     d3.select("#color")
         .on("input", function(e) {
             if (selected) {
@@ -41,17 +48,17 @@ function setupInputCallbacks() {
         });
 }
 
-function numToHex(num) {
-
-}
-
+// rgbToHex() converts from the form "rgb(int, int, int)" to hexadecimal color
 function rgbToHex(input) {
+    // Strip of leading "rgb(" and ending ")"
     input = input.substr(4, input.length - 5);
 
+    // Split string based on spaces
     let rgb = input.split(" ");
     rgb[0].substr(0, rgb[0].length - 1);
     rgb[1].substr(0, rgb[1].length - 1);
 
+    // Convert values to hex (and add appropriate padding
     rgb[0] = parseInt(rgb[0]).toString(16);
     if (rgb[0].length === 1) {
         rgb[0] = "0" + rgb[0];
@@ -67,22 +74,12 @@ function rgbToHex(input) {
         rgb[2] = "0" + rgb[2];
     }
 
+    // Concatenate and return hex color
     return "#" + rgb[0] + rgb[1] + rgb[2];
 }
 
-function main() {
-    // Test if d3 is loaded
-    console.log(d3);
-
-    // Setup input callbacks
-    setupInputCallbacks();
-
-    // Setup svg
-    let svg = d3.select("#target")
-        .attr("width", 400)
-        .attr("height", 400)
-        .attr("background-color", "white");
-
+// createShapes() draws the basic shapes onto the svg
+function createShapes(svg) {
     // Draw a line
     svg.append("line")
         .style("stroke", "#FF0000")
@@ -123,4 +120,22 @@ function main() {
         .on('click', function(e) {
             select(this, "Polygon");
         });
+}
+
+// main() handles setup of the program
+function main() {
+    // Test if d3 is loaded
+    console.log(d3);
+
+    // Setup input callbacks
+    setupInputCallbacks();
+
+    // Setup svg
+    let svg = d3.select("#target")
+        .attr("width", 400)
+        .attr("height", 400)
+        .attr("background-color", "white");
+
+    // Create shapes on the svg
+    createShapes(svg);
 }
