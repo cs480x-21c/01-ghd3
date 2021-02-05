@@ -27,24 +27,28 @@
         .attr('cx', 250)
         .attr('cy', 340)
         .attr('r', 25)
-        .attr('fill', 'blue');
+        .attr('fill', '#374875')
+        .attr('stroke','black')
+        .attr('stroke-width',1);
 
     svg.append('circle')
         .attr('cx', 125)
         .attr('cy', 340)
         .attr('r', 25)
-        .attr('fill', 'blue');
+        .attr('fill', '#374875')
+        .attr('stroke','black')
+        .attr('stroke-width',1);
 
     // adding polygon
     svg.append('polygon')
         .attr('points','35,200 230,200 230,280 280,280 280,340 35,340 35,200')
-        .style('fill', 'red')
+        .style('fill', '#910707')
         .attr('stroke','black')
         .attr('stroke-width',4)
         .on('mouseover', function(d,i) {
             d3.select(this).style('fill', 'green'); })
         .on('mouseout', function(d,i) {
-            d3.select(this).style('fill', 'red'); });
+            d3.select(this).style('fill', '#910707'); });
 
     // adding rectangle
     svg.append('rect')
@@ -60,13 +64,17 @@
         .attr('cx', 65)
         .attr('cy', 340)
         .attr('r', 25)
-        .attr('fill', 'blue');
+        .attr('fill', '#374875')
+        .attr('stroke','black')
+        .attr('stroke-width',1);
 
     svg.append('circle')
         .attr('cx', 190)
         .attr('cy', 340)
         .attr('r', 25)
-        .attr('fill', 'blue');
+        .attr('fill', '#374875')
+        .attr('stroke','black')
+        .attr('stroke-width',1);
 
     // adding line
     svg.append('line')
