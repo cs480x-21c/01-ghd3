@@ -1,10 +1,232 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<header>Luke's Assignemnt 1 Data Vis</header>
+
+<style>
+    body {
+    margin: 0;
+  }
+
+  rect {
+    stroke: rgb(0, 0, 0);
+    stroke-width: 2px;
+    fill: none
+  }
+
+  circle {
+    fill: none;
+    stroke: plum;
+    stroke-width: 2.5px;
+  }
+
+  line {
+    stroke: yellow;
+    stroke-width: 45px;
+  }
+
+  polygon {
+    fill: none;
+    stroke: darkblue;
+    stroke-width: 6px;
+  }
+
+  symbol {
+    fill: none
+  }
+
+</style>
+
 <script>
   console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+
+  var colors = ["aquamarine", "sandybrown", "hotpink", "white"];
+  var iterator = -1;
+
+  var w = 960,
+    h = 500,
+    z = 20,
+    x = w / z,
+    y = h / z;
+
+  var points1 = [
+    [w/4, h/6],
+    [w/6 + 35, h/3 - 20],
+    [w/3 - 35, h/3 - 20]
+  ];
+
+  var points2 = [
+    [w/4, h/3],
+    [w/6 + 35, h/6 + 20],
+    [w/3 - 35, h/6 + 20]
+  ]
+
+  var starPoints = [
+    [w/4, h/2 + h/4 - 20],
+    [w/4 - 4, h/2 + h/4 - 4],
+    [w/4 - 20, h/2 + h/4 - 4],
+    [w/4 - 8, h/2 + h/4 + 4],
+    [w/4 - 15, h/2 + h/4 + 17],
+    [w/4, h/2 + h/4 + 8],
+    [w/4 + 15, h/2 + h/4 + 17],
+    [w/4 + 8, h/2 + h/4 + 4],
+    [w/4 + 20, h/2 + h/4 - 4],
+    [w/4 + 4, h/2 + h/4 - 4]
+  ]
+
+  var star = d3.symbol().type(d3.symbolStar).size(100);
+
+  var svg = d3.select("body").append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+  svg.append("rect")
+    .attr("width", w)
+    .attr("height", h)
+    .attr("stroke-width", 4)
+  
+  //Israel
+  svg.append("polygon")
+    .attr("points", points1)
+    .on("click", function(){
+      d3.select(this).style("opacity", 0);
+      console.log("Israel")
+    })
+
+  svg.append("polygon")
+    .attr("points", points2)
+    .on("click", function(){
+      d3.select(this).style("opacity", 0);
+      console.log("Israel")
+    })
+
+  svg.append("rect")
+    .attr("width", w/2)
+    .attr("height", h/2)
+    .on("click", function(){
+      d3.select(this).style("opacity", 0);
+      console.log("Israel")
+    })
+
+  svg.append("rect")
+    .attr("width", w/2)
+    .attr("height", h/14)
+    .attr("y", 20)
+    .style("fill", "darkblue")
+    .style("stroke-width", 0)
+    .on("click", function(){
+      d3.select(this).style("opacity", 0);
+      console.log("Israel")
+    })
+
+  svg.append("rect")
+    .attr("width", w/2)
+    .attr("height", h/14)
+    .attr("y", 185)
+    .style("fill", "darkblue")
+    .style("stroke-width", 0)
+    .on("click", function(){
+      d3.select(this).style("opacity", 0);
+      console.log("Israel")
+    })
+
+  //Japan
+  svg.append("rect")
+    .attr("width", w/2)
+    .attr("height", h/2)
+    .attr("x", w/2)
+    .attr("y", h/2)
+    .style("stroke-width", 2)
+    .style("stroke", "black")
+    .on("click", function(){
+      console.log("Japan");
+    })
+
+  svg.append("circle")
+    .attr("cx", w/2 + w/4)
+    .attr("cy", h/2 + h/4)
+    .attr("r", 50)
+    .style("fill", "red")
+    .style("stroke", "red")
+    .on("click", function(){
+      d3.select(this).style("fill", "magenta").style("stroke", "magenta");
+      console.log("Japan");
+    })
+    
+  //Sweeden
+  svg.append("rect")
+    .attr("x", w/2)
+    .attr("y", 0)
+    .attr("width", w/2)
+    .attr("height", h/2)
+    .style("fill", "steelblue")
+    .on("click", function(){
+      console.log("Sweeden");
+    })
+    
+  svg.append("line")
+    .attr("x1", w/2 + 2)
+    .attr("x2", w - 2)
+    .attr("y1", h/4)
+    .attr("y2", h/4)
+    .on("click", function(){
+      console.log("Sweeden");
+    })
+
+  svg.append("line")
+    .attr("x1", w/2 + 160)
+    .attr("x2", w/2 + 160)
+    .attr("y1", 2)
+    .attr("y2", h/2 - 2)
+    .on("click", function(){
+      d3.select(this).attr("x1", w - 160);
+      d3.select(this).attr("x2", w - 160);
+      console.log("Sweeden");
+    })
+
+  //Turkey
+  svg.append("rect")
+    .attr("x", 0)
+    .attr("y", h/2)
+    .attr("width", w/2)
+    .attr("height", h/2)
+    .style("fill", "red")
+    .on("click", function(){
+      console.log("Turkey");
+    })
+
+  svg.append("circle")
+    .attr("cx", w/4 - 80)
+    .attr("cy", h/2 + h/4)
+    .attr("r", 50)
+    .style("fill", "white")
+    .style("stroke", "white")
+    .on("click", function(){
+      console.log("Turkey");
+    })
+
+  svg.append("circle")
+    .attr("cx", w/4 - 60)
+    .attr("cy", h/2 + h/4)
+    .attr("r", 35)
+    .style("fill", "red")
+    .style("stroke", "red")
+    .on("click", function(){
+      console.log("Turkey");
+    })
+
+  svg.append("polygon")
+    .attr("points", starPoints)
+    .style("fill", "white")
+    .style("stroke-width", 0)
+    .on("click", function(){
+      d3.select(this).style("fill", function() {
+        iterator += 1;
+        if(iterator >= 4) {
+          iterator = 0;
+        }
+        return colors[iterator]
+      });
+      console.log("Turkey");
+    })
+
 </script>
