@@ -1,10 +1,117 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<html>
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="upgrade-insecure-requests"
+  />
+  <head>
+    <title>A1 | Pooja Patel</title>
+    <h1>
+      Assignment 1 - Hello World: GitHub and d3 | 01-ghd3 | Pooja Patel
+    </h1>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      html {
+        background: lightblue;
+      }
+    </style>
+    <script src="http://d3js.org/d3.v6.min.js"></script>
+  </head>
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+  <body>
+    <script>
+      console.log(d3); // test if d3 is loaded
+
+      // gradient transition of background-color
+      var colors = ["orange", "darkorange", "coral", "tomato", "orangered", "lightblue"];
+      var currentColor = 0;
+
+      setInterval(function() {
+        document.body.style.cssText =
+          "background-color: " + colors[currentColor];
+        currentColor++;
+        if (currentColor == undefined || currentColor >= colors.length) {
+          currentColor = 0;
+        }
+      }, 1700);
+
+      //Add an SVG
+      var svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", 1500)
+        .attr("height", 647);
+
+      //Add Circles
+      var sun = svg.append("circle")
+      sun.style("fill", "gold")
+      sun.attr("r", 220)
+      sun.attr("cx", 750)
+      sun.attr("cy", 100);
+
+      //Add Circles
+      var sun = svg.append("circle")
+      sun.style("fill", "yellow")
+      sun.attr("r", 190)
+      sun.attr("cx", 750)
+      sun.attr("cy", 100);
+
+      //Add Polygons
+      var ocean = svg.append("polygon")
+      ocean.style("fill", "dodgerblue")
+      ocean.attr("points", "0,300  1500,300 1500,1500 0,1500");
+
+      //Add lines
+      var horizon = svg.append("line")
+      horizon.style("stroke", "deepskyblue")
+      horizon.style("stroke-width", 30)
+      horizon.attr("x1", 0)
+      horizon.attr("y1", 300)
+      horizon.attr("x2", 1500)
+      horizon.attr("y2", 300);
+
+      //Add Rectangles
+      var tree = svg.append("rect")
+      tree.style("fill", "saddlebrown")
+      tree.attr("width", 90)
+      tree.attr("height", 70)
+      tree.attr("x", 150)
+      tree.attr("y", 530);
+
+      //Add Polygons
+      var treetop1 = svg.append("polygon")
+      treetop1.style("fill", "darkolivegreen")
+      treetop1.attr("points", "30,530 375,530 325,400 80,400");
+
+      //Add Polygons
+      var treetop2 = svg.append("polygon")
+      treetop2.style("fill", "olivedrab")
+      treetop2.attr("points", "325,370 80,370 100,240 300,240");
+
+      //Add Polygons
+      var treetop3 = svg.append("polygon")
+      treetop3.style("fill", "yellowgreen")
+      treetop3.attr("points", "100,210 300,210 200,30");
+
+      //Add Rectangles
+      var tree = svg.append("rect")
+      tree.style("fill", "sandybrown")
+      tree.attr("width", 1500)
+      tree.attr("height", 80)
+      tree.attr("x", 0)
+      tree.attr("y", 580);
+
+      //Add Polygons
+      var bird = svg.append("polygon");
+      bird.attr("points", "1220,120 1220,220 1100,170 1000,270")
+      bird.style("fill", "black")
+      
+       .on('mouseover', function(d,i) {
+            d3.select(this).style('fill', 'white'); })
+        .on('mouseout', function(d,i) {
+            d3.select(this).style('fill', 'black'); });
+      
+    </script>
+  </body>
+</html>
