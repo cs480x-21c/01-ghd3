@@ -6,13 +6,11 @@ Information about primatives in d3 was found [here](https://www.d3-graph-gallery
 Polygon code debugged with the help of [this stackoverflow thread](https://stackoverflow.com/questions/13204562/proper-format-for-drawing-polygon-data-in-d3).
 Code for color transitions adapted from examples on the [d3 transitions repo](https://github.com/d3/d3-transition).
 
-GitHub Details
----
+[gh pages link]()
 
-- Fork the GitHub Repository for Assignment 1. You now have a copy associated with your username.
-- Make changes to index.html to fulfill the project requirements. 
-- Make sure your "main" branch matches your "gh-pages" branch. See the GitHub Guides referenced above if you need help.
-- Edit the README.md with a link to your gh-pages site "http://YourUsernameGoesHere.github.io/01-ghd3/index.html".
+Achievements
+---
+I have a few modest achievements. In 
 
 Submission Details
 ---
