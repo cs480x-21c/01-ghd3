@@ -19,7 +19,7 @@ the axis they all are on. I included some asteroids and other visuals as well.
 
 The following image is what I used to create a model of the solar system order.
 
-![Screenshot](https://github.com/danyabaron/01-ghd3/blob/main/solar-sysem.svg)
+![ScreenShot](https://github.com/danyabaron/01-ghd3/blob/main/solar-sysem.svg)
 
 
 GitHub Details
