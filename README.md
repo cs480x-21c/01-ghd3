@@ -4,8 +4,8 @@ Link for the site [GithubIO](https://njwood.github.io/01-ghd3/)
 
 Some images of the product (scary I know)
 
-![Base](./DVPic1.png "Default Load")
-![Red Eyes](./DVPic2.png "After Changing Color")
+![](./DVPic1.png "Default Load")
+![](./DVPic2.png "After Changing Color")
 
 Techical Achiievements 
 
