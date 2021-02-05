@@ -2,8 +2,8 @@ Assignment 1 - Author Nicholas Wood
 
 Some images of the product (scary I know)
 
-![Base](DVPic1.png)
-![Red Eyes](DVPic2.png)
+![Base](./DVPic1.png)
+![Red Eyes](./DVPic2.png)
 
 Techical Achiievements 
 
