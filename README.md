@@ -4,7 +4,7 @@ Assignment 1 - Hello World: GitHub and d3
 Danya Baron
 ---
 
-Link to project: (link here)
+Link to project: https://danyabaron.github.io/01-ghd3/
 
 Overview:
 ---
