@@ -23,17 +23,7 @@
         .attr("preserveAspectRatio", "xMinYMin meet")
         .attr("viewBox", "0 0 600 400")
         // Class to make it responsive.
-        .classed("svg-content-responsive", true)
-        // Fill with a rectangle for visualization.);
-
-      var toggleColor = (function () {
-        var currentColor = "red";
-
-        return function () {
-          currentColor = currentColor == "red" ? "magenta" : "red";
-          d3.select(this).style("fill", currentColor);
-        };
-      })();
+        .classed("svg-content-responsive", true);
 
       var drag = (function () {
         function dragstarted() {
@@ -66,8 +56,6 @@
         .attr("cx", 50)
         .attr("cy", 300)
         .attr("r", 25)
-        //.on("click", toggleColor)
-        //.call(drag)
         .style("fill", "red");
 
       var circleNum = 5;
