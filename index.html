@@ -1,10 +1,76 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<html>
 
-<script>
-  console.log(d3); // test if d3 is loaded
+<head>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script> console.log(d3); // test if d3 is loaded </script>
+</head>
+
+<body>
+  <svg width="720" height="120" onload="transitionalColor()">
+
+
+    <!--Three little circles tutorial-->
+    <circle cx="40" cy="60" r="10"></circle>
+    <circle cx="80" cy="60" r="10"></circle>
+    <circle cx="120" cy="60" r="10"></circle>
+
+  </svg>
+
+  <svg width="720" height="1000">
+    <line stroke="black" x0="50" y0="800" x1="500" y1="0"></line>
+    <rect x="0" y="0" width="50" height="50"></rect>
+  </svg>
+
+  <!--
   // Add an SVG
   // Add Rectangles
   // Add Circles
   // Add Lines
   // Add Polygons
-</script>
+  -->
+
+
+  <script>
+
+    //Three little circles tutorial
+
+    function transitionalColor() {
+      var circle = d3.selectAll("circle");
+      circle.style("fill", "purple");
+
+      //Working with transitions tutorial
+      circle.transition().delay(750).duration(500).style("fill", "steelblue");
+
+      circle.transition().delay(1250).duration(500).style("fill", "black");
+
+      circle.transition().delay(1750).duration(500).style("fill", "green");
+
+      circle.transition().delay(2250).duration(500).style("fill", "yellow");
+
+      circle.transition().delay(2750).duration(500).style("fill", "orange");
+
+      circle.transition().delay(3250).duration(500).style("fill", "red");
+
+      circle.transition().delay(4250).duration(500).style("fill", "magenta");
+
+      circle.transition().delay(4750).duration(500).style("fill", "purple");
+
+      //Equally spaced circles --> Back to the three circles tutorial
+      circle.data([32, 57, 112]);
+      circle.attr("r", function(d) {return Math.sqrt(d)});
+      circle.attr("cx", function(d, i) {return i * 100 + 30});
+    }
+
+    function linesAndRects() {
+      var line1 = d3.selectAll("line");
+      var rect1 = d3.selectAll("rect");
+
+    }
+
+  </script>
+
+</body>
+
+
+
+</html>
