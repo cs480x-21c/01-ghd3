@@ -56,7 +56,7 @@
         .attr("opacity", 0.5)
         .style("stroke", "black")
         .style("stroke-width", 10)
-        .style("fill", d3.schemePastel1[Math.floor(Math.random() * 9)]);        
+        .style("fill", d3.schemePastel1[Math.floor(Math.random() * 9)]);
 
       // Add Circles
       svg
@@ -87,34 +87,11 @@
         .call(drag);
 
       // Add Lines
-      const linScale = 20;
-      // const lineData = [
-      //   {
-      //     x1: 1 * linScale,
-      //     y1: 3 * linScale,
-      //     x2: 2 * linScale,
-      //     y2: 1 * linScale,
-      //   },
-      //   {
-      //     x1: 1 * linScale,
-      //     y1: 3 * linScale,
-      //     x2: 3 * linScale,
-      //     y2: 3 * linScale,
-      //   },
-      //   {
-      //     x1: 3 * linScale,
-      //     y1: 3 * linScale,
-      //     x2: 2 * linScale,
-      //     y2: 5 * linScale,
-      //   },
-      // ];
-
       const lineData = d3.range(30).map((i) => ({
         x1: Math.random() * (600 - 20 * 2) + 20,
         y1: Math.random() * (300 - 20 * 2) + 20,
         x2: Math.random() * (600 - 20 * 2) + 20,
         y2: Math.random() * (300 - 20 * 2) + 20,
-
       }));
 
       svg
@@ -130,14 +107,15 @@
         .style("stroke-width", 4);
 
       // Add Polygons
-      // 
-      var stringPoly = "150,335 180,320 420,320 450,335 450,365 420,380 180,380 150,365";
+      //
+      var stringPoly =
+        "150,335 180,320 420,320 450,335 450,365 420,380 180,380 150,365";
 
       svg
         .append("polygon")
         .attr("points", stringPoly)
         .style("stroke-width", 4)
-        .style("fill", "brown");
+        .style("fill", "#964B00");
     </script>
   </body>
 </html>
