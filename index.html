@@ -8,18 +8,19 @@
 <body>
 
   <text>
-    Look below at the circles changing colors, 
+    Look at the circles changing colors. Click the blue rectangle to reload and refresh the coloring sequence. (The sequence stops at purple)
   </text>
 
-  <svg width="720" height="120" onload="transitionalColor()">
+  <svg height="100%" width="100%" onload="transitionalColor()">
 
 
     <!--Three little circles tutorial-->
     <circle cx="40" cy="60" r="10"></circle>
     <circle cx="80" cy="60" r="10"></circle>
     <circle cx="120" cy="60" r="10"></circle>
-
+    <rect x="100" y="100" width="75" height="50" style="fill: cadetblue; color: black;" onmousedown="reload()"></rect>
   </svg>
+
 <!--  <svg width="720" height="1000">
     <line stroke="black" x0="50" y0="800" x1="500" y1="0"></line>
     <rect x="0" y="0" width="50" height="50"></rect>
@@ -60,15 +61,13 @@
       circle.transition().delay(4750).duration(500).style("fill", "purple");
 
       //Equally spaced circles --> Back to the three circles tutorial
-      circle.data([32, 57, 112]);
+      circle.data([64, 100, 144]);
       circle.attr("r", function(d) {return Math.sqrt(d)});
       circle.attr("cx", function(d, i) {return i * 100 + 30});
     }
 
-    function linesAndRects() {
-      var line1 = d3.selectAll("line");
-      var rect1 = d3.selectAll("rect");
-
+    function reload() {
+      reload = location.reload();
     }
 
   </script>
