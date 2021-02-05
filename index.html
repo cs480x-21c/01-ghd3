@@ -1,10 +1,284 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<head>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon_package/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_package/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_package/favicon-16x16.png">
+  <link rel="manifest" href="favicon_package/site.webmanifest">
+  <link rel="mask-icon" href="favicon_package/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <srcipt src="card.js"></srcipt>
+  <srcipt src="deck.js"></srcipt>
+
+  <style>
+    body{
+      /* background-color: #ffdde2; */
+      background-color: #ecb8c0;
+      /* background-color: #332288; */
+    }
+    #bubble{
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 20px;
+      /* background-color: #ffdde2; */
+      background-color: #ecb8c0;
+      /* background-color: #332288; */
+    }
+    div {
+      /* border:3px solid purple; */
+      overflow: hidden;
+      background-color: #fff1f3;
+      /* background-color: #AA4499; */
+      margin: 10px;
+      /* background-color: #f1faff; */
+    }
+    svg{
+      /* border:3px solid orange; */
+    }
+    p{
+      padding:0px;
+      margin:1px;
+    }
+    #deck_box{
+      width:max-content;
+      height: min-content;
+      float:left;
+      border:3px solid purple;
+      /* overflow: scroll; */
+    }
+    #mana_curve, #mana_scatterplot, #color_pie{
+      width:min-content;
+      height: min-content;
+    }
+    /* #mana_scatterplot{
+      width:min-content;
+      height: min-content;
+    }
+    #color_pie{
+      width: min-content;
+      height: min-content;
+    } */
+    #card_box{
+      /* width: 150px;
+      height: 210px; */
+      width:488px;
+      height:680px;
+      border:3px solid orange;
+    }
+
+    svg.cartesian {
+      display:flex;
+    }
+    /* Flip the vertical axis in <g> to emulate cartesian. */
+    svg.cartesian{
+      transform: scaleY(-1);
+    }
+    /* Re-flip all <text> element descendants to their original side up. */
+    svg.cartesian{
+      transform: scaleY(-1);
+    }
+
+  </style>
+
+</head>
 
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+  var decklist = [];
+  var deck_box
+  var mana_curve
+  var color_pie
+  
+
+  const deck_prom = d3.csv("korvold.csv");
+  deck_prom.then( function(data){
+    decklist = data;
+
+    load_components(decklist)
+  });
+
+  function load_components(decklist){
+    load_deck_box(decklist)
+    load_mana_scatterplot(decklist)
+    load_mana_curve(decklist)
+    load_color_pie(decklist)
+  }
+  function load_deck_box(decklist){
+    var border_offset=5
+    deck_box = d3.select("#deck_box")
+          .selectAll("p")
+          .data(decklist)
+          .enter()
+          .append("p")
+          .text(function(d){
+            return d.cardname;
+          })
+          .attr("id", function(d,i){
+            return processCardID(d.cardname)
+          })
+          .on('mouseover',function(e, d){
+            id_name = "#"+processCardID(d.cardname);
+            d3.select("#card_box").append("image").attr("xlink:href",d.img)
+          });
+  }
+  function load_mana_scatterplot(decklist){
+    var border_offset=5
+    var width = 1200
+    var height = 125
+    console.log(decklist.length)
+    var xscale = d3.scaleLinear()
+        .domain([-1, decklist.length])//the provided x-scale
+        .range([0, width]);
+    var yscale = d3.scaleLinear()
+        .domain([-1, 10])//the provded y-scale
+        .range([0, height]);
+
+    mana_scatterplot = d3.select("#mana_scatterplot").append("svg")
+        .attr('class','cartesian')
+        .attr('width',1200)
+        .attr('height',125);
+    var poly = [{"x":0, "y":0},
+        {"x":1200,"y":0},
+        {"x":1200,"y":125},
+        {"x":0,"y":125}];
+    
+    mana_scatterplot
+        .selectAll("polygon")
+        .data([poly])
+        .enter().append("polygon")
+        .attr("points",function(d) { 
+          return d.map(function(d) {
+            return [d.x,d.y].join(",");
+          }).join(" ");
+        })
+        .attr('fill','#fff1f3');
+
+    mana_scatterplot.selectAll('circle')
+        .data(decklist)
+        .enter()
+        .append('circle')
+        // .attr('cx',function(d,i){ return (i*12)+5;})
+        // .attr('cy',function(d){ return 10*d.cmc + 5;})
+        .attr('cx',function(d,i){ return xscale(i);})
+        .attr('cy',function(d){ return yscale(d.cmc);})
+        // .attr('cx',function(d){ return 10*d.cmc + 5;})
+        // .attr('cy',function(d,i){ return (i*6)+5;})
+        .style('fill',function(d){
+          switch(d.color){
+            case 'w': return 'yellow';break;
+            case 'u': return 'blue';break;
+            case 'b': return 'black';break;
+            case 'r': return 'red';break;
+            case 'g': return 'green';break;
+            case 'c':
+              if (d.type == "land"){
+                return 'purple';break;
+              }else{
+                return 'gray';break;
+              }
+            default: return "gold";break;
+          }
+        })
+        .style('fill-opacity',"75%")
+        .attr('r',function(d){
+          return (3+(2*parseInt(d.cmc)));// * (50*(d.quantity-1)) ;
+        })
+        .on('mouseover',function(e, d){
+          id_name = "#"+processCardID(d.cardname);
+          d3.select(id_name).style('color','red');
+          // d3.select(this).attr('fill', 'red');
+          console.log(d.cardname);
+          d3.select("#card_box").append("image").attr("xlink:href",d.img)
+        })
+        .on('mouseout',function(e, d){
+          id_name = "#"+processCardID(d.cardname)
+          d3.select(id_name).style('color','black');
+          d3.select(this).attr('fill', 'black');
+          // console.log(d.cardname);
+        });
+  }
+ 
+  var cmc_arr
+  function load_mana_curve(decklist){
+    var border_offset=5
+    cmc_arr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    for (var i =0; i<decklist.length; i++){
+      cmc=decklist[i].cmc
+      cmc_arr[cmc]+=(1*decklist[i].quantity)
+    }
+
+    var width = 600
+    var height = 200
+    // var xscale = d3.scaleLinear()
+    //     .domain([-1, 10])//the provided x-scale
+    //     .range([0, cmc_arr.length]);
+    // var yscale = d3.scaleLinear()
+    //     .domain([-1, Math.max(...cmc_arr)])//the provded y-scale
+    //     .range([0, height]);
+    
+    mana_curve = d3.select("#mana_curve")
+      .append('svg')
+      .attr('class','cartesian')
+      .attr('width',width)
+      .attr("height",height);
+    mana_curve.selectAll('rectangle')
+      .data(cmc_arr)
+      .enter()
+      .append('rect')
+      .attr('x',function(d,i){ return (i*50)+i+border_offset; })
+      .attr('y',border_offset)
+      .attr('width',50)
+      .attr('height',function(d){ return 5*d; })
+      // .attr('height',function(d){ return yscale(d); })
+      // .attr('border','1px solid black')
+      .attr('id',function(d,i){ return i; })
+      .attr('fill','gray')
+      .on('mouseover',function(e,d){
+        cmc_id = this.id;
+        for (var o=0; o<decklist.length; o++){
+          if (decklist[o].cmc == cmc_id){
+            id_name = "#"+processCardID(decklist[o].cardname);
+            d3.select(id_name).style('color','red');
+          }
+        }
+      })
+      .on('mouseout',function(e,d){
+        cmc_id = this.id;
+        for (var o=0; o<decklist.length; o++){
+          if (decklist[o].cmc == cmc_id){
+            id_name = "#"+processCardID(decklist[o].cardname);
+            d3.select(id_name).style('color','black');
+          }
+        }
+      });
+
+    mana_curve.append("line").attr('x1',0).attr('y1',0).attr('x2',0).attr('y2',200).attr('stroke','purple').attr('stroke-width', border_offset);
+    mana_curve.append("line").attr('x1',0).attr('y1',0).attr('x2',600).attr('y2',0).attr('stroke','purple').attr('stroke-width', border_offset);
+    mana_curve.append("line").attr('x1',600).attr('y1',200).attr('x2',0).attr('y2',200).attr('stroke','purple').attr('stroke-width', border_offset);
+    mana_curve.append("line").attr('x1',600).attr('y1',200).attr('x2',600).attr('y2',0).attr('stroke','purple').attr('stroke-width', border_offset);
+
+  }
+
+  function load_color_pie(decklist){
+    color_pie = d3.select("#color_pie")
+  }
+
+
+  function processCardID(cardname){
+    new_name = cardname.replace(/,/g,"");
+    new_name = new_name.replace(/'/g,"");
+    new_name = new_name.split(" ").join("_");
+    return new_name;
+  }
 </script>
+
+<body>
+  <div id='bubble'>
+    <div id="deck_box"></div>
+    <div id="mana_scatterplot"></div>
+    <div id="mana_curve"></div>
+    <div id="color_pie"></div>
+    <!-- <div id="card_box"></div> -->
+    <svg id="card_box"></svg>
+  </div>
+</body>
