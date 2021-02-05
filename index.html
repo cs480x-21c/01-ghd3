@@ -10,39 +10,6 @@
   <svg id='vis'></svg>
 
   <script>
-    /*
-    console.log(d3); // test if d3 is loaded
-    // Add an SVG
-    // Add Rectangles
-    // Add Circles
-    // Add Lines
-    // Add Polygons
-    var data1 = [1, 3, 5, 7, 9]
-    var data2 = [2, 4, 6, 8]
-
-    var svg = d3.select('#vis')
-      .attr('width', 400)
-      .attr('height', 400);
-
-    svg.selectAll('circle')
-      .data(data1)
-      .enter().append('circle')
-      .attr('cx', 100)
-      .attr('cy', 100)
-      .attr('r', 50)
-      .style("fill", "red");
-
-    svg.selectAll('rect')
-      .data(data2)
-      .enter().append('rect')
-      .attr('x', 200)
-      .attr('y', 200)
-      .attr('width', 50)
-      .attr('height', 75)
-      .style("fill", "orange");
-
-
-*/
 
     console.log(d3);
 
@@ -74,12 +41,12 @@
       .domain([0, 100])
       .range([0, 400]);
 
+    //roof
     svg.append("polygon")
       .attr("points", "200,300 350,200 500,300")
       .attr('fill', 'pink')
-      .append('animateMotion')
 
-
+    //sun
     svg.append('circle')
       .attr('cx', 700)
       .attr('cy', 600)
@@ -92,6 +59,7 @@
       .attr('dur', '10s')
       .attr('repeatCount', 'indefinite')
 
+    //house
     svg.append('rect')
       .attr('x', 200)
       .attr('y', 300)
@@ -99,6 +67,7 @@
       .attr('width', 300)
       .attr('fill', 'cornflowerblue')
 
+    //top of roof
     svg.append('line')
       .attr('x1', 200)
       .attr('y1', 300)
@@ -113,6 +82,7 @@
       .attr('y2', 300)
       .attr('stroke', 'black')
 
+    //grass
     svg.append('rect')
       .attr('x', 0)
       .attr('y', 500)
