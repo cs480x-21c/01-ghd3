@@ -1,0 +1,15 @@
+[] - Four different graphic primatives (Circles, Rectangles, Lines, Polygons)
+[] - Identify Source Starter Code (Starter Code from 1/28)
+[] - Forked from githup and linked using github page
+
+TECHNICAL ACHIEVEMENTS
+
+[]
+[]
+[]
+
+DESIGN ACHIEVEMENTS
+
+[]
+[]
+[]

@@ -1,3 +1,20 @@
+Assignment 1 - Author Nicholas Wood
+
+Link for the site [GithubIO](https://njwood.github.io/01-ghd3/)
+
+Some images of the product (scary I know)
+
+![Image 1](DVPic1.PNG "Default Load")
+![Image 2](DVPic2.PNG "After Changing Color")
+
+Techical Achievements 
+
+Clicking on the eyes will change the color from blue to red and back. You can also change the color of the body, to the same red or blue as the eyes.
+
+Design Achievements
+
+Its a creepy ice cream cone. However all the data for all shapes besides the rectanles are bound through arrays rather than manually created one by one.
+
 Assignment 1 - Hello World: GitHub and d3  
 ===
 

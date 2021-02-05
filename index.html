@@ -1,10 +1,84 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<svg id="vis"> </svg>
+
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+  // Check if D3 is enabled
+  console.log(d3);
+
+  // Variable Setup
+  var baseRadius = 15
+
+  // SVG Setup -> Creates a 400x400 SVG Canvas
+  var svg = d3.select('#vis')
+  .attr('width', 400)
+  .attr('height', 900)
+
+  // Data Setup
+  var circleData = [10, 20, 30];
+  var squareData = [5];
+  var circleColors = ['white', 'red', '#ffdbac'];
+  var lineData = [{x: 195, y: 415}, {x: 245, y: 440}, {x: 295, y: 415}]
+  var invertedData = [{x: 195, y: 415}, {x: 245, y: 385}, {x: 295, y: 415}]
+  var toggleColor = ['red', '#a1caf1', 'green']
+  var triangleBody = [{x: 200, y: 470}, {x: 245, y: 850}, {x: 300, y: 470}]
+
+  var xscale = d3.scaleLinear()
+  .domain([0,100])
+  .range([0,400])
+
+  var yscaleCircle = d3.scaleLinear()
+  .domain([0,40])
+  .range([50,460])
+
+  var yscale = d3.scaleLinear()
+  .domain([0,100])
+  .range([0,400])
+
+  // Circles for the head and hat
+  svg.selectAll('circle')
+  .data(circleData)
+  .enter().append('circle')
+  .attr('cx', 250)
+  .attr('cy', function(d) { return yscaleCircle(d) })
+  .attr('r', function(d) { baseRadius = baseRadius * 2; return baseRadius})
+  .attr('stroke', 'black')
+  .attr('fill', function(d, i) { return circleColors[i] })
+
+  // Squares for the eyes
+  svg.append('rect')
+  .attr('x', 190)
+  .attr('y', 315)
+  .attr('width', 15)
+  .attr('height', 20)
+  .attr('fill', '#a1caf1')
+  .on('click', function() { toggleColor = [toggleColor[1], toggleColor[0]]; d3.select(this).style('fill',toggleColor[0])})
+
+  svg.append('rect')
+  .attr('x', 290)
+  .attr('y', 315)
+  .attr('width', 15)
+  .attr('height', 20)
+  .attr('fill', '#a1caf1')
+  .on('click', function() { toggleColor = [toggleColor[1], toggleColor[0]]; d3.select(this).style('fill', toggleColor[0])})
+
+  // Line
+  
+  // Function to bind array data to a line -> From d3-graph-gallery.com
+  var bindLineData = d3.line().x(function(d) {return d.x}).y(function(d) {return d.y})
+
+  // Create line on screen
+  svg.append('path')
+  .attr('d', bindLineData(lineData))
+  .attr('stroke', 'black')
+  .attr('fill', 'none')
+  .attr('id', 'mouthLine')
+
+  svg.append('path')
+  .attr('d', bindLineData(triangleBody))
+  .attr('stroke', 'black')
+  .attr('fill', 'green')
+  .attr('id', 'mouthLine')
+  .on('click', function() { toggleColor = [toggleColor[1], toggleColor[0]]; d3.select(this).style('fill', toggleColor[0])})
+
 </script>
