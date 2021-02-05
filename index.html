@@ -19,6 +19,7 @@
   var width = document.getElementById('vis').clientWidth
   var height = document.getElementById('vis').clientWidth
   var polygonDim = 700
+  var numIterations = 10
 
   // Data
   var squareData = []
@@ -99,7 +100,6 @@
     .attr('y', '50%')
     .on('end', function () {
 
-
       // Add titles to second screen
       triangleG.append('text')
       .data(txtData)
@@ -130,7 +130,7 @@
       createExit()   
     })
     // Create the sierpinski triangle fractal
-    sierpinskiTriangle(10, polygonDim, polygonDim, hull, line)
+    sierpinskiTriangle(numIterations, polygonDim, polygonDim, hull, line)
   }
 
   // Create an 'X' using lines
