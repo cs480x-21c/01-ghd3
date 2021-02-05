@@ -16,15 +16,22 @@
   var numPrimitives = 500
   var width = document.getElementById('vis').clientWidth
   var height = document.getElementById('vis').clientWidth
+  var polygonDim = 700
 
 
   // Data
   var squareData = []
   var circleData = []
-  var polygonData = [ [0, 500], [500, 500], [500/2, 0] ]  
+  var polygonData = [ [0, polygonDim], [polygonDim, polygonDim], [polygonDim/2, 0] ]  
 
-  var txtData = [{title: 'CS 4802 - BioVisualization', label: 'Click me!'}]
-  var txtData2 = [{title: 'Assignment 1 - Hello World: GitHub and d3'}]
+  var txtData = 
+  [{
+    title: 'CS 4802 - BioVisualization', 
+    subTitle: 'Assignment 1 - Hello World: GitHub and d3', 
+    label: 'Click me!', 
+    sierpinkski1: 'Variation of Sierpinski\'s Triangle', 
+    sierpinkski2: '(10th degree)'
+  }]
 
 
   // Helper functions
@@ -33,7 +40,6 @@
   .range([0, width])
 
   function populateWithPrimitives(primitiveData) {
-    console.log("populating")
     for (var i = 0 ; i < numPrimitives ; i++) {
       primitiveData.push({x: Math.floor(Math.floor(Math.random() * 101)), y: Math.floor(Math.floor(Math.random() * 101))})
     }
@@ -87,9 +93,9 @@
 
 
   var nodes = svg.selectAll("g")
-    .data(['Click me!']);
-  var g = nodes.enter().append("g")
-
+    .data(['Click me!'])
+    .enter();
+  var g = nodes.append("g")
 
   g.append("circle") 
   .attr("id", 'centerCircle')
@@ -98,6 +104,7 @@
   .attr('r', 100)
   .attr('fill', 'white')
   .on('click', function onClickMe() {
+
     d3.select('#centerCircle')
     .transition()
     .duration(2000)
@@ -119,9 +126,39 @@
     .attr('d', line(hull))
     .attr('fill', '#F3E43E')
     .attr('opacity', 1)
+    .attr('x', '50%')
+    .attr('y', '50%')
+    .on('end', function () {
+      svg
+      .append('text')
+      .data(txtData)
+      .text(function (d) {
+      return d.sierpinkski1
+      })
+      .attr('text-anchor', 'middle')
+      .attr('x', '70%')
+      .attr('y', '20%')
+      .style('font-size', 42)
+      .style('fill', 'black')
+      .style('font-family', 'Fraunces')
+      .style('font-weight', 700)
 
-    sierpinskiTriangle(10, 500, 500, hull, line)
+      svg
+      .append('text')
+      .data(txtData)
+      .text(function (d) {
+      return d.sierpinkski2
+      })
+      .attr('text-anchor', 'middle')
+      .attr('x', '70%')
+      .attr('y', '25%')
+      .style('font-size', 30)
+      .style('fill', 'black')
+      .style('font-family', 'Fraunces')
+      .style('font-weight', 700)
+    })
 
+    sierpinskiTriangle(10, polygonDim, polygonDim, hull, line)
   })
 
 
@@ -180,9 +217,9 @@
 
   svg
   .append('text')
-  .data(txtData2)
+  .data(txtData)
   .text(function (d) {
-    return d.title
+    return d.subTitle
   })
   .attr('text-anchor', 'middle')
   .attr('x', '50%')
