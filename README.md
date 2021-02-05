@@ -3,7 +3,7 @@ Alexander Bell's Assignment 1 - Hello World: GitHub and d3
 
 GH Pages URL: [http://abell625.github.io/01-ghd3/index.html](http://abell625.github.io/01-ghd3/index.html)
 
-I have created a simple scene with many interactable elements, Including the star polygon (Which I used the coordinates from [here](https://www.w3schools.com/graphics/svg_polygon.asp)), rectangles, and circles. The Star polygon will permanently select a new color when clicked, from a list of 6. The circles will get larger and change color when hovered over. The rectangles will chnage color when hovered over.
+I have created a simple scene with many interactable elements, Including the star polygon (Which I used the coordinates from [here](https://www.w3schools.com/graphics/svg_polygon.asp)), rectangles, and circles. The star polygon will permanently select a new color when clicked, from a list of 6. The circles will get larger and change color when hovered over. The rectangles will chnage color when hovered over.
 
 This is what the scene looks like when first loaded:
 
@@ -19,7 +19,7 @@ Technical & Design Achievements:
 I didn't go for any achievement points for this assignment.
 
 Original README
----
+===
 
 This is a starting project to make sure you can write and host a webpage that generates graphics using d3. 
 
