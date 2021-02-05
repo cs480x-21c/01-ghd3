@@ -107,3 +107,5 @@ These are the only way to move from B to A territory.
     - general help.
 - https://stackoverflow.com/questions/5788741/remove-commas-from-the-string-using-javascript
     - string recplacement with regular expressions
+- https://stackoverflow.com/questions/3846015/flip-svg-coordinate-system/38811507#38811507
+    - inverting svg coordinate system
