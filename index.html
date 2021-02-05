@@ -2,36 +2,49 @@
   <body>
     <script src="https://d3js.org/d3.v6.min.js"></script>
 
-    <div id="main">
-
-    </div>
+    <div id="main"></div>
 
     <script>
-
-      //console.log(d3); // test if d3 is loaded
+      console.log({d3}); // test if d3 is loaded
       // Add an SVG
       const svg = d3
         .select("#main")
         .append("svg")
-        .attr("width", 300)
-        .attr("height", 300)
+        .attr("width", 600)
+        .attr("height", 600);
 
       // Add Rectangles
 
       // Add Circles
       svg
         .append("circle")
+        .attr("class", "shape")
         .attr("cx", 50)
-        .attr("cy", 50)
+        .attr("cy", 300)
         .attr("r", 25)
         .style("fill", "red");
+
       // Add Lines
+
+      var linscale = 20;
+      var xLinPoints = [2, 1, 3, 2];
+      var yLinPoints = [1, 3, 3, 5];
+      var i;
+      for (i = 0; i < xLinPoints.length-1; i++) {
+        svg
+          .append("line")
+          .attr("class", "shape")
+          .attr("class", "lines")
+          .attr("x1", xLinPoints[i] * linscale)
+          .attr("y1", yLinPoints[i] * linscale)
+          .attr("x2", xLinPoints[i+1] * linscale)
+          .attr("y2", yLinPoints[i+1] * linscale)
+          .style("stroke", "black")
+          .style("stroke-width", 4);
+      }
+
       // Add Polygons
 
-
-
-      console.log("hi")
     </script>
-
   </body>
 </html>
