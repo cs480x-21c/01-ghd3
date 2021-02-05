@@ -31,7 +31,7 @@ This image is to show what happens when you hover over the 'Mars' planet. The ci
 ![ScreenShot](https://github.com/danyabaron/01-ghd3/blob/main/screenshot2.png)
 
 \
-This project consists of 9 circles that change color when hovered over by a mouse. There are also two lines connecting the 
+This project consists of 9 circles that change color and size when hovered over by a mouse. There are also two lines connecting the 
 circles to portray an axis on which the planets lie on. There are 8 squares/rectangles total which represent asteroids and other objects
 that occur in outer space. On the bottom is a polygon that I used to represent a sky. 
 
