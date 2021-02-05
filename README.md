@@ -1,7 +1,8 @@
 Assignment 1 - Remy Allegro
 ===
 
-For this assignment, I used the [code snippet from Lecture 1](https://wpi0-my.sharepoint.com/:u:/g/personal/ltharrison_wpi_edu/ETunJKUEx61ArpK7LGjA-PcBdiCAlHos2isOp56RnCyfVA?e=TtAXKg) as my starting point
+For this assignment, I used the [code snippet from Lecture 1](https://wpi0-my.sharepoint.com/:u:/g/personal/ltharrison_wpi_edu/ETunJKUEx61ArpK7LGjA-PcBdiCAlHos2isOp56RnCyfVA?e=TtAXKg) as my starting point.
+Code for color transitions adapted from examples on the [d3 transitions repo](https://github.com/d3/d3-transition).
 
 Requirements
 ---

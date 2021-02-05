@@ -29,14 +29,29 @@
   var yscale = d3.scaleLinear()
       .domain([-100, 100])
       .range([0, height]);
+
   // Add Rectangles
-  svg.selectAll('rectangle')
+  svg.append('rect')
+        .attr('fill', 'red')
+        .attr('x', xscale(-100))
+        .attr('y', yscale(-100)) //top left corner
+        .attr('width', 240)
+        .attr('height', 120)
+        .on('mouseover', function(e, d) {
+            d3.select(this)
+                    .attr('fill', 'green')
+                .transition().duration(500)
+                    .attr('fill', 'blue')
+            }).on('mouseout', function() {
+                d3.select(this)
+                .attr('fill', 'red')
+        })
 
   // Add Circles
   svg.selectAll('circle')
         .data(dot_coords)
         .enter().append('circle')
-        .attr('cy', function(d) { return xscale(d.y); })
+        .attr('cy', function(d) { return yscale(d.y); })
         .attr('cx', function(d) { return xscale(d.x); })
         .attr('r', 10)
         .attr('fill', 'steelblue')
