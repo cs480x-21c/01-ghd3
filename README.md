@@ -6,12 +6,18 @@ Information about primatives in d3 was found [here](https://www.d3-graph-gallery
 Polygon code debugged with the help of [this stackoverflow thread](https://stackoverflow.com/questions/13204562/proper-format-for-drawing-polygon-data-in-d3).
 Code for color transitions adapted from examples on the [d3 transitions repo](https://github.com/d3/d3-transition).
 
-[gh pages link]()
+[gh pages link](https://remyallegro.github.io/01-ghd3/)
 
 Achievements
 ---
 I have a few modest achievements. In terms of technical achievements, I used some math functions to create the perfect hexagon I used as the basis for my design, using a dataset with x and y attributes. For design achievements, I figured out how to do color transitions, and implemented said transitions on the rectangle on the page.
 
+Screenshots
+---
+Basic Site
+![Basic Site without interactions](ScreenCap1.PNG)
 
+Site mid-rectangle color transition
+![Basic Site with different rectangle color](ScreenCap2.PNG)
 
 
