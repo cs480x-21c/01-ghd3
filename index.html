@@ -80,6 +80,13 @@
 
   // Create, place, and style triangles
   function createTriangles() {
+    // Make triangle <g> visible
+    triangleG.
+    transition()
+    .delay(2000)
+    .duration(1000)
+    .style('opacity', 1)
+
     triangleG.append('path')
     .transition()
     .delay(2000)
@@ -91,8 +98,7 @@
     .attr('x', '50%')
     .attr('y', '50%')
     .on('end', function () {
-      // Make triangle <g> visible
-      triangleG.style('opacity', 1)
+
 
       // Add titles to second screen
       triangleG.append('text')
@@ -271,10 +277,12 @@
 
   function drawBottomLeftTriangles (width, height, iteration, numIterations) {
     var maxHeight = height
+    var delay = 2000
 
     while (iteration < numIterations) {
-      // Determine fill
+      // Determine fill, delay
       var fill = getFill(iteration)
+      delay = delay + 250*iteration
 
       // Calculate width and height
       width = width/2
@@ -291,7 +299,7 @@
 
       triangleG.append('path')
       .transition()
-      .delay(2000)
+      .delay(delay)
       .duration(1000)
       .attr('d', line(hull))
       .attr('fill', fill)
@@ -305,10 +313,12 @@
     var maxHeight = height
     var maxWidth = width
     var offset = maxHeight
+    var delay = 2000
 
     while (iteration < numIterations) {
-      // Determine fill
+      // Determine fill, delay
       var fill = getFill(iteration)
+      delay = delay + 250*iteration
 
       // Calculate width and height
       offset = offset / 2
@@ -328,7 +338,7 @@
 
       triangleG.append('path')
       .transition()
-      .delay(2000)
+      .delay(delay)
       .duration(1000)
       .attr('d', line(hull))
       .attr('fill', fill)
@@ -340,10 +350,12 @@
   function drawTopTriangles (width, height, iteration, numIterations) {
     var maxHeight = height
     var maxWidth = width
+    var delay = 2000
 
     while (iteration < numIterations) {
-      // Determine fill
+      // Determine fill, delay
       var fill = getFill(iteration)
+      delay = delay + 250*iteration
 
       // Calculate width and height
       width = width / 2
@@ -356,7 +368,7 @@
 
       triangleG.append('path')
       .transition()
-      .delay(2000)
+      .delay(delay)
       .duration(1000)
       .attr('d', line(hull))
       .attr('fill', fill)
