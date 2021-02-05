@@ -1,10 +1,90 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<svg id="rect"></svg>
+<!--<br>-->
+<svg id="circle"></svg>
+<!--<br>-->
+<svg id="line"></svg>
+<br>
+<svg id="polygon"></svg>
+
+
 <script>
   console.log(d3); // test if d3 is loaded
+  var dataArr = [1, 2, 3]
+  var colors = ['#50dbb3', '#e5def1', '#ebbc62']
+
   // Add an SVG
   // Add Rectangles
+  var rectVis = d3.select("#rect").attr('height', 200).attr('width', 400)
+  rectVis.selectAll('rect').data(dataArr).enter().append('rect')
+      .attr('x', function (d, i) {return 100*i+50}).attr('y', '100').attr('height', function (d, i) {return 10*d})
+      .attr('width', '50')
+  // rectVis.selectAll('rect').attr('fill', function (d, i) {return colors[d-1]})
+
+
+
   // Add Circles
+  var circleVis = d3.select("#circle").attr('height', 200).attr('width', 400)
+  circleVis.selectAll('circle').data(dataArr).enter().append('circle')
+      .attr('cx', function (d, i) {return 100*i+50}).attr('cy', '100').attr('r', function (d, i) {return 10*d})
+
+  // circleVis.selectAll('circle').attr('fill', function (d, i) {return colors[d-1]})
+
+
+
   // Add Lines
+  var lineVis = d3.select("#line").attr('height', 200).attr('width', 400)
+  lineVis.selectAll('line').data(dataArr).enter().append('line')
+      .style("stroke", 'black')
+      .style("stroke-width", 10)
+      .attr("x1", function (d, i) {return 100*i+50})     // x position of the first end of the line
+      .attr("y1", 100)      // y position of the first end of the line
+      .attr("x2", function (d, i) {return 100*i+50+10*d})     // x position of the second end of the line
+      .attr("y2", 100);
+
+
   // Add Polygons
+  var eyesX = [250, 350, 250, 350]
+  var eyeColor = ['#e5def1', '#e5def1', 'black', 'black']
+  var eyeR= ['20', '20', '10','10']
+  var polyVis = d3.select("#polygon").attr('height', 500).attr('width', 1000)
+  polyVis.selectAll('polygon').data(dataArr).enter().append('polygon')
+      .attr('points', "500,50 700,50 700,150 650,250 550,250 500,150")
+      .attr('stroke', 'black')
+      .attr('fill', '#faebd7');
+  polyVis.selectAll('circle').data(eyesX).enter().append('circle')
+      .attr('cx', function (d, i) {return d+300}).attr('cy', '100')
+      .attr('r', function (d, i) {return eyeR[i]})
+      .attr('fill', function (d, i) {return eyeColor[i]})
+  polyVis.selectAll('ellipse').data(eyesX).enter().append('ellipse')
+      .attr('cx', '600').attr('cy', '200').attr('rx', '10').attr('ry', '30').attr('fill', '#f00')
+
+
+
+
+  let flag = 0
+  function spark(){
+      if (flag === 0) {
+          rectVis.selectAll('rect').attr('fill', function (d, i) {
+              return colors[d - 1]
+          })
+          circleVis.selectAll('circle').attr('fill', function (d, i) {
+              return colors[d - 1]
+          })
+          lineVis.selectAll('line').style('stroke', function (d, i) {
+              return colors[d - 1]
+          })
+          flag = 1
+      }
+      else {
+          rectVis.selectAll('rect').attr('fill', '#000000')
+          circleVis.selectAll('circle').attr('fill', '#000000')
+          lineVis.selectAll('line').style('stroke', '#000000')
+          flag = 0
+      }
+  }
+  setInterval(spark, 1000)
+
+
 </script>
