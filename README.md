@@ -1,86 +1,33 @@
 Assignment 1 - Hello World: GitHub and d3  
+Clay Oshiro-Leavitt
+2.5.2021
+GitHub Pages: https://clay-ol.github.io/01-ghd3/index.html
 ===
-
-This is a starting project to make sure you can write and host a webpage that generates graphics using d3. 
-
-The primary goal is to be able to generate graphics primitives (circles, rectangles, lines, polygons) at different locations on the screen with different colors. 
-
-The secondary goal is to introduce you to coding on GitHub, including creating a gh-pages branch to host your visualizations.
-
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, you **must identify** the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
-
-For example, you could download one of the d3.js examples, read it through so you understand what it's doing, and then change the appearance of the graphical output to use different color schemes, different primitive shapes, different layouts of the primitives, and so on.
-
-Resources
----
-
-If you need a JavaScript/HTML/CSS refresher, see [JavaScript Codeacademy](https://www.codecademy.com/en/tracks/javascript) or find one of your choosing on the web.
-
-If you need a Git/GitHub refreseher, some possible resources include [Getting Started with GitHub](https://help.github.com/categories/bootcamp/), the [GitHub Guides](https://guides.github.com/) (especially the ones on Hello World, and Understanding the GitHub Flow, and Forking Projects), and [CodeSchool's Try Git Course](https://www.codeschool.com/courses/try-git).
 
 Requirements
 ---
 
-1. Your project should contain at least four kinds of graphics primitives (circles, rectangles, lines, polygons) in different colors. 
+1. Your project should contain at least four kinds of graphics primitives (circles, rectangles, lines, polygons) in different colors.
+Completed: Circles, rectangles, lines, and polygons are used with various colors.
 2. Your document should identify the source of the code if you start with code that you found. 
+The basis of the code was formed from the in class example of January 28th - attributes, noncircle primatives, image support, and grouping information were found from the d3js documentation.
 3. Your code should be forked from the GitHub repo and linked using GitHub pages. See the "GitHub Details" section below for detailed instructions on how to do this.
+This has been done.
 
-GitHub Details
----
+For this project, I opted to use primitives to draw one of my favorite personal possessions, my Olympus 35RC rangefinder camera. Using a combination of of primitives and colors, I was able to create a passable representation of the camera itself, mainly consisting of rectangles for the body, circles for the lens, and assorted manually defined polygons for the topplate components. Further down the page, I created a simple deliniation between this using a thick black line. Here, I decided to add a second camera. Rather than draw another by hand, I decided to read about how to import images such as jpgs into d3js. It was a rather simple affair using 'svg.append("svg:image")' with an appropriate href definition in the attributes. Lastly, I wanted to experiment more with data binding and events. For this, I created a simple set of 3 rectangles, each bound to a value in a defined array. Rather than use boring predefined colors, I used a hex selector to choose a pretty raspberry color. There are two events that these rectangles can have - one is a mouseover with color change, the other is clicking to remove the element. After an initial failed attempt to implement this (I accidentally set it to remove *all* instances of rectangles on the page), I realized that using the 'this' keyword would be much simpler. 
 
-- Fork the GitHub Repository for Assignment 1. You now have a copy associated with your username.
-- Make changes to index.html to fulfill the project requirements. 
-- Make sure your "main" branch matches your "gh-pages" branch. See the GitHub Guides referenced above if you need help.
-- Edit the README.md with a link to your gh-pages site "http://YourUsernameGoesHere.github.io/01-ghd3/index.html".
+For this project, I felt that I accomplished the following achievements:
 
-Submission Details
----
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-- Note: name your pull request using the following scheme: 
-```
-a1-your Gh username-your first name-your lastname
+Technical:
+Delete primitive on click - this required a (albeit simple) event listener for each primitive that had this enabled.
 
-```
+Image importing to d3js - this required researching other supported formats for display with svg and d3js.
 
-Vis Details
----
+Design:
+Nonnegligible graphic creation (35RC Camera) - the use of multiple primitives, colors, element stacking, and 2d positioning was a nontrivial task to create a representative image of a real object.
 
-For this project you should use d3.js. 
-You can learn from examples on the [d3.js](http://d3js.org) site or start from scratch.
+Nondefault attributes and colors - the use of attributes such as stroke-width, stroke (for primitives other than lines), and RGB defined colors illustrate that I have learned other graphical tools for visual design in d3js.
 
-See the [Using d3js](https://github.com/mbostock/d3/wiki#using) documentation for how to run your own local server.
+Please see the Readme directory for screenshots of the page.
 
-Creative solutions are welcome! In the past I've seen recreations of paintings, interactives, and more.
-
-Go beyond the minimum requirements of this project.
-Experiment with other aspects of the [d3 API](https://github.com/mbostock/d3/wiki/API-Reference) and [d3 Tutorials](https://github.com/mbostock/d3/wiki/Tutorials). 
-Try making the elements interactive, for example, or animate them.
-
-Grading
----
-
-Grades are on a 120 point scale. 
-96 points will be graded for functionality: the program does what the assignment requests with an informative README. 
-
-We will use Google Chrome to view submissions. 
-Be sure to test your code there.
-
-Below are some, but not necessarily all, of the key points we will consider during grading:
-
-- Circles and Rectangles  
-- Lines  
-- Polygons  
-- Different colors  
-- README Quality
-    - A description of what you have created. 1-2 screenshots are recommended for the README.  
-    - A working link to the hosted files (usually the gh-pages 'live' url)  
-    - Section for Technical and Design Achievements
-
-Technical Achievement Desription -- 12  
-Design Achievement Description -- 12
-
-Remember, it is up to *you* to define what constitutes a technical and design achievements.
-Be ambitious as these are designed to allow you to shape your learning.
-These are the only way to move from B to A territory.
 

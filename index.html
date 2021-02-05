@@ -1,10 +1,214 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<div id="value"></div>
+<svg id="vis"></svg>
+
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+    console.log(d3); // test if d3 is loaded
+
+    // Add an SVG
+    var svg = d3.select('#vis')
+        // .append("svg")
+        .attr('width', 2000)
+        .attr('height', 1600);
+
+    // create camera grouping
+    var camera = svg.append("g")
+
+
+    var xscale = d3.scaleLinear()
+        .domain([0, 100])
+        .range([0, 400]);
+
+    var yscale = d3.scaleLinear()
+        .domain([0, 100])
+        .range([0, 400]);
+
+
+    // have 3 rectangles bound to data, switch colors on mouse over and delete on click
+    svg.selectAll('rect')
+        .data([5, 60, 105])
+        .enter().append('rect')
+        .attr('width', 20)
+        .attr('height', 10)
+        .attr('y', 650)
+        .attr('fill', '#AB2A2A')
+        .attr('x', function (d) {
+            console.log(d);
+            return xscale(d);
+        })
+        .on('mouseover', function (e, d) {
+            d3.select(this).attr('fill', '#5DAB2A');
+        }).on('mouseout', function () {
+        d3.select(this)
+            .attr('fill', '#AB2A2A')
+
+    })
+    .on('click', function(d, i){
+        d3.select(this).remove()
+    });
+
+    // Draw an Olympus 35RC 35mm shutter priority rangefinder camera
+
+    // body
+    camera.append('rect')
+        .attr('width', 400)
+        .attr('height', 250)
+        .attr('x', 100)
+        .attr('y', 50)
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+    camera.append('rect')
+        .attr('width', 400)
+        .attr('height', 160)
+        .attr('x', 100)
+        .attr('y', 120)
+        .attr('fill', 'black')
+        .attr('stroke', 'black')
+
+    // lens
+    camera.append('circle')
+        .attr('cx', 300 )
+        .attr('cy', 195 )
+        .attr('r', 90 )
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+    camera.append('circle')
+        .attr('cx', 300 )
+        .attr('cy', 195 )
+        .attr('r', 88 )
+        .attr('fill', 'black')
+        .attr('stroke', 'black')
+
+    camera.append('circle')
+        .attr('cx', 300 )
+        .attr('cy', 195 )
+        .attr('r', 84 )
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+    camera.append('circle')
+        .attr('cx', 300 )
+        .attr('cy', 195 )
+        .attr('r', 80 )
+        .attr('fill', 'black')
+        .attr('stroke', 'black')
+
+    camera.append('circle')
+        .attr('cx', 300 )
+        .attr('cy', 195 )
+        .attr('r', 76 )
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+    camera.append('circle')
+        .attr('cx', 300 )
+        .attr('cy', 195 )
+        .attr('r', 70 )
+        .attr('fill', 'black')
+        .attr('stroke', 'black')
+
+    camera.append('circle')
+        .attr('cx', 300 )
+        .attr('cy', 195 )
+        .attr('r', 35 )
+        .attr('fill', 'steelblue')
+        .attr('stroke', 'black')
+
+    // rangefinder
+
+    camera.append('rect')
+        .attr( 'x', 280)
+        .attr('y',60 )
+        .attr('width', 80)
+        .attr('height', 40)
+        .attr('fill', 'lightgray')
+
+
+    camera.append('rect')
+        .attr( 'x', 285)
+        .attr('y',72 )
+        .attr('width', 20)
+        .attr('height', 15)
+        .attr('fill', 'darkgray')
+
+    // viewfinder
+    camera.append('rect')
+        .attr( 'x', 375 )
+        .attr('y', 55 )
+        .attr('width', 100)
+        .attr('height', 55)
+        .attr('fill', 'black')
+
+    camera.append('rect')
+        .attr( 'x', 382 )
+        .attr('y', 60 )
+        .attr('width', 65)
+        .attr('height', 35)
+        .attr('fill', 'steelblue')
+
+    // topplate components
+
+    // shutter release
+    camera.append('rect')
+        .attr( 'x', 180 )
+        .attr('y', 30 )
+        .attr('width', 15)
+        .attr('height', 20)
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+    camera.append('rect')
+        .attr( 'x', 175 )
+        .attr('y', 44 )
+        .attr('width', 25)
+        .attr('height', 6)
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+    // shutter speed dial
+    camera.append('rect')
+        .attr( 'x', 205 )
+        .attr('y', 38 )
+        .attr('width', 60)
+        .attr('height', 12)
+        .attr('fill', 'black')
+
+    // hotshoe
+    camera.append('polygon')
+        .attr('points', "280,50 280,40 285,35 295,35 295,40 285,40 285,50 ")
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+    camera.append('polygon')
+        .attr('points', "350,50 350,40 345,35 335,35 335,40 345,40 345,50 ")
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+    // film winder
+    camera.append('polygon')
+        .attr('points', "420,50 480,50 480,45 475, 38 425, 38 420, 45")
+        .attr('fill', 'silver')
+        .attr('stroke', 'black')
+
+
+    // Dividing Line
+
+    svg.append( 'line')
+        .attr('stroke', 'black')
+        .attr('stroke-width', 8)
+        .attr("x1", 0)
+        .attr("y1", 350)
+        .attr("x2", 2000)
+        .attr("y2", 350);
+
+    // Canon A1
+    svg.append('svg:image')
+        .attr("xlink:href", "resources/A1.jpg")
+        .attr( 'x', 100)
+        .attr( 'y', 400 )
+        .attr( 'height', 200)
+
+    console.log( 'booga')
 </script>
