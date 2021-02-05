@@ -18,7 +18,7 @@ Technical Achievement
 - I figured out how to removed elements from the canvas after they've already been placed.
 - I learned how to call functions when altering d3 elements as well as send attributes to said functions such as when I use
     >.each(function(d){ lineData.push([d.x,d.y]) })
-    
+
     to add each shape's coordinates to a list to generate the path later.
 - I learned how get colors from a palette instead of selecting colors individually by name, as well as selecting a random color from said palette.
 
@@ -29,3 +29,5 @@ Design Achievement
 - When shuffling the path or regenerating the shapes, the state the path and polygon's display is preserved. For example, if the path is set to show when the path is shuffled, it will remain showing and update to display the new path, the same is true for when regenerating shapes.
 
 - A border has been places around the SVG canvas to show the user the range in which the shapes can be randomly displayed.
+
+- Added favicon to the top of the page
