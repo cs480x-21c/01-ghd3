@@ -14,6 +14,7 @@
 let gSVGId = "";
 let gSVGWidth = 0;
 let gSVGHeight = 0;
+let gShapesLeft = 0;
 
 /**
  *
@@ -28,9 +29,13 @@ function makeSVG2D(visId, width, height)
     gSVGWidth = width;
     gSVGHeight = height;
 
-    return d3.select(gSVGId)
-        .attr('width', gSVGWidth)
-        .attr('height', gSVGHeight);
+    let svg = d3.select(gSVGId)
+        .attr("width", gSVGWidth)
+        .attr("height", gSVGHeight);
+
+    addBorder();
+
+    return svg;
 }
 
 /**
@@ -40,7 +45,15 @@ function makeSVG2D(visId, width, height)
  */
 function removeShape(typeString, id)
 {
+    gShapesLeft--;
+
     d3.select(gSVGId).select(typeString + '#' + id).remove();
+
+    // check if all shapes have been removed
+    if (gShapesLeft === 0)
+    {
+        stopTimer();
+    }
 }
 
 /**
@@ -48,5 +61,28 @@ function removeShape(typeString, id)
  */
 function removeAllShapes()
 {
+    gShapesLeft = 0;
+
     d3.select(gSVGId).selectAll("svg > *").remove();
+
+    // re-add border, it was removed earlier
+    addBorder();
+}
+
+function addShape()
+{
+    gShapesLeft++;
+}
+
+function addBorder()
+{
+    // Add a border to the SVG
+    d3.select(gSVGId).append("rect")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("width", gSVGWidth)
+        .attr("height", gSVGHeight)
+        .style("stroke", "black")
+        .style("fill", "none")
+        .style("stroke-width", "1.0%");
 }

@@ -40,6 +40,8 @@ class RandomShapeMaker
         // Makes a random shape, selects the type first, then passes it to a shape generator
         for (let i = 0; i < this.shapesToMake; i++)
         {
+            addShape();
+
             let shape = d3.randomInt(0, this.NUMBER_OF_SHAPES)();
             switch (shape)
             {

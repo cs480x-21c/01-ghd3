@@ -8,7 +8,7 @@ function startGame(startGameButton)
     // If the game is running, the game can be restarted if all shapes are removed
     if (gGameIsRunning)
     {
-        removeAllShapes();
+        resetGame();
     }
 
     gGameIsRunning = true;
@@ -43,11 +43,13 @@ function startGame(startGameButton)
     maker.makeShapes();
 
     // start timer
-    startTimer(document.getElementById("timerDisplay"));
+    startTimer('#timerDisplay');
 }
 
 function stopGame(stopGameButton)
 {
+    resetGame();
+
     // Game is no-longer running once stopped
     gGameIsRunning = false;
 
@@ -56,8 +58,12 @@ function stopGame(stopGameButton)
 
     // Change the re-start button back to a start button
     document.getElementById("startGameButton").value = "start";
+}
 
+function resetGame()
+{
     removeAllShapes();
 
     // TODO: stop timer
+    stopTimer('#timerDisplay');
 }
