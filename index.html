@@ -1,10 +1,94 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<div id="ytplayer"></div>
+<svg id="vis"> </svg>
+
 <script>
   console.log(d3); // test if d3 is loaded
+
+  var dot_coords = [
+      {x:50, y:0},
+      {x:25, y:25*Math.sqrt(3)},
+      {x:-25, y:25*Math.sqrt(3)},
+      {x:-50, y:0},
+      {x:-25, y:-25*Math.sqrt(3)},
+      {x:25, y:-25*Math.sqrt(3)}];
+
+  var width = 1000;
+  var height = 1000;
+
   // Add an SVG
+  var svg = d3.select('#vis')
+      .attr('width', width)
+      .attr('height', height);
+
+  var xscale = d3.scaleLinear()
+      .domain([-100, 100])
+      .range([0, width]);
+
+  var yscale = d3.scaleLinear()
+      .domain([-100, 100])
+      .range([0, height]);
+
   // Add Rectangles
+  svg.append('rect')
+        .attr('fill', 'red')
+        .attr('x', xscale(-100))
+        .attr('y', yscale(-100)) //top left corner
+        .attr('width', 240)
+        .attr('height', 120)
+        .on('mouseover', function(e, d) {
+            d3.select(this)
+                    .attr('fill', 'green')
+                .transition().duration(500)
+                    .attr('fill', 'blue')
+            }).on('mouseout', function() {
+                d3.select(this)
+                .attr('fill', 'red')
+        })
+
   // Add Circles
+  svg.selectAll('circle')
+        .data(dot_coords)
+        .enter().append('circle')
+        .attr('cy', function(d) { return yscale(d.y); })
+        .attr('cx', function(d) { return xscale(d.x); })
+        .attr('r', 10)
+        .attr('fill', 'steelblue')
+        .on('mouseover', function(e, d) {
+            d3.select(this)
+                .attr('fill', 'brown')
+                .attr('r', 15)
+        }).on('mouseout', function() {
+        d3.select(this)
+            .attr('fill', 'steelblue')
+            .attr('r', 10)
+        })
+
   // Add Lines
+  svg.append('line')
+        .attr('x1', xscale(0))
+        .attr('y1', yscale(0))
+        .attr('x2', xscale(50))
+        .attr('y2', yscale(0))
+        .attr('stroke', 'black')
+        .attr('stroke-width', 4)
+
   // Add Polygons
+  svg.selectAll('polygon')
+        .data([dot_coords])
+        .enter().append('polygon')
+            .attr("points",function(d) {
+                return d.map(function(d) {
+                    return [xscale(d.x), yscale(d.y)].join(",");
+                }).join(" ");
+            })
+        .attr('stroke', 'blue')
+        .attr('stroke-width', 2)
+        .attr('fill', 'none')
+
 </script>
+
+<!---
+https://www.youtube.com/watch?v=thOifuHs6eY
+--->
