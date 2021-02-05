@@ -1,10 +1,152 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
-
+<body>
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+    console.log(d3); // test if d3 is loaded
+
+    var SVGWidth = 800;
+    var SVGHeight = 600;
+
+    var polygon = "250,100, 400,350 100,350";
+    var lines = [[250, 350, 250, 400], [150, 350, 150, 400], [125, 400, 150, 390], [175, 400, 150, 390]];
+
+    var polygonColor = "lightcoral";
+    var polygonMouseDownColor = "darkred";
+    var boatColor = "saddlebrown";
+
+    // Add an SVG
+    var svg = d3.select("body")
+        .append("svg")
+        .attr("width", SVGWidth)
+        .attr("height", SVGHeight)
+
+
+
+
+
+
+
+
+    // Add Polygons
+    svg.selectAll('polygon')
+        .data(polygon)
+        .enter().append('polygon')
+        .attr('points', polygon)
+        .attr('fill', polygonColor)
+        .on('mouseover', function(){
+            d3.select(this).attr('stroke-width', 2);
+        })
+        .on('mouseout', function(){
+            d3.select(this).attr('stroke-width', 0);
+        })
+        .on('mousedown', function(){
+            d3.select(this).attr('fill', polygonMouseDownColor);
+            removeLine();
+            removeLine();
+            addLine([125, 360, 150, 390]);
+            addLine([175, 360, 150, 390]);
+        })
+        .on('mouseup', function(){
+            d3.select(this).attr('fill', polygonColor);
+            removeLine();
+            removeLine();
+            addLine([125, 400, 150, 390]);
+            addLine([175, 400, 150, 390]);
+        });
+
+    // Add Rectangles
+    var rectangle = svg.append("rect")
+        .attr("x", 100)
+        .attr("y", 400)
+        .attr("width", 300)
+        .attr("height", 75)
+        .style("fill", boatColor);
+
+
+    // Add Circles
+    var circle = svg.append("circle")
+        .attr("cx", 150)
+        .attr("cy", 350)
+        .attr("r", 20);
+
+
+    // Add Lines
+    var d3Lines = svg.selectAll('line')
+        .data(lines)
+        .enter().append('line')
+        .attr('x1', function(d) {return d[0];})
+        .attr('y1', function(d) {return d[1];})
+        .attr('x2', function(d) {return d[2];})
+        .attr('y2', function(d) {return d[3];})
+        .attr('stroke', 'black')
+        .attr('stroke-width', 2);
+
+    // Ocean
+    var areaGenerator = d3.area().y0(600);
+    var points = [
+        [0, 430],
+        [100, 416],
+        [200, 442],
+        [300, 431],
+        [400, 414],
+        [500, 420],
+        [600, 445],
+        [700, 450],
+        [800, 438]
+    ];
+
+    var area = areaGenerator(points);
+
+    // Create a path element and set its d attribute
+    d3.select('svg')
+        .append('path')
+        .attr('d', area);
+
+    // Update Arm positions when sail is clicked
+    const plot = (lines, svg) => {
+        const line = svg
+            .selectAll('line')
+            .data(lines);
+
+        line
+            .enter()
+            .append('line')
+            .attr('x1', function(d) {return d[0];})
+            .attr('y1', function(d) {return d[1];})
+            .attr('x2', function(d) {return d[2];})
+            .attr('y2', function(d) {return d[3];})
+            .attr("stroke-width", 2)
+            .attr("stroke", "black");
+
+        line
+            .exit()
+            .remove();
+    };
+
+
+    const addLine = ([x1, y1, x2, y2]) => {
+        lines.push([x1, y1, x2, y2]);
+        plot(lines, svg);
+    };
+
+    const removeLine = () => {
+        lines.pop();
+        plot(lines, svg);
+    };
+
+
+
+
 </script>
+</body>
+
+<style>
+    svg{
+        background-color: lightblue;
+    }
+    polygon{
+        stroke: blue;
+    }
+    path{
+        fill: aqua;
+    }
+</style>
