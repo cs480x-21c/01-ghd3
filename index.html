@@ -15,9 +15,16 @@
       // Add an SVG
       const svg = d3
         .select("#main")
+        //.append("div")
+        // Container class to make it responsive.
+        .classed("svg-container", true)
         .append("svg")
-        .attr("width", 600)
-        .attr("height", 600);
+        // Responsive SVG needs these 2 attributes and no width and height attr.
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", "0 0 600 400")
+        // Class to make it responsive.
+        .classed("svg-content-responsive", true)
+        // Fill with a rectangle for visualization.);
 
       var toggleColor = (function () {
         var currentColor = "red";
@@ -62,13 +69,14 @@
         //.on("click", toggleColor)
         //.call(drag)
         .style("fill", "red");
-      // Add Lines
 
       var circleNum = 5;
-      // https://observablehq.com/@d3/click-vs-drag?collection=@d3/d3-drag
+      var roughRad = 25;
+      // adapted from https://observablehq.com/@d3/click-vs-drag?collection=@d3/d3-drag
       const circles = d3.range(circleNum).map((i) => ({
-        x: 200 + 50 * i,
-        y: 200 + 50 * i,
+        x: Math.random() * (600 - roughRad * 2) + roughRad,
+        y: Math.random() * (400 - roughRad * 2) + roughRad,
+        r: (Math.random() + 1) * roughRad,
       }));
 
       svg
@@ -77,10 +85,11 @@
         .join("circle")
         .attr("cx", (d) => d.x)
         .attr("cy", (d) => d.y)
-        .attr("r", 25)
+        .attr("r", (d) => d.r)
         .attr("fill", (d, i) => d3.schemeCategory10[i % 10])
         .call(drag);
 
+      // Add Lines
       const linScale = 20;
       const lineData = [
         {
