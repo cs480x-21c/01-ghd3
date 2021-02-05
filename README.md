@@ -16,10 +16,10 @@ Drumkit is a drum set that a user can play in their browser. The web application
 Link to the webpage: [https://japierreswe.github.io/01-ghd3/index.html](https://japierreswe.github.io/01-ghd3/index.html)
 
 ## Technical Achievements
-* Animations occur when a user plays each drum. Because the drums often contained numerous SVG elements, SVG groups were used to animate entire drums. d3's transition feature was used to to scale and rotate the drums.
+* Animations occur when a user plays each drum. Because the drums often contained numerous SVG elements, SVG groups were used to animate entire drums. d3's transition feature was used to scale and rotate the drums.
 * Users can play the drums by clicking on them or by pressing keys. An event listener was used to respond to key input. In addition, each drum's SVG group used a mouse listener to respond to mouse events.
 * A checkbox, an SVG group, and an onclick listener were used to implement a tooltip feature that the user could toggle.
-* Javascript's HTMLAudioElement API was used to play sounds when drums are played.
+* Javascript's HTMLAudioElement API was used to play sounds when drums were played.
 
 ## Design Achievements
 * Animating the drums when the user plays them was a design choice to let the user know which drums were being played.
