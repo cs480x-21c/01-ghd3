@@ -76,15 +76,8 @@
         .style("stroke-width", 4);
 
       // Add Circles
-      svg
-        .append("circle")
-        .attr("class", "shape circle")
-        .attr("cx", 50)
-        .attr("cy", 300)
-        .attr("r", 25)
-        .style("fill", "red");
 
-      var circleNum = 5;
+      var circleNum = 6;
       var roughRad = 25;
       // adapted from https://observablehq.com/@d3/click-vs-drag?collection=@d3/d3-drag
       const circles = d3.range(circleNum).map((i) => ({
