@@ -2,14 +2,9 @@ Assignment 1 - Remy Allegro
 ===
 
 For this assignment, I used the [code snippet from Lecture 1](https://wpi0-my.sharepoint.com/:u:/g/personal/ltharrison_wpi_edu/ETunJKUEx61ArpK7LGjA-PcBdiCAlHos2isOp56RnCyfVA?e=TtAXKg) as my starting point.
+Information about primatives in d3 was found [here](https://www.d3-graph-gallery.com/graph/shape.html)
+Polygon code debugged with the help of [this stackoverflow thread](https://stackoverflow.com/questions/13204562/proper-format-for-drawing-polygon-data-in-d3).
 Code for color transitions adapted from examples on the [d3 transitions repo](https://github.com/d3/d3-transition).
-
-Requirements
----
-
-1. Your project should contain at least four kinds of graphics primitives (circles, rectangles, lines, polygons) in different colors. 
-2. Your document should identify the source of the code if you start with code that you found. 
-3. Your code should be forked from the GitHub repo and linked using GitHub pages. See the "GitHub Details" section below for detailed instructions on how to do this.
 
 GitHub Details
 ---

@@ -8,9 +8,9 @@
 
   var dot_coords = [
       {x:50, y:0},
-      {x:-50, y:0},
-      {x:-25, y:25*Math.sqrt(3)},
       {x:25, y:25*Math.sqrt(3)},
+      {x:-25, y:25*Math.sqrt(3)},
+      {x:-50, y:0},
       {x:-25, y:-25*Math.sqrt(3)},
       {x:25, y:-25*Math.sqrt(3)}];
 
@@ -66,8 +66,26 @@
         })
 
   // Add Lines
+  svg.append('line')
+        .attr('x1', xscale(0))
+        .attr('y1', yscale(0))
+        .attr('x2', xscale(50))
+        .attr('y2', yscale(0))
+        .attr('stroke', 'black')
+        .attr('stroke-width', 4)
 
   // Add Polygons
+  svg.selectAll('polygon')
+        .data([dot_coords])
+        .enter().append('polygon')
+            .attr("points",function(d) {
+                return d.map(function(d) {
+                    return [xscale(d.x), yscale(d.y)].join(",");
+                }).join(" ");
+            })
+        .attr('stroke', 'blue')
+        .attr('stroke-width', 2)
+        .attr('fill', 'none')
 
 </script>
 
