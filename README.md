@@ -89,4 +89,3 @@ Project Submission
 
 For this project I utilized tutorialspoint D3.js found [here](https://www.tutorialspoint.com/d3js/d3js_introduction_to_svg.htm) to learn and begin working in D3 in order to create the primative shapes on my project site.
 
-As for ...

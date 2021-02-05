@@ -4,44 +4,64 @@
   <title>Lucas Fernandes Assignment 1</title>
 </head>
 <body>
-  <div id = "svgContainer">
-  </div>
+  <div id="container"></div>
+  <div id="controls"></div>
   <script>
-    console.log(d3); // test if d3 is loaded
-    // Add an SVG
-
-    // Add Rectangles
-    var svg = d3.select("#svgContainer")
+    var body = d3.select("body")
+      .style("display","flex");
+    var controls = d3.select("#controls")
+      .style("background-color", "green")
+      .style("height","100%")
+      .style("width", "60%");
+    var svgContainer = d3.select("#container")
+      .style("height","100%")
+      .style("width", "40%")
+      .style("background-color", "blue");
+    var svg = d3.select("#container")
       .append("svg")
-      .attr("width", 300)
-      .attr("height", 500);
-    svg.append("rect")
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", 300)
-      .attr("height", 500)
-      .attr("fill", "yellow");
-    // Add Circles
-    svg.append("circle")
-      .attr("cx", 200)
-      .attr("cy", 95)
-      .attr("r", 20)
-      .attr("fill", "blue");
-    svg.append("circle")
-      .attr("cx", 100)
-      .attr("cy", 175)
-      .attr("r", 20)
-      .attr("fill", "green");
-    // Add Lines
-    svg.append("line")
-      .attr("x1", 100)
-      .attr("y1", 100)
-      .attr("x2", 200)
-      .attr("y2", 200)
-      .style("stroke", "rgb(255,0,0)")
-      .style("stroke-width", 2);
-    // Add Polygons
+      .style("width", "100%")
+      .style("height", "100%")
+      .style("margin", "auto");
+    var data =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+    var circleSet = svg.selectAll("circle")
+      .data(data)
+      .enter()
+      .append("circle")
+      .style("cy", function(d,i){
+          if(i<4){return "10vh"}
+          else if(4 <= i && i < 8){return "30vh"}
+          else if(8 <= i && i < 12){return "50vh"}
+          else if(12 <= i < 16){return "70vh"};
+      })
+      .style("cx", function(d, i) { 
+        return ((i % 4) * 10 + 5) + "vw"; 
+      })
+      .attr("r", "4vh")
+      .attr("fill", "rgb(0, 0, 0)")
+      .attr('id', function(d,i){return "c"+i;});
+    var initialRandom = Math.floor(Math.random() * data.length);
+    var totalPoints = 0;
+    var newSelection = initialRandom;
+    d3.select("#c"+initialRandom).style("fill", "rgb(255, 0, 0)");
+    //Variables and function to ensure no repeating circles
+    circleSet.on("click", function(){
+      // Call random to prepare next circle whether a hit or miss
+      newSelection = Math.floor(Math.random() * data.length);
+      if(d3.select(this).style("fill") === "rgb(255, 0, 0)"){
+        console.log("HIT")
+        d3.select(this).style("fill", "rgb(0, 0, 0)");
+        d3.select("#c" + newSelection).style("fill", "rgb(255, 0, 0)");
+        totalPoints++;
+      } else{
+        console.log("MISS")
+        d3.selectAll("circle").style("fill", "rgb(0,0,0)");
+        d3.select("#c" + newSelection).style("fill", "rgb(255, 0, 0)");
+        totalPoints--;
+      }
+      console.log(totalPoints);
+      console.log(d3.select(this).attr("id"));
 
+    });
   </script>
 </body>
 </html>
