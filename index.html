@@ -1,9 +1,6 @@
 <html>
   <body>
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="https://d3js.org/d3-dispatch.v2.min.js"></script>
-    <script src="https://d3js.org/d3-selection.v2.min.js"></script>
-    <script src="https://d3js.org/d3-drag.v2.min.js"></script>
     <script>
       var drag = d3.drag();
     </script>
@@ -58,6 +55,26 @@
         .style("stroke-width", 10)
         .style("fill", d3.schemePastel1[Math.floor(Math.random() * 9)]);
 
+      // Add Lines
+      const lineData = d3.range(30).map((i) => ({
+        x1: Math.random() * (600 - 20 * 2) + 20,
+        y1: Math.random() * (300 - 20 * 2) + 20,
+        x2: Math.random() * (600 - 20 * 2) + 20,
+        y2: Math.random() * (300 - 20 * 2) + 20,
+      }));
+
+      svg
+        .selectAll("line")
+        .data(lineData)
+        .enter()
+        .append("line")
+        .attr("x1", (d) => d.x1)
+        .attr("y1", (d) => d.y1)
+        .attr("x2", (d) => d.x2)
+        .attr("y2", (d) => d.y2)
+        .style("stroke", (d, i) => d3.schemeCategory10[i % 10])
+        .style("stroke-width", 4);
+
       // Add Circles
       svg
         .append("circle")
@@ -86,29 +103,8 @@
         .attr("fill", (d, i) => d3.schemeCategory10[i % 10])
         .call(drag);
 
-      // Add Lines
-      const lineData = d3.range(30).map((i) => ({
-        x1: Math.random() * (600 - 20 * 2) + 20,
-        y1: Math.random() * (300 - 20 * 2) + 20,
-        x2: Math.random() * (600 - 20 * 2) + 20,
-        y2: Math.random() * (300 - 20 * 2) + 20,
-      }));
-
-      svg
-        .selectAll("line")
-        .data(lineData)
-        .enter()
-        .append("line")
-        .attr("x1", (d) => d.x1)
-        .attr("y1", (d) => d.y1)
-        .attr("x2", (d) => d.x2)
-        .attr("y2", (d) => d.y2)
-        .style("stroke", (d, i) => d3.schemeCategory10[i % 10])
-        .style("stroke-width", 4);
-
       // Add Polygons
-      //
-      var stringPoly =
+      const stringPoly =
         "150,335 180,320 420,320 450,335 450,365 420,380 180,380 150,365";
 
       svg
@@ -116,6 +112,14 @@
         .attr("points", stringPoly)
         .style("stroke-width", 4)
         .style("fill", "#964B00");
+
+      svg
+        .append("text")
+        .text("art.")
+        .attr("dy", "0.35em")
+        .attr("font-size","4em")
+        .attr("transform", "translate(265,345)")
+        .attr("fill","white");
     </script>
   </body>
 </html>
