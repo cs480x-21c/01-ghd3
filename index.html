@@ -1,10 +1,43 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<html>
+  <head>
+    <title>Lets make a piggy head</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+  </head>
+  <body>
+    <svg id="vis" width="1000" height="800">
+      // Design achievement - make a little piggy
+      // create grass (polygon)
+      <polygon points="350,200 650,200 700,500 300,500" fill="green"></polygon>
+      
+      // create feet (lines)
+      <path stroke-width="2" stroke="black" d="M 485 445 Q 480 470 475 435"></path>
+      <path stroke-width="2" stroke="black" d="M 500 432 Q 490 475 485 445"></path>
+      <path stroke-width="2" stroke="black" d="M 515 445 Q 520 470 525 435"></path>
+      <path stroke-width="2" stroke="black" d="M 500 432 Q 510 475 515 445"></path>
+      
+      // create ears (rectangles)
+      <rect x="0" y="0" width="20" height="20" fill="pink" stroke="black" transform="translate(465,340) rotate(20)"></rect>
+      <rect x="0" y="0" width="20" height="20" fill="pink" stroke="black" transform="translate(535,340) rotate(70)"></rect>
+      
+      // create body (circle)
+      <circle cx="500" cy="400" r="45" fill="pink" stroke="black"></circle>
+      
+      // create head and eyes (circles)
+      <circle cx="500" cy="385" r="40" fill="pink" stroke="black"></circle>
+      <circle cx="485" cy="370" r="5" fill="black"></circle>
+      <circle cx="515" cy="370" r="5" fill="black"></circle>
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+      // create snout and nostrils (ellipse and circles)
+      // technical achievement - animate the nose so it moves up and down
+      <ellipse cx="500" cy="400" rx="25" ry="15" fill="pink" stroke="black">
+        <animate attributeName="cy" values="400;395;400;400" dur="2s" repeatCount="indefinite"></animate>
+      </ellipse>
+      <circle cx="490" cy="400" r="5" fill="black">
+          <animate attributeName="cy" values="400;395;400;400" dur="2s" repeatCount="indefinite"></animate>
+      </circle>
+      <circle cx="510" cy="400" r="5" fill="black">
+        <animate attributeName="cy" values="400;395;400;400" dur="2s" repeatCount="indefinite"></animate>
+      </circle>
+    </svg>
+  </body>
+</html>
