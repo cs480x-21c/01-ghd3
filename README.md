@@ -1,8 +1,10 @@
 Assignment 1 - Hello World: GitHub and d3  
 ===
 
-Author: Elene Kavtaradze
+**Author Elene Kavtaradze**
+
 Link to gh-pages: https://ekavtaradze.github.io/01-ghd3/
+
 Link to repo: https://github.com/ekavtaradze/01-ghd3
 
 
@@ -29,12 +31,13 @@ Link to repo: https://github.com/ekavtaradze/01-ghd3
 
 *Design Achievement Description* 
 
-  I decided to go for portrayal of a relevant picture to our current year. The design uses different shapes, colors to resemble the original picture.
+  I decided to go for portrayal of a relevant picture to our current year. The design uses different shapes, colors, images to resemble the original picture.
 
 **Resources Used**
 
   Looked at code provided in class 1 as reference
-    Image used for reference: https://cdn.abcotvs.com/dip/images/10073278_012721-cc-ap-bernie-sanders-inaug-mittens-img.jpg?w=1600
+  
+  Image used for reference: https://cdn.abcotvs.com/dip/images/10073278_012721-cc-ap-bernie-sanders-inaug-mittens-img.jpg?w=1600
  
  *Clipart Resources Used*
  
