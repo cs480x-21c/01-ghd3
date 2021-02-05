@@ -3,29 +3,16 @@
 <svg id="vis"> </svg>
 
 <script>
-  /*
-  Using the code provided in class*/
-  console.log(d3); // test if d3 is loaded
-
-  var circle = [10];
-  var rectangleBackground = [0, 33, 66];
-
-  var rectangleBackgroundSeat = [20, 50, 80];
 
   var entireWidth = 1400;
   var entireHeight = 700;
+
   var svg = d3.select('#vis')
     .attr('width', entireWidth)
     .attr('height', entireHeight);
-  /*
-    var xscale = d3.scaleLinear()
-      .domain([0,100])
-      .range([0,entireWidth]);
 
-    var yscale = d3.scaleLinear()
-        .domain([0,100])
-        .range([0,entireHeight]);
-  */
+
+
 
   var rectangles = [{
       x: 0,
@@ -47,21 +34,7 @@
       width: entireWidth,
       height: 67,
       fill: '#b9c3c4'
-    }, //second stair
-    {
-      x: 0,
-      y: 815,
-      width: entireWidth,
-      height: 67,
-      fill: '#b9c3c4'
-    }, //third stair
-    {
-      x: 0,
-      y: 880,
-      width: entireWidth,
-      height: 16,
-      fill: '#b9c3c4'
-    } //trim on the end
+    } //second stair
   ]
   //Add Rectangles
   svg.selectAll('rect')
@@ -82,6 +55,8 @@
     .attr('fill', function(d) {
       return d.fill
     });
+
+
 
 
 
@@ -113,10 +88,8 @@
       return d.fill
     });
 
-  /*
-  .on('mouseover', function() {
-      d3.select(this).attr('fill', 'steelblue');
-    });*/
+
+
 
 
   var circles = [{
@@ -150,17 +123,8 @@
     });
 
 
-  //mask
 
 
-  //body
-  /*
-  var poly ="50,50 200,50 250,100 250,150 20,50"
-  svg.append('polygon')
-                  .attr('points', poly)
-                  .attr('stroke', '#f00')
-                  .attr('fill', 'none');*/
-  /* guide used for poly: https://lucidar.me/en/d3.js/part-06-basic-shapes/*/
 
   var polygon = [{
       points: "696,181 727,174 769,179 776,211 765,231 737,247 725,247 710,240 690,225",
@@ -168,7 +132,7 @@
       fill: '#92c8eb' //mask
     },
     {
-      points: "843,555 758,588 758,660 752,669 773,721 723,743 716,671 708,667  696,810 648,807 654,773 621,753 634,591 595,572 574,540 596,480 700,435 730,437",
+      points: "843,555 758,588 758,660 752,669 773,721 723,743 716,671 708,667  696,810 648,700 654,700 634,591 595,572 574,540 596,480 700,435 730,437",
       stroke: 'white',
       fill: 'black' //pants
     },
@@ -193,6 +157,9 @@
     });
 
 
+
+
+//jacket sleeve lines
   var lines = [{
     x1: 748,
     y1: 411,
@@ -269,6 +236,8 @@
     .attr('stroke-width', function(d) {
       return d.strokeW
     });
+
+
 
     var images = [{
       link: 'images/mittenRIghtHand.png',
