@@ -1,13 +1,15 @@
 Assignment 1 - Author Nicholas Wood
 
+Link for the site [GithubIO](https://njwood.github.io/01-ghd3/)
+
 Some images of the product (scary I know)
 
-![Base](./DVPic1.png)
-![Red Eyes](./DVPic2.png)
+![Base](./DVPic1.png "Default Load")
+![Red Eyes](./DVPic2.png "After Changing Color")
 
 Techical Achiievements 
 
-Clicking on the eyes will change the color from blue to red and back
+Clicking on the eyes will change the color from blue to red and back. You can also change the color of the body, to the same red or blue as the eyes.
 
 Design Achievements
 
