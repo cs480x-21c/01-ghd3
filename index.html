@@ -100,7 +100,7 @@
   var triangleG = nodes.append("g")
 
   circleG.append("circle") 
-  .attr("id", 'centerCircle')
+  .attr('id', 'centerCircle')
   .attr('cx', '50%')
   .attr('cy', '50%')
   .attr('r', 100)
@@ -113,6 +113,16 @@
     .attr('r', width)
 
     d3.select('#circleTxt')
+    .transition()
+    .duration(2000)
+    .style('opacity', 0)
+
+    d3.select('#title1')
+    .transition()
+    .duration(2000)
+    .style('opacity', 0)
+
+    d3.select('#title2')
     .transition()
     .duration(2000)
     .style('opacity', 0)
@@ -176,6 +186,12 @@
 
         d3.select('#circleTxt')
         .style('opacity', 1)
+
+        d3.select('#title1')
+        .style('opacity', 1)
+
+        d3.select('#title2')
+        .style('opacity', 1)
       })
 
       triangleG.append('line')
@@ -193,6 +209,12 @@
         .attr('r', 100)
 
         d3.select('#circleTxt')
+        .style('opacity', 1)
+
+        d3.select('#title1')
+        .style('opacity', 1)
+
+        d3.select('#title2')
         .style('opacity', 1)
       })    
     })
@@ -236,6 +258,7 @@
   .attr('text-anchor', 'middle')
   .attr('x', '50%')
   .attr('y', '10%')
+  .attr('id', 'title1')
   .style('font-size', 42)
   .style('fill', 'white')
   .style('font-family', 'Fraunces')
@@ -250,6 +273,7 @@
   .attr('text-anchor', 'middle')
   .attr('x', '50%')
   .attr('y', '15%')
+  .attr('id', 'title2')
   .style('font-size', 30)
   .style('fill', 'white')
   .style('font-family', 'Fraunces')
