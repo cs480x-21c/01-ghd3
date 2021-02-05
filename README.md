@@ -94,7 +94,16 @@ These are the only way to move from B to A territory.
 - implemented favicons for website that are compatible with multiple browser types
     - The art in the favicon is of the Magic: the Gathering card 'Meren of Clan Nel Toth'. It is illustrated by Mark Winters and is property of Wizards of the Coast LLC.
     - The favicon set was generated from a jpg file and the code in the head tag were both provided by https://realfavicongenerator.net/
+- interactive visualization of deck's mana curve highlights card's name when hovering on its dot
+- use of scryfall API to show preview image of cards from both mana curve and decklist
 
 ## Misc.
 
 
+### credits
+- https://datawanderings.com/2018/08/15/d3-js-v5-promise-syntax-examples/
+    - helped with promise syntax with d3.csv
+- https://www.dashingd3js.com/d3-tutorial
+    - general help.
+- https://stackoverflow.com/questions/5788741/remove-commas-from-the-string-using-javascript
+    - string recplacement with regular expressions

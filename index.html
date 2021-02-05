@@ -6,20 +6,168 @@
   <link rel="mask-icon" href="favicon_package/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
+
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <srcipt src="card.js"></srcipt>
+  <srcipt src="deck.js"></srcipt>
+
+  <style>
+    div {
+      border:3px solid purple;
+      overflow: hidden;
+    }
+    svg{
+      border:3px solid orange;
+    }
+    p{
+      padding:0px;
+      margin:1px;
+    }
+    #deck_box{
+      width:max-content;
+      height: min-content;
+      float:left;
+    }
+    #mana_curve{
+      width:min-content;
+      height: min-content;
+    }
+    #color_pie{
+      width: min-content;
+      height: min-content;
+    }
+    #card_box{
+      width: 150px;
+      height: 210px;
+    }
+  </style>
+
 </head>
 
-<script src="https://d3js.org/d3.v6.min.js"></script>
+
+
+<!-- <svg id="deck_box"></svg>
+<svg id="mana_curve"></svg>
+<svg id="color_pie"></svg> -->
 
 <script>
-  console.log(d3); // test if d3 is loaded
+  // console.log(d3); // test if d3 is loaded
   // Add an SVG
   // Add Rectangles
   // Add Circles
   // Add Lines
   // Add Polygons
+
+  var decklist = [];
+  // d3.csv("korvold.csv", function(rows){
+  //   decklist.push(rows);
+  //   // d3.csv.parseRows(d3.format(rows), d3.autoType);
+  // });
+  
+  
+
+  // console.log("nap")
+  // // while(decklist.length == 0){ setTimeout(console.log('waited'), 500); }
+  // console.log("wake")
+  // console.log('synch')
+  // console.log(decklist.length);
+
+  // return{
+  //     cardname: d.cardname,
+  //     quantity: d.quantity,
+      
+  //   }
+  // console.log("KORVOLD:");
+  console.log(decklist);
+
+  var deck_box
+  var mana_curve
+
+  const deck_prom = d3.csv("korvold.csv");
+  deck_prom.then( function(data){
+    decklist = data;
+
+
+    deck_box = d3.select("#deck_box")
+        .selectAll("p")
+        .data(decklist)
+        .enter()
+        .append("p")
+        .text(function(d){
+          return d.cardname;
+        })
+        .attr("id", function(d,i){
+          // return d.cardname;
+          return processCardID(d.cardname)
+        })
+        .on('mouseover',function(e, d){
+          id_name = "#"+processCardID(d.cardname);
+          d3.select("#card_box").append("image").attr("xlink:href",d.img)
+        });
+  
+    mana_curve = d3.select("#mana_curve").append("svg")
+        .attr('width',600)
+        .attr('height',200)
+        .selectAll('circle')
+        .data(decklist)
+        .enter()
+        .append('circle')
+        .attr('cx',function(d,i){ return (i*6)+5;})
+        .attr('cy',function(d){ return 10*d.cmc + 5;})
+        // .attr('cx',function(d){ return 10*d.cmc + 5;})
+        // .attr('cy',function(d,i){ return (i*6)+5;})
+        .style('fill',function(d){
+          switch(d.color){
+            case 'w': return 'yellow';break;
+            case 'u': return 'blue';break;
+            case 'b': return 'black';break;
+            case 'r': return 'red';break;
+            case 'g': return 'green';break;
+            case 'c':
+              if (d.type == "land"){
+                return 'purple';break;
+              }else{
+                return 'gray';break;
+              }
+            default: return "gold";break;
+          }
+        })
+        .attr('r',function(d){
+          return (3+(2*parseInt(d.cmc)));// * (50*(d.quantity-1)) ;
+        })
+        .on('mouseover',function(e, d){
+          id_name = "#"+processCardID(d.cardname);
+          d3.select(id_name).style('color','pink');
+          d3.select(this).attr('fill', 'pink');
+          console.log(d.cardname);
+          d3.select("#card_box").append("image").attr("xlink:href",d.img)
+        })
+        .on('mouseout',function(e, d){
+          id_name = "#"+processCardID(d.cardname)
+          d3.select(id_name).style('color','black');
+          d3.select(this).attr('fill', 'black');
+          // console.log(d.cardname);
+        });
+  });
+            
+
+  
+  console.log(decklist.length)
+
+
+function processCardID(cardname){
+  new_name = cardname.replace(/,/g,"");
+  new_name = new_name.replace(/'/g,"");
+  new_name = new_name.split(" ").join("_");
+  return new_name;
+}
+
 </script>
 
 <body>
-  <!-- <link rel="icon" href="favicon.ico"> -->
-
+<div id="deck_box"></div>
+<div id="mana_curve"></div>
+<div id="color_pie"></div>
+<!-- <div id="card_box"></div> -->
+<svg id="card_box"></svg>
 </body>

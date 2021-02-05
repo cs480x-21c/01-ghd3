@@ -1,0 +1,93 @@
+cardname,quantity,type,cmc,color,img
+"Altar of Dementia",1,artifact,2,c,0
+"Animate Dead",1,enchantment,2,b,0
+"Apprentice Necromancer",1,creature,1,b,0
+"Arbor Elf",1,creature,1,g,0
+"Arcane Signet",1,artifact,2,c,0
+"Ashnod's Altar",1,artifact,3,c,0
+"Beast Within",1,instant,3,g,0
+"Birthing Pod",1,artifact,4,g,0
+"Blood Crypt",1,land,0,c,0
+"Bloodstained Mire",1,land,0,c,0
+"Cinder Glade",1,land,0,c,0
+"Command Tower",1,land,0,c,0
+"Dance of the Dead",1,enchantment,2,b,0
+"Deathrite Shaman",1,creature,1,bg,0
+"Diabolic Intent",1,sorcery,2,b,0
+"Disciple of Bolas",1,creature,4,b,0
+"Dragonskull Summit",1,land,0,c,0
+"Elves of Deep Shadow",1,creature,1,g,0
+"Elvish Mystic",1,creature,1,g,0
+"Entomb",1,instant,1,b,0
+"Eternal Witness",1,creature,3,g,0
+"Fire Covenant",1,instant,3,rb,0
+"Forbidden Orchard",1,land,0,c,0
+"Forest",4,land,0,c,0
+"Fyndhorn Elves",1,creature,1,g,0
+"Goblin Bombardment",1,enchantment,2,r,0
+"Golgari Signet",1,artifact,2,c,0
+"Green Sun's Zenith",1,sorcery,1,g,0
+"Gruul Signet",1,artifact,2,c,0
+"Harrow",1,instant,3,g,0
+"High Market",1,land,0,c,0
+"Kessig Wolf Run",1,land,0,c,0
+"Kokusho, the Evening Star",1,creature,6,b,0
+"Korvold, Fae-Cursed King",1,creature,5,rbg,0
+"Krosan Grip",1,instant,3,g,0
+"Lightning Greaves",1,artifact,2,c,0
+"Liliana, Death's Majesty",1,planeswalker,5,b,0
+"Living Death",1,sorcery,5,b,0
+"Llanowar Elves",1,creature,1,g,0
+"Maelstrom Pulse",1,sorcery,3,bg,0
+"Massacre Girl",1,creature,5,b,0
+"Meren of Clan Nel Toth",1,creature,4,bg,0
+"Mountain",3,land,0,c,0
+"Nature's Claim",1,instant,1,g,0
+"Necromancy",1,enchantment,3,b,0
+"Nihil Spellbomb",1,artifact,1,c,0
+"Overgrown Tomb",1,land,0,c,0
+"Phyrexian Altar",1,artifact,3,c,0
+"Phyrexian Arena",1,enchantment,3,b,0
+"Plaguecrafter",1,creature,3,b,0
+"Pyroblast",1,instant,1,r,0
+"Rakdos Signet",1,artifact,2,c,0
+"Reanimate",1,sorcery,1,b,0
+"Reclamation Sage",1,creature,3,g,0
+"Red Elemental Blast",1,instant,1,r,0
+"Reliquary Tower",1,land,0,c,0
+"Rootbound Crag",1,land,0,c,0
+"Sakura-Tribe Elder",1,creature,2,g,0
+"Savage Lands",1,land,0,c,0
+"Sidisi, Undead Vizier",1,creature,5,b,0
+"Skarrg, the Rage Pits",1,land,0,c,0
+"Skullclamp",1,artifact,1,c,0
+"Skullwinder",1,creature,3,g,0
+"Smoldering Marsh",1,land,0,c,0
+"Smothering Abomination",1,creature,4,b,0
+"Sol Ring",1,artifact,1,c,0
+"Solemn Simulacrum",1,creature,4,c,0
+"Springbloom Druid",1,creature,3,g,0
+"Stomping Ground",1,land,0,c,0
+"Survival of the Fittest",1,enchantment,2,g,0
+"Swamp",4,land,0,c,0
+"Sylvan Library",1,enchantment,2,g,0
+"Talisman of Impulse",1,artifact,2,c,0
+"Talisman of Indulgence",1,artifact,2,c,0
+"Talisman of Resilience",1,artifact,2,c,0
+"Temple of Abandon",1,land,0,c,0
+"Temple of Malady",1,land,0,c,0
+"Temple of Malice",1,land,0,c,0
+"Tendershoot Dryad",1,creature,5,g,0
+"Tevesh Szat, Doom of Fools",1,planeswalker,5,b,0
+"Thought Vessel",1,artifact,2,c,0
+"Urborg, Tomb of Yawgmoth",1,land,0,c,0
+"Vexing Shusher",1,creature,2,rg,0
+"Victimize",1,sorcery,3,b,0
+"Vilis, Broker of Blood",1,creature,8,b,"https://c1.scryfall.com/file/scryfall-cards/small/front/e/c/ecdf2bd9-87b9-470a-ad2e-0ebf98560f87.jpg?1592516819"
+"Village Rites",1,instant,1,b,0
+"Viscera Seer",1,creature,1,b,0
+"Windswept Heath",1,land,0,c,0
+"Wood Elves",1,creature,3,g,0
+"Wooded Foothills",1,land,0,c,0
+"Woodland Cemetery",1,land,0,c,0
+"Yawgmoth, Thran Physician",1,creature,4,b
