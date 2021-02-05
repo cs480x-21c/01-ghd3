@@ -1,10 +1,620 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <h1 class="centered">Drumkit</h1>
+    <p class="centered">a CS480x assignment by Jean-Philippe Pierre</p>
+    <b>Instructions</b>
+    <p>Play one of the drums by clicking on it or by pressing its corresponding key.</p>
+    <p>Enable autoplay to ensure this website works correctly.</p>
+    <div class="container" id="svgContainer">
+      <svg id="svg"></svg>
+    </div>
+    <label for="showTips">Disable tooltips</label>
+    <input type="checkbox" id='showTips' onclick="toggleTips()"/><br><br>
+    <b>Controls:</b>
+    <table>
+      <tr>
+        <td><p>Kick Drum - B</p></td>
+        <td><p>Snare - N</p></td>
+        <td><p>Hi-hat - M</p></td>
+        <td><p>Low Tom - V</p></td>
+      </tr>
+      <tr>
+        <td><p>Left Tom - G</p></td>
+        <td><p>Right Tom - H</p></td>
+        <td><p>Cymbal - F</p></td>
+      </tr>
+    </table>
+  </body>
+</html>
+
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
 <script>
+
+  /**
+   * Toggles whether the tooltips are shown
+   * for each drum
+   * */
+  function toggleTips() {
+
+    let checked = d3.select('#showTips').node().checked;
+    let changeTo = 'block';
+    if(checked) {
+      changeTo = 'none';
+    }
+
+    d3.selectAll('text').style('display', changeTo);
+
+  }
+
   console.log(d3); // test if d3 is loaded
   // Add an SVG
   // Add Rectangles
   // Add Circles
   // Add Lines
   // Add Polygons
+  let svgHeight = 480;
+  let svgWidth = 640;
+  let container = d3.select("#svgContainer");
+
+  container.attr('align', 'center');
+
+  let svg = d3.select("#svg");
+
+  svg.style('width', svgWidth)
+  .style('height', svgHeight)
+
+  svg.style('border', '1px solid black');
+  svg.style('display', 'block');
+  svg.style('margin-bottom', '40px');
+
+  /**
+   * Audio references for each
+   * audio resource.
+   * */
+  let bassAudio = new Audio('kick.wav');
+  let leftTomAudio = new Audio('tom1.wav');
+  let rightTomAudio = new Audio('tom2.wav');
+  let floorTomAudio = new Audio('floortom.wav');
+  let snareAudio = new Audio('snare.wav');
+  let cymbalAudio = new Audio('cymbal.wav');
+  let hihatAudio = new Audio('hihat.wav');
+  
+
+  /** Create svg elements for all drums */
+
+  //lines for UI
+
+  //cymbal lines
+  svg.append('line')
+  .attr('x1', '74.5')
+  .attr('y1', '109')
+  .attr('x2', '76.5')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  svg.append('line')
+  .attr('x1', '75.44')
+  .attr('y1', '368.25')
+  .attr('x2', '42.44')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  svg.append('line')
+  .attr('x1', '77.44')
+  .attr('y1', '367.75')
+  .attr('x2', '112.44')
+  .attr('y2', '429.75')
+  .attr('stroke', 'black');
+
+  //floor tom lines
+  svg.append('line')
+  .attr('x1', '114.44')
+  .attr('y1', '430.25')
+  .attr('x2', '149.44')
+  .attr('y2', '368.25')
+  .attr('stroke', 'black');
+
+  svg.append('line')
+  .attr('x1', '149.5')
+  .attr('y1', '371')
+  .attr('x2', '149.5')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  svg.append('line')
+  .attr('x1', '149.44')
+  .attr('y1', '367.75')
+  .attr('x2', '184.44')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  //bass
+  svg.append('line')
+  .attr('x1', '243.64')
+  .attr('y1', '381.65')
+  .attr('x2', '197.64')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  svg.append('line')
+  .attr('x1', '395.65')
+  .attr('y1', '382.35')
+  .attr('x2', '443.65')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  //snare
+  svg.append('line')
+  .attr('x1', '487.5')
+  .attr('y1', '290')
+  .attr('x2', '487.5')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  svg.append('line')
+  .attr('x1', '487.44')
+  .attr('y1', '368.25')
+  .attr('x2', '452.44')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  svg.append('line')
+  .attr('x1', '487.44')
+  .attr('y1', '368.25')
+  .attr('x2', '522.44')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  //hihat
+  svg.append('line')
+  .attr('x1', '583.5')
+  .attr('y1', '201')
+  .attr('x2', '583.5')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  svg.append('line')
+  .attr('x1', '583.44')
+  .attr('y1', '368.25')
+  .attr('x2', '548.44')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  svg.append('line')
+  .attr('x1', '583.44')
+  .attr('y1', '367.75')
+  .attr('x2', '618.44')
+  .attr('y2', '430')
+  .attr('stroke', 'black');
+
+  /**
+   * DRUM SVG GROUPS
+   * */
+
+  //Bass
+  let bass = svg.append('g');
+
+  bass.append('circle')
+  .attr('cx', '320')
+  .attr('cy', '316')
+  .attr('r', '100')
+  
+  bass.append('circle')
+  .attr('cx', '320')
+  .attr('cy', '316')
+  .attr('r', '88')
+  .attr('stroke', 'white')
+  .attr('stroke-width', '1')
+
+  //bass tooltip
+  svg.append('text')
+  .attr('x', '315')
+  .attr('y', '320')
+  .attr('class', 'tooltips')
+  .attr('fill', 'white')
+  .text('B');
+
+  //Tom-tom left
+  let leftTom = svg.append('g');
+
+  leftTom.append('rect')
+  .attr('width', '97')
+  .attr('height', '83')
+  .attr('x', '187')
+  .attr('y', '140')
+  .attr('fill', 'black');
+
+  leftTom.append('rect')
+  .attr('width', '97')
+  .attr('height', '7')
+  .attr('x', '187')
+  .attr('y', '145')
+  .attr('fill', 'white');
+
+  //left tom tooltip
+  svg.append('text')
+  .attr('x', '225')
+  .attr('y', '180')
+  .attr('class', 'tooltips')
+  .attr('fill', 'white')
+  .text('G');
+
+  //Tom-tom right
+  let rightTom = svg.append('g');
+
+  rightTom.append('rect')
+  .attr('width', '97')
+  .attr('height', '83')
+  .attr('x', '355')
+  .attr('y', '140')
+  .attr('fill', 'black');
+
+  rightTom.append('rect')
+  .attr('width', '97')
+  .attr('height', '7')
+  .attr('x', '355')
+  .attr('y', '145')
+  .attr('fill', 'white');
+
+  //right tom tooltip
+  svg.append('text')
+  .attr('x', '395')
+  .attr('y', '180')
+  .attr('class', 'tooltips')
+  .attr('fill', 'white')
+  .text('H');
+
+  //snare
+  let snare = svg.append('g');
+
+  snare.append('rect')
+  .attr('width', '129')
+  .attr('height', '49')
+  .attr('x', '420')
+  .attr('y', '240')
+  .attr('fill', '#AE2323');
+
+  snare.append('rect')
+  .attr('width', '129')
+  .attr('height', '5')
+  .attr('x', '420')
+  .attr('y', '240')
+  .attr('fill', '#C4C4C4');
+
+  snare.append('rect')
+  .attr('width', '129')
+  .attr('height', '5')
+  .attr('x', '420')
+  .attr('y', '284')
+  .attr('fill', '#C4C4C4');
+
+  snare.append('rect')
+  .attr('width', '5')
+  .attr('height', '39')
+  .attr('x', '439')
+  .attr('y', '245')
+  .attr('fill', 'white');
+  
+  snare.append('rect')
+  .attr('width', '5')
+  .attr('height', '39')
+  .attr('x', '467')
+  .attr('y', '245')
+  .attr('fill', 'white');
+
+  snare.append('rect')
+  .attr('width', '5')
+  .attr('height', '39')
+  .attr('x', '495')
+  .attr('y', '245')
+  .attr('fill', 'white');
+
+  snare.append('rect')
+  .attr('width', '5')
+  .attr('height', '39')
+  .attr('x', '523')
+  .attr('y', '245')
+  .attr('fill', 'white');
+
+  //snare tooltip
+  svg.append('text')
+  .attr('x', '480')
+  .attr('y', '220')
+  .attr('class', 'tooltips')
+  .attr('fill', 'black')
+  .text('N');
+
+  //hi-hat
+  let hihat = svg.append('g');
+
+  hihat.append('polygon')
+  .attr('points', `532,180.5, 546.21,180.5, 564.5,173, 596,173,
+  614.5,180.5, 631,180.5, 631,186, 532,186`)
+  .attr('fill', '#FFE896');
+
+  hihat.append('polygon')
+  .attr('points', `532,193.5, 548.5,193.5, 567,201, 598.5,201,
+  616.79,193.5, 631,193.5, 631,188, 532,188`)
+  .attr('fill', '#FFE896');
+
+  //snare tooltip
+  svg.append('text')
+  .attr('x', '570')
+  .attr('y', '160')
+  .attr('class', 'tooltips')
+  .attr('fill', 'black')
+  .text('M');
+
+  //cymbal
+  let cymbal = svg.append('g');
+
+  cymbal.append('polygon')
+  .attr('points', `5.14,89.34, 25.59,93.65, 53.48,91.87, 98.83,101.44,
+  123.92,114.4, 147.68,119.41, 146.55,124.79, 4,94.72`)
+  .attr('fill', '#FFE896');
+
+  //cymbal tooltip
+  svg.append('text')
+  .attr('x', '75')
+  .attr('y', '80')
+  .attr('class', 'tooltips')
+  .attr('fill', 'black')
+  .text('F');
+
+  //floor tom
+
+  let floorTom = svg.append('g');
+
+  floorTom.append('rect')
+  .attr('width', '131')
+  .attr('height', '128')
+  .attr('x', '84')
+  .attr('y', '243')
+  .attr('fill', '#1E1961');
+
+  floorTom.append('rect')
+  .attr('width', '131')
+  .attr('height', '7')
+  .attr('x', '84')
+  .attr('y', '247')
+  .attr('fill', '#EEEEEE');
+
+  //floor tom tooltip
+  svg.append('text')
+  .attr('x', '142')
+  .attr('y', '315')
+  .attr('class', 'tooltips')
+  .attr('fill', 'white')
+  .text('V');
+
+  //functions for each drum interaction
+  function bassInteract() {
+
+    bass.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.1) translate(-25,-25)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+
+    if(bassAudio.paused) {
+      bassAudio.play();
+    } else {
+      bassAudio.currentTime = 0;
+    }
+
+  }
+
+  function snareInteract() {
+
+    snare.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.2) translate(-80,-50)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+
+    if(snareAudio.paused) {
+      snareAudio.play();
+    } else {
+      snareAudio.currentTime = 0;
+    }
+
+  }
+
+  function leftTomInteract() {
+
+    leftTom.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.2) translate(-38.8,-33.2)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+
+    if(leftTomAudio.paused) {
+      leftTomAudio.play();
+    } else {
+      leftTomAudio.currentTime = 0;
+    }
+
+  }
+
+  function rightTomInteract() {
+
+    rightTom.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.2) translate(-65.8,-33.2)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+
+    if(rightTomAudio.paused) {
+      rightTomAudio.play();
+    } else {
+      rightTomAudio.currentTime = 0;
+    }
+
+  }
+
+  function hihatInteract() {
+
+    hihat.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.2) translate(-95.8,-33.2)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+
+    if(hihatAudio.paused) {
+      hihatAudio.play();
+    } else {
+      hihatAudio.currentTime = 0;
+    }
+
+  }
+
+  function floorTomInteract() {
+    floorTom.transition()
+    .duration(100)
+    .attr('transform', 'scale(1.2) translate(-26.2,-51.2)')
+
+    .transition()
+    .duration(100)
+    .attr('transform', 'scale(1) translate(0,0)')
+
+    if(floorTomAudio.paused) {
+      floorTomAudio.play();
+    } else {
+      floorTomAudio.currentTime = 0;
+    }
+
+  }
+
+  function cymbalInteract() {
+
+    cymbal.transition()
+    .duration(100)
+    .attr('transform-origin', '80px 35px')
+    .attr('transform', 'rotate(30) translate(25,0)')
+
+    .transition()
+    .duration(250)
+    .attr('transform', 'rotate(0)')
+
+    if(cymbalAudio.paused) {
+      cymbalAudio.play();
+    } else {
+      cymbalAudio.currentTime = 0;
+    }
+
+  }
+
+  //event handlers
+  //MOUSE HANDLERS
+  bass.on('mousedown', () => {
+    bassInteract();
+  })
+
+  snare.on('mousedown', () => {
+    snareInteract();
+  })
+
+  leftTom.on('mousedown', () => {
+    leftTomInteract();
+  })
+
+  rightTom.on('mousedown', () => {
+    rightTomInteract();
+  })
+
+  hihat.on('mousedown', () => {
+    hihatInteract();
+  })
+
+  floorTom.on('mousedown', () => {
+    floorTomInteract();
+  })
+
+  cymbal.on('mousedown', () => {
+    cymbalInteract();
+  })
+
+  //KEY HANDLER
+  document.onkeydown = (event) => {
+
+    if(!event.repeat) {
+
+      switch(event.key) {
+
+        case 'b':
+          bassInteract();
+          break;
+        
+        case 'n':
+          snareInteract();
+          break;
+        
+        case 'm':
+          hihatInteract();
+          break;
+        
+        case 'v':
+          floorTomInteract();
+          break;
+
+        case 'f':
+          cymbalInteract();
+          break;
+
+        case 'g':
+          leftTomInteract();
+          break;
+
+        case 'h':
+          rightTomInteract();
+          break;
+
+      }
+
+    }
+
+  };
+
+  //attribute the clickable
+  //class to all drums
+  d3.selectAll('g').attr('class', 'clickable');
+
 </script>
+
+<style>
+  html {
+    font-family: Arial;
+  }
+  svg {
+    margin: 0;
+  }
+  .clickable:hover {
+    cursor: pointer;
+  }
+  .centered {
+    text-align: center;
+  }
+  .tooltips {
+    font-size: 25px;
+    user-select: none;
+    display: block;
+  }
+  table {
+    width: 50%;
+    text-align: center;
+  }
+</style>
+
