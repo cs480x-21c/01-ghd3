@@ -3,7 +3,7 @@ Assignment 1 - Hello World: GitHub and d3
 
 In this code I generated a pig using graphics primitives:
 
-http://nshedd.github.io/01-ghd3/index.
+http://nshedd.github.io/01-ghd3/index.html
 
 
 ![Piggy](piggy.png)
