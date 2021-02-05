@@ -5,26 +5,26 @@
 <svg id="vis"></svg>
 
 <script>
-  // Add an SVG
+
+  /***** INITIALIZATION *****/
+
+  // Add the base SVG
   var svg = d3.select('#vis')
   .attr('width', '100%')
   .attr('height', '100%')
   .style('background-color', 'black')
 
-
-  // Settings
+  // Set variables
   var numPrimitives = 500
   var width = document.getElementById('vis').clientWidth
   var height = document.getElementById('vis').clientWidth
   var polygonDim = 700
-
 
   // Data
   var squareData = []
   var circleData = []
   var polygonData = [ [0, polygonDim], [polygonDim, polygonDim], [polygonDim/2, 0] ]  
   var lineData = [ [50, 10], [100, 200], [150, 10] ]  
-
   var txtData = 
   [{
     title: 'CS 4802 - BioVisualization', 
@@ -34,79 +34,27 @@
     sierpinkski2: '(10th degree)'
   }]
 
+  // Polygon variables
+  var hull = d3.polygonHull(polygonData)
+  var line = d3.line().curve(d3.curveLinearClosed)
 
-  // Helper functions
+
+  /***** HELPER FUNCTIONS *****/
+
+  // Scale to place basic circles and squares
   var xscale = d3.scaleLinear()
   .domain([0, 100])
   .range([0, width])
 
+  // Place a given number of primatives at random locations
   function populateWithPrimitives(primitiveData) {
     for (var i = 0 ; i < numPrimitives ; i++) {
       primitiveData.push({x: Math.floor(Math.floor(Math.random() * 101)), y: Math.floor(Math.floor(Math.random() * 101))})
     }
   }
 
+  // Fire circle animation and toggle visibilities 
   function onClickMe() {
-    d3.select('#centerCircle')
-    .transition()
-    .duration(2000)
-    .attr('r', width)
-
-    d3.select('#circleTxt')
-    .transition()
-    .duration(2000)
-    .style('opacity', 0)
-    console.log("why")
-  }
-
-
-  // Add Rectangles
-  populateWithPrimitives(squareData)
-
-  svg.selectAll('rect')
-  .data(squareData)
-  .enter()
-  .append('rect')
-  .attr('x', function(d) { return xscale(d.x) })
-  .attr('y', function(d) { return xscale(d.y) })
-  .attr('width', 20)
-  .attr('height', 20)
-  .attr('fill', '#6564A6')
-  .on('mouseover', function() {
-    d3.select(this).attr('fill', '#81F495')
-  })
-
-  
-  // Add Circles
-  populateWithPrimitives(circleData)
-
-  svg.selectAll('circle')
-  .data(circleData)
-  .enter()
-  .append('circle')
-  .attr('cx', function(d) { return xscale(d.x) })
-  .attr('cy', function(d) { return xscale(d.y) })
-  .attr('r', 10)
-  .attr('fill', '#30C0D9')
-  .on('mouseover', function() {
-    d3.select(this).attr('fill', '#F3E43E')
-  })
-
-
-  var nodes = svg.selectAll("g")
-    .data(['Click me!'])
-    .enter();
-  var circleG = nodes.append("g")
-  var triangleG = nodes.append("g")
-
-  circleG.append("circle") 
-  .attr('id', 'centerCircle')
-  .attr('cx', '50%')
-  .attr('cy', '50%')
-  .attr('r', 100)
-  .attr('fill', 'white')
-  .on('click', function onClickMe() {
-
     d3.select('#centerCircle')
     .transition()
     .duration(2000)
@@ -127,9 +75,11 @@
     .duration(2000)
     .style('opacity', 0)
 
-    var hull = d3.polygonHull(polygonData)
-    var line = d3.line().curve(d3.curveLinearClosed)
+    createTriangles()
+  }
 
+  // Create, place, and style triangles
+  function createTriangles() {
     triangleG.append('path')
     .transition()
     .delay(2000)
@@ -141,9 +91,10 @@
     .attr('x', '50%')
     .attr('y', '50%')
     .on('end', function () {
-
+      // Make triangle <g> visible
       triangleG.style('opacity', 1)
 
+      // Add titles to second screen
       triangleG.append('text')
       .data(txtData)
       .text(function (d) {
@@ -170,7 +121,15 @@
       .style('font-family', 'Fraunces')
       .style('font-weight', 700)
 
-      triangleG.append('line')
+      createExit()   
+    })
+    // Create the sierpinski triangle fractal
+    sierpinskiTriangle(10, polygonDim, polygonDim, hull, line)
+  }
+
+  // Create an 'X' using lines
+  function createExit() {
+    triangleG.append('line')
       .attr('x1', width - 100)
       .attr('y1', 50)
       .attr('x2', width - 75)
@@ -178,21 +137,7 @@
       .attr('class', 'exit')
       .style('stroke', '#000000')
       .style('stroke-width', 5)
-      .on('click', function() {
-        triangleG.style('opacity', 0)
-
-        d3.select('#centerCircle')
-        .attr('r', 100)
-
-        d3.select('#circleTxt')
-        .style('opacity', 1)
-
-        d3.select('#title1')
-        .style('opacity', 1)
-
-        d3.select('#title2')
-        .style('opacity', 1)
-      })
+      .on('click', onExit)
 
       triangleG.append('line')
       .attr('x1', width - 75)
@@ -202,30 +147,76 @@
       .attr('class', 'exit')
       .style('stroke', '#000000')
       .style('stroke-width', 5)
-      .on('click', function() {
-        triangleG.style('opacity', 0)
+      .on('click', onExit) 
+  }
 
-        d3.select('#centerCircle')
-        .attr('r', 100)
+  // Reset to first screen when 'X' is clicked
+  function onExit() {
+    triangleG.style('opacity', 0)
 
-        d3.select('#circleTxt')
-        .style('opacity', 1)
+    d3.select('#centerCircle')
+    .attr('r', 100)
 
-        d3.select('#title1')
-        .style('opacity', 1)
+    d3.select('#circleTxt')
+    .style('opacity', 1)
 
-        d3.select('#title2')
-        .style('opacity', 1)
-      })    
-    })
+    d3.select('#title1')
+    .style('opacity', 1)
 
-    sierpinskiTriangle(10, polygonDim, polygonDim, hull, line)
+    d3.select('#title2')
+    .style('opacity', 1)
+  }
+
+
+  /***** CREATE PRIMATIVES *****/
+
+  // Add Rectangles
+  populateWithPrimitives(squareData)
+  svg.selectAll('rect')
+  .data(squareData)
+  .enter()
+  .append('rect')
+  .attr('x', function(d) { return xscale(d.x) })
+  .attr('y', function(d) { return xscale(d.y) })
+  .attr('width', 20)
+  .attr('height', 20)
+  .attr('fill', '#6564A6')
+  .on('mouseover', function() {
+    d3.select(this).attr('fill', '#81F495')
   })
 
+  // Add Circles
+  populateWithPrimitives(circleData)
+  svg.selectAll('circle')
+  .data(circleData)
+  .enter()
+  .append('circle')
+  .attr('cx', function(d) { return xscale(d.x) })
+  .attr('cy', function(d) { return xscale(d.y) })
+  .attr('r', 10)
+  .attr('fill', '#30C0D9')
+  .on('mouseover', function() {
+    d3.select(this).attr('fill', '#F3E43E')
+  })
 
+  // Create <g> elements 
+  var nodes = svg.selectAll("g").data(txtData).enter();
+  var circleG = nodes.append("g")
+  var triangleG = nodes.append("g")
+
+  // Create center circle
+  circleG.append("circle") 
+  .attr('id', 'centerCircle')
+  .attr('cx', '50%')
+  .attr('cy', '50%')
+  .attr('r', 100)
+  .attr('fill', 'white')
+  .on('click', onClickMe)
+
+  // Append text to center circle
   circleG.append('text')
   .text(function (d) {
-    return d
+    return d.label
   })
   .attr('id', 'circleTxt')
   .attr('text-anchor', 'middle')
@@ -235,20 +226,10 @@
   .style('fill', 'black')
   .style('font-family', 'Fraunces')
   .style('font-weight', 500)
-  .on('click', function () {
-    d3.select('#centerCircle')
-    .transition()
-    .duration(2000)
-    .attr('r', width)
-
-    d3.select('#circleTxt')
-    .transition()
-    .duration(2000)
-    .style('opacity', 0)
-  })
+  .on('click', onClickMe)
 
   
-  // Text
+  // Create titles (screen 1)
   svg
   .append('text')
   .data(txtData)
@@ -279,9 +260,7 @@
   .style('font-family', 'Fraunces')
 
 
-
-
-
+  /***** SIERPINSKI'S TRIANGLE VARIATION *****/
   function sierpinskiTriangle(numIterations, width, height, hull, line) {
     var iteration = 0
 
@@ -294,22 +273,86 @@
     var maxHeight = height
 
     while (iteration < numIterations) {
+      // Determine fill
+      var fill = getFill(iteration)
 
+      // Calculate width and height
       width = width/2
       height = (height / 2) + maxHeight/2
 
       if (iteration === 0) {
         height = maxHeight/2
       }
-
-      coordinates = calculateBottomLeftCoordinates(width, height, maxHeight, iteration) 
+      
+      // Calculate polygon coordinates, lines
+      var coordinates = calculateBottomLeftCoordinates(width, height, maxHeight, iteration) 
       var hull = d3.polygonHull(coordinates)
       var line = d3.line().curve(d3.curveLinearClosed)
 
-      var fill = '#6564A6'
-      if (iteration % 2) {
-        fill = '#30C0D9'
-      }
+      triangleG.append('path')
+      .transition()
+      .delay(2000)
+      .duration(1000)
+      .attr('d', line(hull))
+      .attr('fill', fill)
+      .attr('opacity', 1)      
+      iteration++
+
+    }
+  }
+
+  function drawBottomRightTriangles (width, height, iteration, numIterations) {
+    var maxHeight = height
+    var maxWidth = width
+    var offset = maxHeight
+
+    while (iteration < numIterations) {
+      // Determine fill
+      var fill = getFill(iteration)
+
+      // Calculate width and height
+      offset = offset / 2
+      width = width + offset
+      height = (height / 2) + maxHeight/2
+    
+      if (iteration === 0) {
+        height = maxHeight/2
+        width = maxWidth/2
+        fill = '#81F495'
+      } 
+
+      // Calculate polygon coordinates, lines
+      var coordinates = calculateBottomRightCoordinates(width, height, maxHeight, maxWidth, iteration, offset) 
+      var hull = d3.polygonHull(coordinates)
+      var line = d3.line().curve(d3.curveLinearClosed)
+
+      triangleG.append('path')
+      .transition()
+      .delay(2000)
+      .duration(1000)
+      .attr('d', line(hull))
+      .attr('fill', fill)
+      .attr('opacity', 1)
+      iteration++
+    }
+  }
+
+  function drawTopTriangles (width, height, iteration, numIterations) {
+    var maxHeight = height
+    var maxWidth = width
+
+    while (iteration < numIterations) {
+      // Determine fill
+      var fill = getFill(iteration)
+
+      // Calculate width and height
+      width = width / 2
+      height = height / 2 
+
+      // Calculate polygon coordinates, lines
+      var coordinates = calculateTopCoordinates(width, height, maxHeight, maxWidth, iteration) 
+      var hull = d3.polygonHull(coordinates)
+      var line = d3.line().curve(d3.curveLinearClosed)
 
       triangleG.append('path')
       .transition()
@@ -326,78 +369,18 @@
     return [ [width/2, height], [width*1.5, height], [width, maxHeight] ]
   }
 
-  function drawBottomRightTriangles (width, height, iteration, numIterations) {
-    var maxHeight = height
-    var maxWidth = width
-    var offset = maxHeight
-
-    while (iteration < numIterations) {
-
-      offset = offset / 2
-      width = width + offset
-      height = (height / 2) + maxHeight/2
-      
-      var fill = '#6564A6'
-      if (iteration % 2) {
-        fill = '#30C0D9'
-      }
-
-      if (iteration === 0) {
-        height = maxHeight/2
-        width = maxWidth/2
-        fill = '#81F495'
-      } 
-
-      coordinates = calculateBottomRightCoordinates(width, height, maxHeight, maxWidth, iteration, offset) 
-      var hull = d3.polygonHull(coordinates)
-      var line = d3.line().curve(d3.curveLinearClosed)
-
-      triangleG.append('path')
-      .transition()
-      .delay(2000)
-      .duration(1000)
-      .attr('d', line(hull))
-      .attr('fill', fill)
-      .attr('opacity', 1)
-      iteration++
-    }
-  }
-
   function calculateBottomRightCoordinates( width, height, maxHeight, maxWidth, iteration, offset) {
     return [ [width - offset/2, height], [width, maxHeight], [width + offset/2, height] ] 
   }
 
-  function drawTopTriangles (width, height, iteration, numIterations) {
-    var maxHeight = height
-    var maxWidth = width
-
-    while (iteration < numIterations) {
-
-      width = width / 2
-      height = height / 2 
-
-      coordinates = calculateTopCoordinates(width, height, maxHeight, maxWidth, iteration) 
-      var hull = d3.polygonHull(coordinates)
-      var line = d3.line().curve(d3.curveLinearClosed)
-
-      var fill = '#6564A6'
-      if (iteration % 2) {
-        fill = '#30C0D9'
-      }
-
-      triangleG.append('path')
-      .transition()
-      .delay(2000)
-      .duration(1000)
-      .attr('d', line(hull))
-      .attr('fill', fill)
-      .attr('opacity', 1)
-      iteration++
-    }
-  }
-
   function calculateTopCoordinates(width, height, maxHeight, maxWidth, iteration) {
     return [ [(maxWidth/2) - (width/2), height], [maxWidth/2, height*2], [(maxWidth/2) + (width/2), height] ] 
+  }
+
+  function getFill(iteration) {
+    if (iteration % 2) 
+      return '#30C0D9'
+    return '#6564A6'
   }
 
 
