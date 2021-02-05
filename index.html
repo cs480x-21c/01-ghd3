@@ -12,8 +12,8 @@
 
   var rectangleBackgroundSeat = [20, 50, 80];
 
-  var entireWidth = 1600;
-  var entireHeight = 900;
+  var entireWidth = 1400;
+  var entireHeight = 700;
   var svg = d3.select('#vis')
     .attr('width', entireWidth)
     .attr('height', entireHeight);
@@ -91,18 +91,11 @@
       rx: 54,
       ry: 77,
       fill: '#aa7d79'
-    }, // HEAD
-    {
-      cx: 692,
-      cy: 372,
-      rx: 40,
-      ry: 60,
-      fill: '#514138'
-      }
+    } // HEAD
   ]
   // Add Ellipses
   svg.selectAll('ellipse')
-    .data(elipses)
+    .data([elipses[0]])
     .enter().append('ellipse')
     .attr('cx', function(d) {
       return d.cx
@@ -172,17 +165,22 @@
   var polygon = [{
       points: "696,181 727,174 769,179 776,211 765,231 737,247 725,247 710,240 690,225",
       stroke: 'white',
-      fill: '#92c8eb'
+      fill: '#92c8eb' //mask
     },
     {
       points: "843,555 758,588 758,660 752,669 773,721 723,743 716,671 708,667  696,810 648,807 654,773 621,753 634,591 595,572 574,540 596,480 700,435 730,437",
       stroke: 'white',
-      fill: 'black'
+      fill: 'black' //pants
     },
     {
       points: "584,438 542,375 588,239 647,227 656,193 675,191 691,235 738,247 772,235 789,174 806,176 816,212 865,222 911,369 870,439 875,467 841,553 719,435 594,484 584,438",
       stroke: 'black',
-      fill: '#535250'
+      fill: '#535250' // body
+    },
+    {
+      points: "700,345 683,303 718,288 776,301 829,336 817,357 767,366 743,343 710,340",
+      stroke: 'black',
+      fill: 'grey' // mitten left
     }
   ]
   svg.selectAll('polygon')
@@ -277,4 +275,35 @@
       return d.strokeW
     });
 
+    var images = [{
+      link: 'images/mittenL.png',
+      x: 699,
+      y: 300,
+      width: 100,
+      height:100,
+      transform: ''//does not rotate 'rotate(180)'
+    }];
+
+    svg.selectAll('img')
+                    .data(images)
+                    .enter()
+                    .append('svg:image')
+                    .attr('xlink:href',  function(d) {
+                      return d.link
+                    })
+                    .attr('x',  function(d) {
+                      return d.x
+                    })
+                    .attr('y',  function(d) {
+                      return d.y
+                    })
+                    .attr('width',  function(d) {
+                      return d.width
+                    })
+                    .attr('height',  function(d) {
+                      return d.height
+                    })
+                    .attr('transform',  function(d) {
+                      return d.transform
+                    });
 </script>
