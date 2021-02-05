@@ -1,7 +1,7 @@
 Description
 ---
 
-I created a mildly faithful reproduction of Piet Mondrian's [Composition with Red Blue and Yellow] (https://en.wikipedia.org/wiki/Composition_with_Red_Blue_and_Yellow). Hovering over each of the colored squares will transform it into a different shape of the same color- the blue and yellow squares transform into circles and the red square becomes a seven-sided polygon.
+I created a mildly faithful reproduction of Piet Mondrian's [Composition with Red Blue and Yellow](https://en.wikipedia.org/wiki/Composition_with_Red_Blue_and_Yellow). Hovering over each of the colored squares will transform it into a different shape of the same color- the blue and yellow squares transform into circles and the red square becomes a seven-sided polygon.
 
 Working link to hosted files
 ---
