@@ -18,7 +18,8 @@ This project was inspired by the solar system. I included the order of plants, a
 the axis they all are on. I included some asteroids and other visuals as well.
 
 The following image is what I used to create a model of the solar system order.
-![ScreenShot] (https://github.com/danyabaron/01-ghd3/blob/main/solar-sysem.svg)
+
+![Screenshot](https://github.com/danyabaron/01-ghd3/blob/main/solar-sysem.svg)
 
 
 GitHub Details
