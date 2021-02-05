@@ -56,36 +56,105 @@ var svg = d3.select("#svgcontainer").append("svg").attr("width", 1700).attr("hei
 svg.append("line")
        .attr("x1", 100)
        .attr("x2", 800)
-       .attr("y1", 90)
-       .attr("y2", 90)
+       .attr("y1", 200)
+       .attr("y2", 200)
        .attr("stroke", "black")
 
   svg.append("line")
        .attr("x1", 800)
        .attr("x2", 1600)
-       .attr("y1", 90)
-       .attr("y2", 90)
+       .attr("y1", 200)
+       .attr("y2", 200)
        .attr("stroke", "black")
 
 
     //Create and append rectangle element
     svg.append("rect")
-            .attr("x", 800)
+            .attr("x", 1540)
             .attr("y", 400)
-            .attr("width", 200)
-            .attr("height", 100)
+            .attr("width", 70)
+            .attr("height", 70)
+            .attr('fill', '#99A7BA')
+            .attr("stroke", "black")
+
+
+    svg.append("rect")
+            .attr("x", 1300)
+            .attr("y", 500)
+            .attr("width", 70)
+            .attr("height", 70)
+            .attr('fill', '#99A7BA')
+            .attr("stroke", "black")
+           
+    svg.append("rect")
+            .attr("x", 1100)
+            .attr("y", 400)
+            .attr("width", 70)
+            .attr("height", 70)
+            .attr('fill', '#99A7BA')
+            .attr("stroke", "black")
+
+
+    svg.append("rect")
+            .attr("x", 900)
+            .attr("y", 500)
+            .attr("width", 70)
+            .attr("height", 70)
+            .attr('fill', '#99A7BA')
+            .attr("stroke", "black")
+
+    svg.append("rect")
+            .attr("x", 700)
+            .attr("y", 400)
+            .attr("width", 70)
+            .attr("height", 70)
+            .attr('fill', '#99A7BA')
+            .attr("stroke", "black")
+    
+    svg.append("rect")
+            .attr("x", 500)
+            .attr("y", 500)
+            .attr("width", 70)
+            .attr("height", 70)
+            .attr('fill', '#99A7BA')
+            .attr("stroke", "black")
+
+    svg.append("rect")
+            .attr("x", 700)
+            .attr("y", 400)
+            .attr("width", 70)
+            .attr("height", 70)
+            .attr('fill', '#99A7BA')
+            .attr("stroke", "black")
+            
+    svg.append("rect")
+            .attr("x", 300)
+            .attr("y", 400)
+            .attr("width", 70)
+            .attr("height", 70)
+            .attr('fill', '#99A7BA')
+            .attr("stroke", "black")
+
+    svg.append("rect")
+            .attr("x", 100)
+            .attr("y", 500)
+            .attr("width", 70)
+            .attr("height", 70)
+            .attr('fill', '#99A7BA')
+            .attr("stroke", "black")
+
 
     svg.append("polygon")
-      .attr("points", "0, 400 2000, 700 2000, 2000 0, 2000")
+      .attr("points", "0, 700 2000, 700 2000, 2000 0, 2000")
       .style("fill", "#67A9FA")
       .style("stroke", "black")
       .style("stroke-width", 2)
     
-  svg.append('text')
-    .attr("x", 630)
-     .attr("y", 580)
-     .attr("stroke", "#000000")
-     .text("Asteroid");
+  // svg.append('text')
+  //   .attr("x", 630)
+  //    .attr("y", 580)
+  //    .attr("stroke", "#000000")
+  //    .text("Asteroid");
 
 
 
