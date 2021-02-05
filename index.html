@@ -26,19 +26,19 @@
 
       // Add Lines
 
-      var linscale = 20;
-      var xLinPoints = [2, 1, 3, 2];
-      var yLinPoints = [1, 3, 3, 5];
+      const linScale = 20;
+      const xLinPoints = [2, 1, 3, 2];
+      const yLinPoints = [1, 3, 3, 5];
       var i;
       for (i = 0; i < xLinPoints.length-1; i++) {
         svg
           .append("line")
           .attr("class", "shape")
           .attr("class", "lines")
-          .attr("x1", xLinPoints[i] * linscale)
-          .attr("y1", yLinPoints[i] * linscale)
-          .attr("x2", xLinPoints[i+1] * linscale)
-          .attr("y2", yLinPoints[i+1] * linscale)
+          .attr("x1", xLinPoints[i] * linScale)
+          .attr("y1", yLinPoints[i] * linScale)
+          .attr("x2", xLinPoints[i+1] * linScale)
+          .attr("y2", yLinPoints[i+1] * linScale)
           .style("stroke", "black")
           .style("stroke-width", 4);
       }
