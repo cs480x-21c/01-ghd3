@@ -1,3 +1,18 @@
+Assignment 1 - Author Nicholas Wood
+
+Some images of the product (scary I know)
+
+![Base](DVPic1.png)
+![Red Eyes](DVPic2.png)
+
+Techical Achiievements 
+
+Clicking on the eyes will change the color from blue to red and back
+
+Design Achievements
+
+Its a creepy ice cream cone. However all the data for all shapes besides the rectanles are bound through arrays rather than manually created one by one.
+
 Assignment 1 - Hello World: GitHub and d3  
 ===
 
