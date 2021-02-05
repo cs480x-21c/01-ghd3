@@ -1,13 +1,18 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
-
-<div id="value"> </div>
+<div id="ytplayer"></div>
 <svg id="vis"> </svg>
 
 <script>
   console.log(d3); // test if d3 is loaded
 
-  var data = [10, 78, 15, 67, 93];
+  var dot_coords = [
+      {x:50, y:0},
+      {x:-50, y:0},
+      {x:-25, y:25*Math.sqrt(3)},
+      {x:25, y:25*Math.sqrt(3)},
+      {x:-25, y:-25*Math.sqrt(3)},
+      {x:25, y:-25*Math.sqrt(3)}];
 
   var width = 1000;
   var height = 1000;
@@ -18,29 +23,32 @@
       .attr('height', height);
 
   var xscale = d3.scaleLinear()
-      .domain([0, 100])
+      .domain([-100, 100])
       .range([0, width]);
 
   var yscale = d3.scaleLinear()
-      .domain([0, 100])
+      .domain([-100, 100])
       .range([0, height]);
   // Add Rectangles
+  svg.selectAll('rectangle')
 
   // Add Circles
   svg.selectAll('circle')
-      .data(data)
-      .enter().append('circle')
-      .attr('cy', 100)
-      .attr('cx', function(d) { console.log(d); return xscale(d); } )
-      .attr('r', 10)
-      .attr('fill', 'steelblue')
-      .on('mouseover', function(e, d) {
-          d3.select(this).attr('fill', 'brown');
-          d3.select('#value').text(d);
-      }).on('mouseout', function() {
-      d3.select(this)
-          .attr('fill', 'steelblue');
-  })
+        .data(dot_coords)
+        .enter().append('circle')
+        .attr('cy', function(d) { return xscale(d.y); })
+        .attr('cx', function(d) { return xscale(d.x); })
+        .attr('r', 10)
+        .attr('fill', 'steelblue')
+        .on('mouseover', function(e, d) {
+            d3.select(this)
+                .attr('fill', 'brown')
+                .attr('r', 15)
+        }).on('mouseout', function() {
+        d3.select(this)
+            .attr('fill', 'steelblue')
+            .attr('r', 10)
+        })
 
   // Add Lines
 
@@ -48,4 +56,23 @@
 
 </script>
 
+<!--- Video code from youtube
+<script>
+    // Load the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/player_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+    // Replace the 'ytplayer' element with an <iframe> and
+    // YouTube player after the API code downloads.
+    var player;
+    function onYouTubePlayerAPIReady() {
+        player = new YT.Player('ytplayer', {
+            height: '360',
+            width: '640',
+            videoId: 'thOifuHs6eY' //The bestagons
+        });
+    }
+</script>
+--->
