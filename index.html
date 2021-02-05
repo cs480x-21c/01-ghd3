@@ -1,5 +1,5 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
-
+<svg id="dataviz_area" height=1000 width=1000 style="background-color: darkslategrey"></svg>
 <script>
   console.log(d3); // test if d3 is loaded
   // Add an SVG
@@ -7,4 +7,153 @@
   // Add Circles
   // Add Lines
   // Add Polygons
+
+  var rectX = 180;
+
+var svg = d3.select("#dataviz_area")
+  svg.append('line')
+      .style("stroke", "green")
+      .style("stroke-width", 10)
+      .attr("x1", 200)
+      .attr("y1", 250)
+      .attr("x2", 140)
+      .attr("y2", 320);
+  svg.append('line')
+      .style("stroke", "green")
+      .style("stroke-width", 10)
+      .attr("x1", 200)
+      .attr("y1", 250)
+      .attr("x2", 260)
+      .attr("y2", 320);
+  svg.append('line')
+      .style("stroke", "green")
+      .style("stroke-width", 10)
+      .attr("x1", 200)
+      .attr("y1", 310)
+      .attr("x2", 260)
+      .attr("y2", 380);
+  svg.append('line')
+      .style("stroke", "green")
+      .style("stroke-width", 10)
+      .attr("x1", 200)
+      .attr("y1", 310)
+      .attr("x2", 140)
+      .attr("y2", 380);
+  svg.append("rect")
+      .attr("x",rectX)
+      .attr("y",220)
+      .attr("width",40)
+      .attr("height",120)
+      .attr("id","body")
+      .style("fill","red")
+      .on("mouseover",function (){
+          d3.select(this)
+          .transition()
+          .duration(1000)
+          .attr("x",rectX+60)
+          d3.selectAll("#surprised, #face")
+          .transition()
+          .duration(100)
+          .style("opacity",1)
+      })
+
+  svg.append("circle")
+      .attr("cx",200)
+      .attr("cy",200)
+      .attr("r",40)
+      .style("fill","blue")
+      .on("click",function (){
+          d3.selectAll("#face")
+          .transition()
+          .duration(200)
+          .style("opacity",1);
+      })
+  svg.append("polygon")
+      .attr("points","300,120 340,80 380,80 300,160")
+      .style("fill","yellow")
+      .style("stroke","black")
+      .style("strokeWidth","10px")
+  svg.append("polygon")
+      .attr("points","310,170 390,90 400,120 340,180")
+      .style("fill","yellow")
+      .style("stroke","black")
+      .style("strokeWidth","10px");
+  svg.append("rect")
+      .attr("x",500)
+      .attr("y",200)
+      .attr("width",200)
+      .attr("height",200)
+      .style("fill","gray")
+      .style("stroke","black")
+      .style("strokeWidth","10px");
+  svg.append("rect")
+      .attr("x",520)
+      .attr("y",240)
+      .attr("width",50)
+      .attr("height",50)
+      .style("fill","blue");
+  svg.append("rect")
+      .attr("x",620)
+      .attr("y",240)
+      .attr("width",50)
+      .attr("height",50)
+      .style("fill","blue");
+  svg.append("rect")
+      .attr("x",580)
+      .attr("y",300)
+      .attr("width",50)
+      .attr("height",100)
+      .style("fill","brown")
+      .attr("id","door");
+  svg.append("polygon")
+      .attr("points","500,200 700,200 600,120")
+      .style("fill","yellow")
+      .style("stroke","black")
+      .style("strokeWidth","10px")
+      //when roof is clicked
+      .on("click",function (){
+          //select the door
+          d3.select("#door")
+          //set opacity to 0 over 2 seconds
+          .transition()
+          .duration(2000)
+          .style("opacity",0);
+      })
+  svg.append("circle")
+      .attr("cx",190)
+      .attr("cy",190)
+      .attr("r",5)
+      .attr("id","face")
+      .style("fill","black")
+      .style("opacity",0)
+  svg.append("circle")
+      .attr("cx",210)
+      .attr("cy",190)
+      .attr("r",5)
+      .attr("id","face")
+      .style("fill","black")
+      .style("opacity",0)
+  svg.append("rect")
+      .attr("x",185)
+      .attr("y",210)
+      .attr("width",30)
+      .attr("height",8)
+      .attr("id","face")
+      .style("fill","black")
+      .style("opacity",0);
+  svg.append("circle")
+      .attr("cx",210)
+      .attr("cy",190)
+      .attr("r",8)
+      .attr("id","surprised")
+      .style("fill","white")
+      .style("opacity",0)
+  svg.append("circle")
+      .attr("cx",190)
+      .attr("cy",190)
+      .attr("r",8)
+      .attr("id","surprised")
+      .style("fill","white")
+      .style("opacity",0)
+
 </script>
