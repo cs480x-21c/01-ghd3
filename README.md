@@ -3,7 +3,7 @@ Assignment 1 - Hello World: GitHub and d3
 
 **Author Elene Kavtaradze**
 
-Link to gh-pages: https://ekavtaradze.github.io/01-ghd3/
+Link to gh-pages: https://ekavtaradze.github.io/01-ghd3/index.html
 
 Link to repo: https://github.com/ekavtaradze/01-ghd3
 
