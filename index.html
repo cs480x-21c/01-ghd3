@@ -52,11 +52,11 @@
         .append("rect")
         .attr("class", "shape rect")
         .attr("width", 600)
-        .attr("height", 400)
-        .attr("opacity", 0.2)
+        .attr("height", 300)
+        .attr("opacity", 0.5)
         .style("stroke", "black")
         .style("stroke-width", 10)
-        .style("fill", d3.schemeCategory10[Math.floor(Math.random() * 10)]);        
+        .style("fill", d3.schemePastel1[Math.floor(Math.random() * 9)]);        
 
       // Add Circles
       svg
@@ -72,7 +72,7 @@
       // adapted from https://observablehq.com/@d3/click-vs-drag?collection=@d3/d3-drag
       const circles = d3.range(circleNum).map((i) => ({
         x: Math.random() * (600 - roughRad * 2) + roughRad,
-        y: Math.random() * (400 - roughRad * 2) + roughRad,
+        y: Math.random() * (300 - roughRad * 2) + roughRad,
         r: (Math.random() + 1) * roughRad,
       }));
 
@@ -88,26 +88,35 @@
 
       // Add Lines
       const linScale = 20;
-      const lineData = [
-        {
-          x1: 1 * linScale,
-          y1: 3 * linScale,
-          x2: 2 * linScale,
-          y2: 1 * linScale,
-        },
-        {
-          x1: 1 * linScale,
-          y1: 3 * linScale,
-          x2: 3 * linScale,
-          y2: 3 * linScale,
-        },
-        {
-          x1: 3 * linScale,
-          y1: 3 * linScale,
-          x2: 2 * linScale,
-          y2: 5 * linScale,
-        },
-      ];
+      // const lineData = [
+      //   {
+      //     x1: 1 * linScale,
+      //     y1: 3 * linScale,
+      //     x2: 2 * linScale,
+      //     y2: 1 * linScale,
+      //   },
+      //   {
+      //     x1: 1 * linScale,
+      //     y1: 3 * linScale,
+      //     x2: 3 * linScale,
+      //     y2: 3 * linScale,
+      //   },
+      //   {
+      //     x1: 3 * linScale,
+      //     y1: 3 * linScale,
+      //     x2: 2 * linScale,
+      //     y2: 5 * linScale,
+      //   },
+      // ];
+
+      const lineData = d3.range(30).map((i) => ({
+        x1: Math.random() * (600 - 20 * 2) + 20,
+        y1: Math.random() * (300 - 20 * 2) + 20,
+        x2: Math.random() * (600 - 20 * 2) + 20,
+        y2: Math.random() * (300 - 20 * 2) + 20,
+
+      }));
+
       svg
         .selectAll("line")
         .data(lineData)
@@ -117,21 +126,18 @@
         .attr("y1", (d) => d.y1)
         .attr("x2", (d) => d.x2)
         .attr("y2", (d) => d.y2)
-        .style("stroke", "black")
+        .style("stroke", (d, i) => d3.schemeCategory10[i % 10])
         .style("stroke-width", 4);
 
       // Add Polygons
-      const polyData = [
-        { x: 150, y: 150 },
-        { x: 250, y: 150 },
-        { x: 250, y: 250 },
-        { x: 150, y: 250 },
-        { x: 150, y: 150 },
-      ];
+      // 
+      var stringPoly = "150,335 180,320 420,320 450,335 450,365 420,380 180,380 150,365";
 
-      var stringPoly = "150, 150 250,150 250,250 150,250 150,150";
-
-      svg.append("polygon").attr("points", stringPoly).style("stroke-width", 4);
+      svg
+        .append("polygon")
+        .attr("points", stringPoly)
+        .style("stroke-width", 4)
+        .style("fill", "brown");
     </script>
   </body>
 </html>
