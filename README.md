@@ -43,7 +43,7 @@ Technical Achievements:
 Every shape in this project used basic d3.js shapes. This started to become tedious so I think that
 this would not have been very effective in a larger scale project. Through this project I learned how to use HTML, JavaScript, and Github.
 I also learned some extra interactivity you can use in d3.js, such as transitions and mouseHover functions. I was able to learn
-how to change the size and shape of the circles on the page through mouse events ('mouseOver', 'mouseOut') with d3.js. I looked online for examples on how to
+how to change the size and color of the circles on the page through mouse events ('mouseOver', 'mouseOut') with d3.js. I looked online for examples on how to
 develop SVGs as well as using the interactive features of d3.js.
 
 Sources of Code:
