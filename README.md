@@ -105,7 +105,11 @@ These are the only way to move from B to A territory.
     - helped with promise syntax with d3.csv
 - https://www.dashingd3js.com/d3-tutorial
     - general help.
+- https://gramener.github.io/d3js-playbook/d3intro.html
+    - more help.
 - https://stackoverflow.com/questions/5788741/remove-commas-from-the-string-using-javascript
-    - string recplacement with regular expressions
+    - string recplacement with regular expressions.
 - https://stackoverflow.com/questions/3846015/flip-svg-coordinate-system/38811507#38811507
-    - inverting svg coordinate system
+    - inverting svg coordinate system.
+- https://bl.ocks.org/lwthatcher/5456840f796632c27edc813ce8ab4719
+    - polygon example

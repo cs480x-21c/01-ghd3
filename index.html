@@ -13,11 +13,11 @@
 
   <style>
     div {
-      border:3px solid purple;
+      /* border:3px solid purple; */
       overflow: hidden;
     }
     svg{
-      border:3px solid orange;
+      /* border:3px solid orange; */
     }
     p{
       padding:0px;
@@ -27,6 +27,7 @@
       width:max-content;
       height: min-content;
       float:left;
+      border:3px solid purple;
     }
     #mana_curve{
       width:min-content;
@@ -43,9 +44,8 @@
     #card_box{
       width: 150px;
       height: 210px;
+      border:3px solid orange;
     }
-
-
 
     svg.cartesian {
       display:flex;
@@ -83,6 +83,7 @@
     load_color_pie(decklist)
   }
   function load_deck_box(decklist){
+    var border_offset=5
     deck_box = d3.select("#deck_box")
           .selectAll("p")
           .data(decklist)
@@ -100,11 +101,28 @@
           });
   }
   function load_mana_scatterplot(decklist){
-    mana_curve = d3.select("#mana_scatterplot").append("svg")
+    var border_offset=5
+    mana_scatterplot = d3.select("#mana_scatterplot").append("svg")
         .attr('class','cartesian')
         .attr('width',1200)
-        .attr('height',125)
-        .selectAll('circle')
+        .attr('height',125);
+    var poly = [{"x":0, "y":0},
+        {"x":1200,"y":0},
+        {"x":1200,"y":125},
+        {"x":0,"y":125}];
+    
+    mana_scatterplot
+        .selectAll("polygon")
+        .data([poly])
+        .enter().append("polygon")
+        .attr("points",function(d) { 
+          return d.map(function(d) {
+            return [d.x,d.y].join(",");
+          }).join(" ");
+        })
+        .attr('fill','#fff1f3');
+
+    mana_scatterplot.selectAll('circle')
         .data(decklist)
         .enter()
         .append('circle')
@@ -144,32 +162,50 @@
           d3.select(this).attr('fill', 'black');
           // console.log(d.cardname);
         });
+    // mana_scatterplot.append("line").attr('x1',0).attr('y1',0).attr('x2',0).attr('y2',125).attr('stroke','purple').attr('stroke-width', border_offset);
+    // mana_scatterplot.append("line").attr('x1',0).attr('y1',0).attr('x2',1200).attr('y2',0).attr('stroke','purple').attr('stroke-width', border_offset);
+    // mana_scatterplot.append("line").attr('x1',1200).attr('y1',125).attr('x2',0).attr('y2',125).attr('stroke','purple').attr('stroke-width', border_offset);
+    // mana_scatterplot.append("line").attr('x1',1200).attr('y1',125).attr('x2',1200).attr('y2',0).attr('stroke','purple').attr('stroke-width', border_offset);
+
+    // var poly = [{"x":0, "y":0},
+    //     {"x":1200,"y":0},
+    //     {"x":1200,"y":125},
+    //     {"x":0,"y":125}];
+    
+    // mana_scatterplot
+    //     .selectAll("polygon")
+    //     .data([poly])
+    //     .enter().append("polygon")
+    //     .attr("points",function(d) { 
+    //       return d.map(function(d) {
+    //         return [d.x,d.y].join(",");
+    //       }).join(" ");
+    //     })
+    //     .attr('fill','pink');
   }
-  function load_color_pie(decklist){
-    deck_box = d3.select("#deck_box")
-  }
+ 
   var cmc_arr
   function load_mana_curve(decklist){
-    // cmc_arr=['0':0,'1':0,'2':0,'3':0,'4':0,'5':0,'6':0,'7':0,'8':0,'9':0,'10':0,'11':0,'12':0]
+    var border_offset=5
     cmc_arr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     for (var i =0; i<decklist.length; i++){
       cmc=decklist[i].cmc
       cmc_arr[cmc]+=(1*decklist[i].quantity)
     }
-    deck_box = d3.select("#mana_curve")
+    mana_curve = d3.select("#mana_curve")
       .append('svg')
       .attr('class','cartesian')
       .attr('width',600)
-      .attr("height",200)
-      .selectAll('rectangle')
+      .attr("height",200);
+    mana_curve.selectAll('rectangle')
       .data(cmc_arr)
       .enter()
       .append('rect')
-      .attr('x',function(d,i){ return (i*50)+i; })
-      .attr('y',0)
+      .attr('x',function(d,i){ return (i*50)+i+border_offset; })
+      .attr('y',border_offset)
       .attr('width',50)
       .attr('height',function(d){ return 5*d; })
-      .attr('border','1px solid black')
+      // .attr('border','1px solid black')
       .attr('id',function(d,i){ return i; })
       .attr('fill','gray')
       .on('mouseover',function(e,d){
@@ -191,6 +227,15 @@
         }
       });
 
+    mana_curve.append("line").attr('x1',0).attr('y1',0).attr('x2',0).attr('y2',200).attr('stroke','purple').attr('stroke-width', border_offset);
+    mana_curve.append("line").attr('x1',0).attr('y1',0).attr('x2',600).attr('y2',0).attr('stroke','purple').attr('stroke-width', border_offset);
+    mana_curve.append("line").attr('x1',600).attr('y1',200).attr('x2',0).attr('y2',200).attr('stroke','purple').attr('stroke-width', border_offset);
+    mana_curve.append("line").attr('x1',600).attr('y1',200).attr('x2',600).attr('y2',0).attr('stroke','purple').attr('stroke-width', border_offset);
+
+  }
+
+  function load_color_pie(decklist){
+    color_pie = d3.select("#color_pie")
   }
 
 
