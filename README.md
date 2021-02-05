@@ -17,9 +17,8 @@ Technical Achievement
 
 - I figured out how to removed elements from the canvas after they've already been placed.
 - I learned how to call functions when altering d3 elements and adding their attributes as well as send attributes to said functions such as when I use
-    >.each(function(d){
-    >  lineData.push([d.x,d.y])
-    >})
+    >.each(function(d){ lineData.push([d.x,d.y]) })
+    
     to add each shapes point to a list to generate the path later.
 - I learned how get colors from a palette instead of selecting colors individually as well as selecting a random color from said palette.
 
