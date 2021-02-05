@@ -1,86 +1,56 @@
 Assignment 1 - Hello World: GitHub and d3  
 ===
 
-This is a starting project to make sure you can write and host a webpage that generates graphics using d3. 
-
-The primary goal is to be able to generate graphics primitives (circles, rectangles, lines, polygons) at different locations on the screen with different colors. 
-
-The secondary goal is to introduce you to coding on GitHub, including creating a gh-pages branch to host your visualizations.
-
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, you **must identify** the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
-
-For example, you could download one of the d3.js examples, read it through so you understand what it's doing, and then change the appearance of the graphical output to use different color schemes, different primitive shapes, different layouts of the primitives, and so on.
-
-Resources
+Danya Baron
 ---
 
-If you need a JavaScript/HTML/CSS refresher, see [JavaScript Codeacademy](https://www.codecademy.com/en/tracks/javascript) or find one of your choosing on the web.
+Link to project: https://danyabaron.github.io/01-ghd3/
 
-If you need a Git/GitHub refreseher, some possible resources include [Getting Started with GitHub](https://help.github.com/categories/bootcamp/), the [GitHub Guides](https://guides.github.com/) (especially the ones on Hello World, and Understanding the GitHub Flow, and Forking Projects), and [CodeSchool's Try Git Course](https://www.codeschool.com/courses/try-git).
-
-Requirements
+Overview:
 ---
 
-1. Your project should contain at least four kinds of graphics primitives (circles, rectangles, lines, polygons) in different colors. 
-2. Your document should identify the source of the code if you start with code that you found. 
-3. Your code should be forked from the GitHub repo and linked using GitHub pages. See the "GitHub Details" section below for detailed instructions on how to do this.
+The primary goal is to be able to generate graphics primitives (circles, rectangles, lines, polygons) at different locations on the screen with different colors.
 
-GitHub Details
+Design Achievements:
 ---
+This project was inspired by the solar system. I included the order of planets, as well as 
+the axis they all are on. I included some asteroids and other visuals as well. I was able to change the color of the planets
+when they are hovered over by a mouse. 
 
-- Fork the GitHub Repository for Assignment 1. You now have a copy associated with your username.
-- Make changes to index.html to fulfill the project requirements. 
-- Make sure your "main" branch matches your "gh-pages" branch. See the GitHub Guides referenced above if you need help.
-- Edit the README.md with a link to your gh-pages site "http://YourUsernameGoesHere.github.io/01-ghd3/index.html".
+The following image is what I used to create a model of the solar system order.
 
-Submission Details
+![ScreenShot](https://github.com/danyabaron/01-ghd3/blob/main/solar-sysem.svg)
+
+
+The following image is a screenshot of my website.
+
+![ScreenShot](https://github.com/danyabaron/01-ghd3/blob/main/screenshot1.png)
+\
+This image is to show what happens when you hover over the 'Mars' planet. The circle increases in size and changes color.
+
+![ScreenShot](https://github.com/danyabaron/01-ghd3/blob/main/screenshot2.png)
+
+\
+This project consists of 9 circles that change color and size when hovered over by a mouse. There are also two lines connecting the 
+circles to portray an axis on which the planets lie on. There are 8 squares/rectangles total which represent asteroids and other objects
+that occur in outer space. On the bottom is a polygon that I used to represent a sky. 
+
+I used Adobe's color picker to pick out different colors for all of the shapes in this project: https://color.adobe.com/create/color-wheel
+
+\
+Technical Achievements:
 ---
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-- Note: name your pull request using the following scheme: 
-```
-a1-your Gh username-your first name-your lastname
+Every shape in this project used basic d3.js shapes. This started to become tedious so I think that
+this would not have been very effective in a larger scale project. Through this project I learned how to use HTML, JavaScript, and Github.
+I also learned some extra interactivity you can use in d3.js, such as transitions and mouseHover functions. I was able to learn
+how to change the size and color of the circles on the page through mouse events ('mouseOver', 'mouseOut') with d3.js. I looked online for examples on how to
+develop SVGs as well as using the interactive features of d3.js.
 
-```
-
-Vis Details
+Sources of Code:
 ---
+The code to create SVG elements in index.html is based off examples seen here: https://www.tutorialsteacher.com/d3js/create-svg-elements-in-d3js
 
-For this project you should use d3.js. 
-You can learn from examples on the [d3.js](http://d3js.org) site or start from scratch.
+I used this link to help me understand how transitions and mouse events work in d3.js: http://jonathansoma.com/tutorials/d3/clicking-and-hovering/
 
-See the [Using d3js](https://github.com/mbostock/d3/wiki#using) documentation for how to run your own local server.
 
-Creative solutions are welcome! In the past I've seen recreations of paintings, interactives, and more.
-
-Go beyond the minimum requirements of this project.
-Experiment with other aspects of the [d3 API](https://github.com/mbostock/d3/wiki/API-Reference) and [d3 Tutorials](https://github.com/mbostock/d3/wiki/Tutorials). 
-Try making the elements interactive, for example, or animate them.
-
-Grading
----
-
-Grades are on a 120 point scale. 
-96 points will be graded for functionality: the program does what the assignment requests with an informative README. 
-
-We will use Google Chrome to view submissions. 
-Be sure to test your code there.
-
-Below are some, but not necessarily all, of the key points we will consider during grading:
-
-- Circles and Rectangles  
-- Lines  
-- Polygons  
-- Different colors  
-- README Quality
-    - A description of what you have created. 1-2 screenshots are recommended for the README.  
-    - A working link to the hosted files (usually the gh-pages 'live' url)  
-    - Section for Technical and Design Achievements
-
-Technical Achievement Desription -- 12  
-Design Achievement Description -- 12
-
-Remember, it is up to *you* to define what constitutes a technical and design achievements.
-Be ambitious as these are designed to allow you to shape your learning.
-These are the only way to move from B to A territory.
 
