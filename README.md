@@ -9,8 +9,12 @@ the circles by a tag that they have set.
 ![CircleRender1](images/Circle1.PNG)
 ![CircleRender2](images/Circle2.PNG)
 
-The line incorperates a button which then uses d3 to select the line and create random start 
-and end points within the container.
+The line d3 render also incorperates a button which then uses d3 to select the line and create 
+random start and end points within the container.
+
+![LineRender1](images/LineRender1.PNG)
+![LineRender2](images/LineRender2.PNG)
+
 
 <h1>Technical Achievement Description</h1>
 <h1>Design Achievement Description -- 12</h1>
