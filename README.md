@@ -1,4 +1,4 @@
-<h1>Live Link: <Link>https://krhodes-cs4802.herokuapp.com/project1</Link></h1>
+<h1>Live Link: </h1><h3><Link>https://krhodes-cs4802.herokuapp.com/project1</Link></h3>
 
 <h1>Project Description</h1>
 
