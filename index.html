@@ -1,10 +1,235 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<header>
+    <nav>
+        This is my first D3 homework. I watched a online Youtube tutorial, some methods are from that video
+        Have a nice day. Thank you :)
+        Name: Haowen Wei
+        Student ID: 160407310
+    </nav>
+
+    <iframe
+            width="560" height="315"
+            src="https://www.youtube.com/embed/_8V5o2UHG0E" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+
+    </iframe>
+
+</header>
+<br/>
+<hr>
+
+<body>
+
+<svg width="1000" height="1200"></svg>
+
 <script>
   console.log(d3); // test if d3 is loaded
+
   // Add an SVG
+  // making the back ground blue
+  const svg = d3.select('svg')
+  svg.style('background-color', '42f5e3');
+
+
+  // some global variable for drawing
+
+
   // Add Rectangles
+  const rectangle_1 = svg.append('rect')
+      .attr('x', 100)
+      .attr('y', 100)
+      .attr('width', 100)
+      .attr('height', 40)
+      .attr('stroke', 'black')
+      .attr('fill', 'red');
+
+  const rectangles_2 = svg.append('rect')
+      .attr('x', 200)
+      .attr('y', 100)
+      .attr('width', 100)
+      .attr('height', 40)
+      .attr('stroke', 'black')
+      .attr('fill', 'green');
+
+  const rectangles_3 = svg.append('rect')
+      .attr('x', 300)
+      .attr('y', 100)
+      .attr('width', 100)
+      .attr('height', 40)
+      .attr('stroke', 'black')
+      .attr('fill', 'black');
+
+  const rectangles_4 = svg.append('rect')
+      .attr('x', 400)
+      .attr('y', 100)
+      .attr('width', 100)
+      .attr('height', 40)
+      .attr('stroke', 'black')
+      .attr('fill', 'yellow');
+
+
   // Add Circles
+  const circlesX = 400
+  const circlesY = 300
+
+
+  const circle_1 = svg.append('circle')
+      .attr('r', 100)
+      .attr('cx', circlesX)
+      .attr('cy', circlesY)
+      .attr('fill', 'red')
+      .attr('stroke', 'black');
+  const circle_2 = svg.append('circle')
+      .attr('r', 80)
+      .attr('cx', circlesX)
+      .attr('cy', circlesY)
+      .attr('fill', 'yellow')
+      .attr('stroke', 'black');
+  const circle_3 = svg.append('circle')
+      .attr('r', 60)
+      .attr('cx', circlesX)
+      .attr('cy', circlesY)
+      .attr('fill', 'green')
+      .attr('stroke', 'black');
+  const circle_4 = svg.append('circle')
+      .attr('r', 40)
+      .attr('cx', circlesX)
+      .attr('cy', circlesY)
+      .attr('fill', 'yellow')
+      .attr('stroke', 'black');
+
+  const circle_5 = svg.append('circle')
+      .attr('r', 20)
+      .attr('cx', circlesX)
+      .attr('cy', circlesY)
+      .attr('fill', 'blue')
+      .attr('stroke', 'black');
+
+
   // Add Lines
+  const line_1 = svg.append('line')
+      .style("stroke", "black")
+      .style("stroke-width", 10)
+      .attr("x1", 0)
+      .attr("y1", 500)
+      .attr("x2", 330)
+      .attr("y2", 500);
+
+  const line_2 = svg.append('line')
+      .style("stroke", "black")
+      .style("stroke-width", 10)
+      .attr("x1", 0)
+      .attr("y1", 600)
+      .attr("x2", 670)
+      .attr("y2", 600);
+
+  const line_3 = svg.append('line')
+      .style("stroke", "black")
+      .style("stroke-width", 10)
+      .attr("x1", 0)
+      .attr("y1", 700)
+      .attr("x2", 1000)
+      .attr("y2", 700);
+
+  const line_4 = svg.append('line')
+      .style("stroke", "black")
+      .style("stroke-width", 10)
+      .attr("x1", 0)
+      .attr("y1", 400)
+      .attr("x2", 1000)
+      .attr("y2", 700);
+
+
+
   // Add Polygons
+
+
+  const polygon_1 = svg.append("polygon")
+      .attr("points", "800,200 700,300 900,210, 950, 100 ")
+      .style("fill", "green")
+      .style("stroke", "black")
+      .style("strokeWidth", "10px");
+
+
+  // combine the circle and rectangles and line to create a face
+
+  const polygon_2 = svg.append("polygon")
+      .attr("points", '0,720 800,720 800,1000  900,1170  100,1170 ')
+      .style("fill", "red")
+      .style("stroke", "black")
+      .style("strokeWidth", "10px");
+
+  const circleX = 400
+  const circleY = 1000
+
+  const eyeSpacing = 50;
+  const eyeOffset = -50;
+  const mouthOffset = 80;
+
+  const face = svg.append('circle')
+      .attr('r', 150)
+      .attr('cx', circleX)
+      .attr('cy', circleY)
+      .attr('fill', 'yellow')
+      .attr('stroke', 'black');
+
+  const leftEye = svg.append('circle')
+      .attr('r', 30)
+      .attr('cx', circleX-eyeSpacing)
+      .attr('cy', circleY+eyeOffset)
+      .attr('fill', 'black')
+
+  const rightEye = svg.append('circle')
+      .attr('r', 30)
+      .attr('cx', circleX+eyeSpacing)
+      .attr('cy', circleY+eyeOffset)
+      .attr('fill', 'black')
+
+  // create a nose
+  const nose = svg.append('circle')
+      .attr('r', 20)
+      .attr('cx', circleX)
+      .attr('cy', circleY)
+      .attr('fill', 'red')
+
+  // create mouth
+  const mouth_1 = svg.append('circle')
+      .attr('r', 50)
+      .attr('cx', circleX)
+      .attr('cy', circleY+mouthOffset)
+      .attr('fill', 'red')
+
+  const mouth_2 = svg.append('circle')
+      .attr('r', 50)
+      .attr('cx', circleX)
+      .attr('cy', circleY+mouthOffset-10)
+      .attr('fill', 'yellow')
+
+  // create heat
+
+
+  const heat_1 = svg.append('rect')
+      .attr('x', circleX-200)
+      .attr('y', circleY-150)
+      .attr('width', 400)
+      .attr('height', 40)
+      .attr('stroke', 'black')
+      .attr('fill', 'green');
+
+  const heat_2 = svg.append('rect')
+      .attr('x', circleX-100)
+      .attr('y', circleY-250)
+      .attr('width', 200)
+      .attr('height', 100)
+      .attr('stroke', 'black')
+      .attr('fill', 'black');
+
+
+
 </script>
+
+
+
+</body>
