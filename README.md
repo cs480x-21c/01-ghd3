@@ -7,80 +7,28 @@ The primary goal is to be able to generate graphics primitives (circles, rectang
 
 The secondary goal is to introduce you to coding on GitHub, including creating a gh-pages branch to host your visualizations.
 
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, you **must identify** the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
+Live Updating Site:
+https://truongshan.github.io/01-ghd3/index.html
 
-For example, you could download one of the d3.js examples, read it through so you understand what it's doing, and then change the appearance of the graphical output to use different color schemes, different primitive shapes, different layouts of the primitives, and so on.
 
-Resources
----
+Tutorials used:
+https://bost.ocks.org/mike/circles/
+https://bost.ocks.org/mike/transition/
 
-If you need a JavaScript/HTML/CSS refresher, see [JavaScript Codeacademy](https://www.codecademy.com/en/tracks/javascript) or find one of your choosing on the web.
+<img src="image1.jpg" width="500">
 
-If you need a Git/GitHub refreseher, some possible resources include [Getting Started with GitHub](https://help.github.com/categories/bootcamp/), the [GitHub Guides](https://guides.github.com/) (especially the ones on Hello World, and Understanding the GitHub Flow, and Forking Projects), and [CodeSchool's Try Git Course](https://www.codeschool.com/courses/try-git).
+In this creation, it is a basic graphic utilizing graphic primitives. These primitives are generated at different locations on the screen with varying colors. 
+Additionally, the blue rectangle acts as a button and has a mouse event in which when clicked upon, it reloads the page to go through the color sequence of the three circles.
+These creations were based upon the tutorials listed in which I learned the basics about data binding as seen in the source code. I also learned more about the formatting and layout of the graphics using d3 capabilities also seen in the code. Finally, I learned about the different attributes associated with the graphic primitives and the basic code structure.
 
-Requirements
----
+Technical/Design Achievement
+===
 
-1. Your project should contain at least four kinds of graphics primitives (circles, rectangles, lines, polygons) in different colors. 
-2. Your document should identify the source of the code if you start with code that you found. 
-3. Your code should be forked from the GitHub repo and linked using GitHub pages. See the "GitHub Details" section below for detailed instructions on how to do this.
+The design achievement in this project was done with the color transition changes in the three circles. It was done utilizing the basics that introduced in the tutorial with the three circles. The design achievement shows the transition of colors sequentially.
 
-GitHub Details
----
+As for the technical achievement, this was done with the transition button in order to restart the transition of colors. The button itself reloads the webpage and graphic to restart the color sequence once the user initiates the click event. 
 
-- Fork the GitHub Repository for Assignment 1. You now have a copy associated with your username.
-- Make changes to index.html to fulfill the project requirements. 
-- Make sure your "main" branch matches your "gh-pages" branch. See the GitHub Guides referenced above if you need help.
-- Edit the README.md with a link to your gh-pages site "http://YourUsernameGoesHere.github.io/01-ghd3/index.html".
+It is important to point out the commented code at the bottom of the file. This code isn't functioning and it is unclear why. The purpose of this was to create a line in which the user would be able to select and drag. The selection would be registered. While looking in multiple places and various sources to find out the bug in my code, it is still unclear why the dragging option is not functioning. Further research was attempted in order to try to explore more about d3 and learn more about its capabilities. 
 
-Submission Details
----
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-- Note: name your pull request using the following scheme: 
-```
-a1-your Gh username-your first name-your lastname
-
-```
-
-Vis Details
----
-
-For this project you should use d3.js. 
-You can learn from examples on the [d3.js](http://d3js.org) site or start from scratch.
-
-See the [Using d3js](https://github.com/mbostock/d3/wiki#using) documentation for how to run your own local server.
-
-Creative solutions are welcome! In the past I've seen recreations of paintings, interactives, and more.
-
-Go beyond the minimum requirements of this project.
-Experiment with other aspects of the [d3 API](https://github.com/mbostock/d3/wiki/API-Reference) and [d3 Tutorials](https://github.com/mbostock/d3/wiki/Tutorials). 
-Try making the elements interactive, for example, or animate them.
-
-Grading
----
-
-Grades are on a 120 point scale. 
-96 points will be graded for functionality: the program does what the assignment requests with an informative README. 
-
-We will use Google Chrome to view submissions. 
-Be sure to test your code there.
-
-Below are some, but not necessarily all, of the key points we will consider during grading:
-
-- Circles and Rectangles  
-- Lines  
-- Polygons  
-- Different colors  
-- README Quality
-    - A description of what you have created. 1-2 screenshots are recommended for the README.  
-    - A working link to the hosted files (usually the gh-pages 'live' url)  
-    - Section for Technical and Design Achievements
-
-Technical Achievement Desription -- 12  
-Design Achievement Description -- 12
-
-Remember, it is up to *you* to define what constitutes a technical and design achievements.
-Be ambitious as these are designed to allow you to shape your learning.
-These are the only way to move from B to A territory.
-
+This is one of the many sources I looked into for debugging of the code. This link was provided on the d3 github.
+https://observablehq.com/@d3/circle-dragging-ii
