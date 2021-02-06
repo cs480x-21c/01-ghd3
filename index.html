@@ -1,10 +1,137 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
-
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+<html>
+<head>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <title>Lucas Fernandes Assignment 1</title>
+</head>
+<body>
+  <div id="container"></div>
+  <div id="controls">
+    <h1 id="title">HOT STREAK</h1>
+    <h2 id="subtitle">Keep clicking the correct circle!</h2>
+    <h2 id="subtitle">See how fast you can go!</h2>
+    <svg id="underline"></svg>
+    <div id="rulesContainer">
+      <h2 id="rules">Rules</h2>
+      <h3 id="listrules">1. Click on the purple circle to gain 1 point to your streak</h3>
+      <h3 id="listrules">2. Click on any other circle resets your score to zero</h3>
+      <h1 id="score">Current Streak: 0</h1>
+    </div>
+    <svg id="rectangle"></svg>
+    <svg id="polygon"></svg>
+  </div>
+  <script>
+    var body = d3.select("body")
+      .style("display","flex");
+    var controls = d3.select("#controls")
+      .style("background-color", "rgb(231, 111, 81)")
+      .style("height","100%")
+      .style("width", "60%");
+    var title = d3.select("#title")
+    .style("color","white")
+    .style("font-size","10vh")
+    .style("width","fit-content")
+    .style("margin","auto");
+    var subtitle = d3.selectAll("#subtitle")
+    .style("color","white")
+    .style("font-size","5vh")
+    .style("width","fit-content")
+    .style("margin","auto")
+    .style("padding-bottom","1vh");
+    var rules = d3.select("#rules")
+    .style("color","white")
+    .style("font-size","8vh")
+    .style("width","fit-content")
+    .style("margin","auto")
+    .style("padding-top","6vh")
+    .style("padding-bottom","1vh");
+    var svgLine = d3.select("#underline")
+      .style("width","100%")
+      .style("height","30")
+      .style("padding-bottom",".2vh");
+    svgLine.append("line")
+    .attr("x1","10%")
+    .attr("x2","90%")
+    .attr("y1","20")
+    .attr("y2","20")
+    .style("stroke", "rgb(255,255,255)")
+    .style("stroke-width", 5);
+    var listrules = d3.selectAll("#listrules")
+    .style("color","white")
+    .style("font-size","4vh")
+    .style("width","fit-content")
+    .style("margin","auto")
+    .style("padding-bottom","1.5vh");
+    var currentScore = d3.select("#score")
+      .style("color","white")
+      .style("font-size","6vh")
+      .style("width","fit-content")
+      .style("margin","auto")
+      .style("padding-top","9vh");
+    var svgContainer = d3.select("#container")
+      .style("height","100%")
+      .style("width", "40%")
+      .style("background-color", "rgb(233, 196, 106)");
+    var svg = d3.select("#container")
+      .append("svg")
+      .style("width", "100%")
+      .style("height", "100%")
+      .style("margin", "auto");
+    var rectangle = d3.select("#rectangle")
+      .style("width","100%")
+      .style("height", "45");
+    rectangle.append("rect")
+      .attr("height","40")
+      .attr("width","80%")
+      .attr("x", "10%")
+      .attr("y", 0)
+      .attr("fill","white");
+    poly = [{"x": 0.0, "y":25.0},
+            {"x": 50.0, "y":25.0},
+            {"x": 25.0, "y":50.0}];
+    var polygon = d3.select("#polygon")
+      .style("width","100%")
+      .style("height", "100")
+      .append("polygon")
+      .attr("points", "150,0 1000,0 600,90")
+      .style("fill", "white");
+    var data =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+    var circleSet = svg.selectAll("circle")
+      .data(data)
+      .enter()
+      .append("circle")
+      .style("cy", function(d,i){
+          if(i<4){return "20vh"}
+          else if(4 <= i && i < 8){return "40vh"}
+          else if(8 <= i && i < 12){return "60vh"}
+          else if(12 <= i < 16){return "80vh"};
+      })
+      .style("cx", function(d, i) { 
+        return ((i % 4) * 10 + 5) + "vw"; 
+      })
+      .attr("r", "4vh")
+      .attr("fill", "rgb(122, 145, 141)")
+      .attr('id', function(d,i){return "c"+i;});
+    var initialRandom = Math.floor(Math.random() * data.length);
+    var totalPoints = 0;
+    var newSelection = initialRandom;
+    d3.select("#c"+initialRandom).style("fill", "rgb(95, 0, 186)");
+    //Variables and function to ensure no repeating circles
+    circleSet.on("click", function(){
+      // Call random to prepare next circle whether a hit or miss
+      newSelection = Math.floor(Math.random() * data.length);
+      if(d3.select(this).style("fill") === "rgb(95, 0, 186)"){
+        // HIT
+        d3.select(this).style("fill", "rgb(122, 145, 141)");
+        d3.select("#c" + newSelection).style("fill", "rgb(95, 0, 186)");
+        totalPoints++;
+      } else{
+        // MISS
+        d3.selectAll("circle").style("fill", "rgb(122, 145, 141)");
+        d3.select("#c" + newSelection).style("fill", "rgb(95, 0, 186)");
+        totalPoints = 0;
+      }
+      currentScore.text("Current Streak: " + totalPoints);
+    });
+  </script>
+</body>
+</html>
