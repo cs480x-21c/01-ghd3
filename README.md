@@ -20,12 +20,12 @@ random start and end points within the container.
 
 <h1>Technical Achievement Description</h1>
     To go above and beyond with the technical achievement I did this project inside of a react app.
-I chose this for two reasons, the first being that I spent some time over break learning how
-o use react.js along with Django to have a dynamic react server to load the database created with 
-django. By doing this project in react I can extend my perosnal website to include content from this
-classes projects. This will also help with future assignments, as my other projects can extend this 
-react app and serve as a portfolio for my classwork. In addition, hopfully I will figure out hosting 
-the django server and be able to load database information into some d3 visualizations in future projects.
+I chose this for two reasons, the first being that I spent some time over break learning how to use 
+react.js along with Django to have a dynamic react server to load the database created with django. 
+By doing this project in react I can extend my perosnal website to include content from this classes 
+projects. This will also help with future assignments, as my other projects can extend this react app 
+and serve as a portfolio for my classwork. In addition, hopfully I will figure out hosting the django 
+server and be able to load database information into some d3 visualizations in future projects.
 
 <h1>Design Achievement Description</h1>
     To improve the design of my project I tried to seperate areas of concern for grading by seperating different
