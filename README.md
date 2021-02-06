@@ -9,6 +9,8 @@ In this homework, I draw different shapes with different colors using d3.
 
 I first draw all the requred shaped in the grading list (Lines, Polygons, Circles, Rectangles, Colors). Then I created a smile face using those shapes with different color and some extra design technics.
 
+![test](https://user-images.githubusercontent.com/59973823/107105579-1ad8db00-67f5-11eb-9e9e-7ebfe33a2ea8.PNG)
+
 
 Resources
 ---
