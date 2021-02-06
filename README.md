@@ -6,8 +6,8 @@ d3. The four components I made each correspond to a project requirment (Rectangl
 Polygon, Line, Color). The circles use a function to randomly choose a radius, and selects 
 the circles by a tag that they have set. 
 
-<img src=“Circle1.png” raw=true alt=“Check1”></img>
-<img src=“Circle2.png” raw=true alt=“Check1”></img>
+<img src=“images/Circle1.png” raw=true alt=“Check1”></img>
+<img src=“images/Circle2.png” raw=true alt=“Check1”></img>
 
 The line incorperates a button which then uses d3 to select the line and create random start 
 and end points within the container.
