@@ -1,10 +1,28 @@
+<!DOCTYPE html>
+<head>
+<title>A Funky Color Wheel</title>
+<link rel="stylesheet" href="style.css">
+</head>
 <script src="https://d3js.org/d3.v6.min.js"></script>
+<body>
+<svg id="backgroundPattern" width="100%" height="100%"></svg>
+<div id="colorWheelInteractive">
+<canvas id="canvas" width="300vmin" height="300vmin"></canvas>
+<div id="controls">
+    
+    <label id="satChromaToggle" class="switch">
+        <input type="checkbox" checked="true">
+        <span class="slider round"></span>
+    </label>
+    <!--<label id="scrollSatToggle" class="switch">
+        <input type="checkbox" checked="true">
+        <span class="slider round"></span>
+    </label>-->
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+    <input id='saturationSlider' type="range" class="vert saturation" orient="vertical" min="0" max="100" step="1" value="90"></input><br>
+    <input id="saturationText" class="saturation" type="text" value="90"></input>
+</div>
+<!--<div id="satScrollArea"><div id="satScrollOverflow"></div></div>-->
+</div>
+<script src="main.js"></script>
+</body>
