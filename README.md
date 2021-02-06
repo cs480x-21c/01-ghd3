@@ -9,15 +9,18 @@ This project visualizes the most popular names in Puerto Rico from 1998 to 2017,
 
 The title of the page is created by using textpath and is inspired by the SVG documentation on text path (https://developer.mozilla.org/en-US/docs/Web/SVG/Element/textPath). 
 
+![Title](img/title.png)
+
 The circles are directly proportionate to the number of people with the name below the circle. As the circles' x and y coordinates increase, so does the RGB values of the circle. 
 
 Below the diagonal line of circles, there is a polygon in the shape of the mainland of Puerto Rico with the use of lines to create the outline of the flag on top of it (without the star)
 
+![Circles](img/circles.png)
+
 Below the polygon, there are a set of rectangles that show the number of people with each name in a different way. Like the circles, the position of the rectangle influences the color that it is. 
 
-![Title-Image](img/circle.png)
+![Rectangles](img/rectangles.png)
 
-Screenshot 2
 
 Technical Achievement Desription
 - I downloaded the data from this website(https://www.ssa.gov/oact/babynames/limits.html), changed it to an appropriate csv format, filtered it's contents in script.js to only use the most popular names per year, and used that data to create the shapes and influence their colors. 
