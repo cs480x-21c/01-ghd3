@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+<p id = 'para'>Hello world</p>
+<div id="wrapper" >
+    <svg id="workspace" height="900" width="1000"></svg>
+</div>
+</body>
+</html>
+
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
+<script>
+    const HEIGHT = 900;
+    const WIDTH = 1000;
+    const STAR = [0,6, 24,6, 4.5,15, 12,0, 19.5,15]
+
+    let svg = d3.select('#workspace');
+    // WriteToFile()
+
+    function arrToPoints(arr) {
+        let arrStr = ''
+        arr.forEach(function(item, index, array) {
+            arrStr += item
+            if (index % 2 == 0) {
+                arrStr += ','
+            }
+            else {
+                arrStr += ' '
+            }
+        })
+        return arrStr;
+    }
+
+    function changeStarXOrYBy(arr, startIndex, endIndex, amount) {
+        for (xpt = startIndex; xpt < endIndex; xpt += 2) {
+            arr[xpt] += amount;
+            arr[xpt] = Math.round(arr[xpt])
+        }
+        return arr
+    }
+
+    function addPt(event) {
+        let para = document.getElementById('para');
+        let x = event.offsetX - 12
+        let y = event.offsetY - 7
+        para.appendChild(document.createTextNode(x))
+        currPts = [...STAR]
+        currPts = changeStarXOrYBy(currPts, 0, 9, x)
+        currPts = changeStarXOrYBy(currPts, 1, 10, y)
+        para.append(document.createElement("br"))
+        para.appendChild(document.createTextNode(arrToPoints(currPts)))
+        svg.append('polygon')
+            .attr('points', arrToPoints(currPts))
+            .style('fill', 'white');
+    }
+
+    svg.append('rect')
+        .attr('x', 0)  // top left corner
+        .attr('y', 0)  // x,y coords from origin top left
+        .attr('width', WIDTH)
+        .attr('height', HEIGHT)
+        .attr('fill', '#304DE7')
+        // .on('mouseenter', function() {
+        //     d3.select(this)
+        //         .attr('fill', 'steelblue');
+        // })
+        // .on('mouseout', function() {
+        //     d3.select(this)
+        //         .attr('fill', '#304DE7');
+        // })
+        .on('click', function(event) {
+            addPt(event)
+        })
+
+</script>

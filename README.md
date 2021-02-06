@@ -1,86 +1,64 @@
-Assignment 1 - Hello World: GitHub and d3  
-===
+# Assignment 1 - Stars: GitHub and d3  
 
-This is a starting project to make sure you can write and host a webpage that generates graphics using d3. 
+Website: [masun77.github.io/01-ghd3/](https://masun77.github.io/01-ghd3/)
 
-The primary goal is to be able to generate graphics primitives (circles, rectangles, lines, polygons) at different locations on the screen with different colors. 
+### Description
 
-The secondary goal is to introduce you to coding on GitHub, including creating a gh-pages branch to host your visualizations.
+This webpage runs on Github Pages. It uses HTML, JavaScript, and the d3 library to generate circles, rectangles, lines, and polygons in different colors at different locations around the screen.
 
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, you **must identify** the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
+The website can show two graphics. One is the American flag, one is part of the night sky 
+that's visible in the northern hemisphere in February. Screenshots are shown below:
 
-For example, you could download one of the d3.js examples, read it through so you understand what it's doing, and then change the appearance of the graphical output to use different color schemes, different primitive shapes, different layouts of the primitives, and so on.
+![img.png](img.png)
+![img_1.png](img_1.png)
 
-Resources
----
+There are 2 circles: red and blue. Clicking the blue circle shows the night sky; clicking the red circle shows the American 
+flag. Rectangles are used to form the American flag stripes and the background for the sky. The lines point out some constellations that are visible right now; mousing over a constellation line will make its name show up in the text at the top of the page. The polygons are the stars in both the flag and sky. I experimented a bit with paths, but didn't end up putting any on here.
 
-If you need a JavaScript/HTML/CSS refresher, see [JavaScript Codeacademy](https://www.codecademy.com/en/tracks/javascript) or find one of your choosing on the web.
+#### Technical Achievements
 
-If you need a Git/GitHub refreseher, some possible resources include [Getting Started with GitHub](https://help.github.com/categories/bootcamp/), the [GitHub Guides](https://guides.github.com/) (especially the ones on Hello World, and Understanding the GitHub Flow, and Forking Projects), and [CodeSchool's Try Git Course](https://www.codeschool.com/courses/try-git).
+I learned the basics of HTML and JavaScript and used them to make a website! This is my first time
+programming a website, so I completed the first few units of CodeAcademy's
+HTML and JavaScript courses and experimented from there. I learned a lot as I went along, including the following:
+- Shapes can be appended to the document or the SVG in a variety of ways, including manually entering them, 
+using a for loop to create them, and using the d3 data binding. I used a for loop to create
+  the stars in the flag and a d3 binding to create
+  the stars in the sky. 
+  - If I were to do this again, I would further condense the for loop. But I'm not sure switching to a d3 
+  binding for such repetitive/structured data would be necessary; I'll have to look into this more. I would also 
+    improve the bindings for the constellations - right now I run a loop to bind each constellation
+    separately, but I could probably find a way (perhaps nesting information) to bind them with fewer lines of code.
+- I used another .html file to make location picker for the stars. Stars.html allows you to click within a rectangle
+and displays the location of the mouse at that click (and sets down a star). I then copy-pasted those
+  locations to use as data for the webpage. 
+  - If I were to do this again, I would print the information in a nicer format or find some other way to store it 
+    (perhaps I need a server-side to save data into files) so that it's easier to convert to data for d3. 
+- Big things I would do differently on the process side are learning how
+JavaScript files are divided (e.g. into functions, scripts, files) to make the code
+  more legible, and improving my JavaScript/html writing and debugging workflow to catch errors earlier and not be duped 
+  when refresh doesn't show the changes I thought I made. 
 
-Requirements
----
+### Design Achievements
 
-1. Your project should contain at least four kinds of graphics primitives (circles, rectangles, lines, polygons) in different colors. 
-2. Your document should identify the source of the code if you start with code that you found. 
-3. Your code should be forked from the GitHub repo and linked using GitHub pages. See the "GitHub Details" section below for detailed instructions on how to do this.
+- I used the formal colors and dimensions of the American flag, which took some calculations. If I were
+to do this again, I would program in the dimensions as constants and then use them, and simplify the for loops I made to 
+create the shapes. 
+- I used a mix of colors like 'red' and RGB values; doing this again I would pick my colors more carefully
+and make sure they work for people who are color blind. (Which makes me wonder, how do visualizations deal with people who use text-to-speech for websites?
+I.e., how much do concern do people designing visualizations take for people who are blind
+or low of sight - or is this simply not the intended audience?) 
+- I kept the layout easy to navigate, and slightly interactive. My goal had been to animate things - e.g.,
+allow the user to hover over constellations to see more information, to be able to sort the stars
+  by brightness or distance, and to have the stars move from one graphic to the other. I would add these features once I 
+  know more and am able to make them, which requires getting to know d3 a lot better. It 
+  also makes me think that the way you structure your data and webpage from the start
+  can make it easier or harder to make it animated/interactive later on, so that's something
+  I'll think about for the next projects. 
 
-GitHub Details
----
-
-- Fork the GitHub Repository for Assignment 1. You now have a copy associated with your username.
-- Make changes to index.html to fulfill the project requirements. 
-- Make sure your "main" branch matches your "gh-pages" branch. See the GitHub Guides referenced above if you need help.
-- Edit the README.md with a link to your gh-pages site "http://YourUsernameGoesHere.github.io/01-ghd3/index.html".
-
-Submission Details
----
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-- Note: name your pull request using the following scheme: 
-```
-a1-your Gh username-your first name-your lastname
-
-```
-
-Vis Details
----
-
-For this project you should use d3.js. 
-You can learn from examples on the [d3.js](http://d3js.org) site or start from scratch.
-
-See the [Using d3js](https://github.com/mbostock/d3/wiki#using) documentation for how to run your own local server.
-
-Creative solutions are welcome! In the past I've seen recreations of paintings, interactives, and more.
-
-Go beyond the minimum requirements of this project.
-Experiment with other aspects of the [d3 API](https://github.com/mbostock/d3/wiki/API-Reference) and [d3 Tutorials](https://github.com/mbostock/d3/wiki/Tutorials). 
-Try making the elements interactive, for example, or animate them.
-
-Grading
----
-
-Grades are on a 120 point scale. 
-96 points will be graded for functionality: the program does what the assignment requests with an informative README. 
-
-We will use Google Chrome to view submissions. 
-Be sure to test your code there.
-
-Below are some, but not necessarily all, of the key points we will consider during grading:
-
-- Circles and Rectangles  
-- Lines  
-- Polygons  
-- Different colors  
-- README Quality
-    - A description of what you have created. 1-2 screenshots are recommended for the README.  
-    - A working link to the hosted files (usually the gh-pages 'live' url)  
-    - Section for Technical and Design Achievements
-
-Technical Achievement Desription -- 12  
-Design Achievement Description -- 12
-
-Remember, it is up to *you* to define what constitutes a technical and design achievements.
-Be ambitious as these are designed to allow you to shape your learning.
-These are the only way to move from B to A territory.
+### Sources:
+I based sections of my code on the code from CS 480X (lecture notes from 1/28/21). I used a lot of internet pages to 
+find out what functions are available in JavaScript. For example, I used w3schools.com to find out how to select
+ substrings in JavaScript and how to draw lines, and I used stackoverflow.com to find out how to draw polygons. 
+I used a February sky map from The Old Farmer's Almanac to pick approximate star positions. 
+The American flag dimensions are based on the dimensions provided by InchCalculator.com. I used htmlcolorcodes.com/color-picker to pick RBG values. 
 
