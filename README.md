@@ -1,86 +1,36 @@
-Assignment 1 - Hello World: GitHub and d3  
-===
+<h1>Live Link: </h1><h3><Link>https://krhodes-cs4802.herokuapp.com/project1</Link></h3>
 
-This is a starting project to make sure you can write and host a webpage that generates graphics using d3. 
+<h1>Project Description</h1>
 
-The primary goal is to be able to generate graphics primitives (circles, rectangles, lines, polygons) at different locations on the screen with different colors. 
+In project a1, I have created a react.js webapp that is hosted on heroku. On the project1 
+page of this app I have made 4 react components to create svgs and then populate them using 
+d3. The four components I made each correspond to a project requirment (Rectangle, Circle, 
+Polygon, Line, Color). The circles use a function to randomly choose a radius, and selects 
+the circles by a tag that they have set. 
 
-The secondary goal is to introduce you to coding on GitHub, including creating a gh-pages branch to host your visualizations.
+![CircleRender1](images/Circle1.PNG)
+![CircleRender2](images/Circle2.PNG)
 
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, you **must identify** the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
+The line d3 render also incorperates a button which then uses d3 to select the line and create 
+random start and end points within the container.
 
-For example, you could download one of the d3.js examples, read it through so you understand what it's doing, and then change the appearance of the graphical output to use different color schemes, different primitive shapes, different layouts of the primitives, and so on.
+![LineRender1](images/LineRender1.PNG)
+![LineRender2](images/LineRender2.PNG)
 
-Resources
----
 
-If you need a JavaScript/HTML/CSS refresher, see [JavaScript Codeacademy](https://www.codecademy.com/en/tracks/javascript) or find one of your choosing on the web.
+<h1>Technical Achievement Description</h1>
+To go above and beyond with the technical achievement I did this project inside of a react app.
+I chose this for two reasons, the first being that I spent some time over break learning how to use 
+react.js along with Django to have a dynamic react server to load the database created with django. 
+By doing this project in react I can extend my perosnal website to include content from this classes 
+projects. This will also help with future assignments, as my other projects can extend this react app 
+and serve as a portfolio for my classwork. In addition, hopfully I will figure out hosting the django 
+server and be able to load database information into some d3 visualizations in future projects.
 
-If you need a Git/GitHub refreseher, some possible resources include [Getting Started with GitHub](https://help.github.com/categories/bootcamp/), the [GitHub Guides](https://guides.github.com/) (especially the ones on Hello World, and Understanding the GitHub Flow, and Forking Projects), and [CodeSchool's Try Git Course](https://www.codeschool.com/courses/try-git).
-
-Requirements
----
-
-1. Your project should contain at least four kinds of graphics primitives (circles, rectangles, lines, polygons) in different colors. 
-2. Your document should identify the source of the code if you start with code that you found. 
-3. Your code should be forked from the GitHub repo and linked using GitHub pages. See the "GitHub Details" section below for detailed instructions on how to do this.
-
-GitHub Details
----
-
-- Fork the GitHub Repository for Assignment 1. You now have a copy associated with your username.
-- Make changes to index.html to fulfill the project requirements. 
-- Make sure your "main" branch matches your "gh-pages" branch. See the GitHub Guides referenced above if you need help.
-- Edit the README.md with a link to your gh-pages site "http://YourUsernameGoesHere.github.io/01-ghd3/index.html".
-
-Submission Details
----
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-- Note: name your pull request using the following scheme: 
-```
-a1-your Gh username-your first name-your lastname
-
-```
-
-Vis Details
----
-
-For this project you should use d3.js. 
-You can learn from examples on the [d3.js](http://d3js.org) site or start from scratch.
-
-See the [Using d3js](https://github.com/mbostock/d3/wiki#using) documentation for how to run your own local server.
-
-Creative solutions are welcome! In the past I've seen recreations of paintings, interactives, and more.
-
-Go beyond the minimum requirements of this project.
-Experiment with other aspects of the [d3 API](https://github.com/mbostock/d3/wiki/API-Reference) and [d3 Tutorials](https://github.com/mbostock/d3/wiki/Tutorials). 
-Try making the elements interactive, for example, or animate them.
-
-Grading
----
-
-Grades are on a 120 point scale. 
-96 points will be graded for functionality: the program does what the assignment requests with an informative README. 
-
-We will use Google Chrome to view submissions. 
-Be sure to test your code there.
-
-Below are some, but not necessarily all, of the key points we will consider during grading:
-
-- Circles and Rectangles  
-- Lines  
-- Polygons  
-- Different colors  
-- README Quality
-    - A description of what you have created. 1-2 screenshots are recommended for the README.  
-    - A working link to the hosted files (usually the gh-pages 'live' url)  
-    - Section for Technical and Design Achievements
-
-Technical Achievement Desription -- 12  
-Design Achievement Description -- 12
-
-Remember, it is up to *you* to define what constitutes a technical and design achievements.
-Be ambitious as these are designed to allow you to shape your learning.
-These are the only way to move from B to A territory.
+<h1>Design Achievement Description</h1>
+To improve the design of my project I tried to seperate areas of concern for grading by seperating different
+visualizations both in graphically on the page, but then in code via different components as well. I tried to
+use contrasting colors in the visualizations to make them easier to see as well! In order to maintain a good 
+spacing and a reactive sizing of elements I used react to obtain the window size so I could scale visualizations
+for mobile or desktop viewing.
 
