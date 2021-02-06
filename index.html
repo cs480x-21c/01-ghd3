@@ -1,10 +1,121 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<html>
+  <body>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script>
+      var drag = d3.drag();
+    </script>
+    <div id="main"></div>
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+    <script>
+      // Add an SVG
+      // Resizable SVG from https://stackoverflow.com/a/25978286
+      const svg = d3
+        .select("#main")
+        //.append("div")
+        // Container class to make it responsive.
+        .classed("svg-container", true)
+        .append("svg")
+        // Responsive SVG needs these 2 attributes and no width and height attr.
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", "0 0 600 400")
+        // Class to make it responsive.
+        .classed("svg-content-responsive", true);
+
+      var drag = (function () {
+        function dragstarted() {
+          d3.select(this).attr("stroke", "black");
+        }
+
+        function dragged(event, d) {
+          d3.select(this)
+            .raise()
+            .attr("cx", (d.x = event.x))
+            .attr("cy", (d.y = event.y));
+        }
+
+        function dragended() {
+          d3.select(this).attr("stroke", null);
+        }
+
+        return d3
+          .drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended);
+      })();
+
+      // Add Rectangles
+      svg
+        .append("rect")
+        .attr("class", "shape rect")
+        .attr("width", 600)
+        .attr("height", 300)
+        .attr("opacity", 0.5)
+        .style("stroke", "black")
+        .style("stroke-width", 10)
+        .style("fill", d3.schemePastel1[Math.floor(Math.random() * 9)]);
+
+      // Add Lines
+      const lineData = d3.range(30).map((i) => ({
+        x1: Math.random() * (600 - 20 * 2) + 20,
+        y1: Math.random() * (300 - 20 * 2) + 20,
+        x2: Math.random() * (600 - 20 * 2) + 20,
+        y2: Math.random() * (300 - 20 * 2) + 20,
+      }));
+
+      svg
+        .selectAll("line")
+        .data(lineData)
+        .enter()
+        .append("line")
+        .attr("x1", (d) => d.x1)
+        .attr("y1", (d) => d.y1)
+        .attr("x2", (d) => d.x2)
+        .attr("y2", (d) => d.y2)
+        .style("stroke", (d, i) => d3.schemeCategory10[i % 10])
+        .style("stroke-width", 4);
+
+      // Add Circles
+
+      var circleNum = 6;
+      var roughRad = 25;
+      // adapted from https://observablehq.com/@d3/click-vs-drag?collection=@d3/d3-drag
+      const circles = d3.range(circleNum).map((i) => ({
+        x: Math.random() * (600 - roughRad * 2) + roughRad,
+        y: Math.random() * (300 - roughRad * 2) + roughRad,
+        r: (Math.random() + 1) * roughRad,
+      }));
+
+      svg
+        .selectAll("circle")
+        .data(circles)
+        .join("circle")
+        .attr("cx", (d) => d.x)
+        .attr("cy", (d) => d.y)
+        .attr("r", (d) => d.r)
+        .attr("fill", (d, i) => d3.schemeCategory10[i % 10])
+        .call(drag);
+
+      // Add Polygons
+      const stringPoly =
+        "150,335 180,320 420,320 450,335 450,365 420,380 180,380 150,365";
+
+      svg
+        .append("polygon")
+        .attr("points", stringPoly)
+        .style("stroke-width", 4)
+        .style("fill", "#964B00");
+
+      svg
+        .append("a")
+        .attr("href", "")
+        .append("text")
+        .text("art.")
+        .attr("dy", "0.35em")
+        .attr("font-size", "4em")
+        .attr("transform", "translate(265,345)")
+        .attr("fill", "white")
+        //.style("font-family", 'Comic Sans MS'); // An unfortunate exclusion
+    </script>
+  </body>
+</html>
