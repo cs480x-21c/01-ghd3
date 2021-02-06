@@ -1,3 +1,20 @@
+LOCATION OF MY GH-PAGES INDEX.HTML: https://jmckeen8.github.io/01-ghd3/index.html
+
+In the sprit of the winter season, I decided to make a little snowman out of the various SVG shapes we were assigned to work with. Included are circles forming the snowman's body, a rectangle forming the border, lines forming the snowman's arms, and a polygon as a triangular carrot nose :-).
+I apologize as I'm not really an artist so my picture-making skills probably won't hold a candle to some of the other submissions in the class. 
+
+See screenshots here: https://imgur.com/a/646C7BQ.
+Screenshot 1 shows the snowman as normal, screenshot 2 shows the snowman when a cursor is rolled over a part.
+
+Design Achievement:
+Using the various SVG elements we were assigned to work with, along with planning out the placement of these elements within a 400x400 SVG, a fun little piece of art was able to be constructed. This required using the various attributes of the SVG elements, such as X and Y placement, radius control for the circles, stroke width for the line and rectangle, and color for all of the elements. In addition, d3 style selectAll+data+enter+append SVG creation was used for several of the elements to import x/y data from arrays. 
+
+Technical Achievement:
+Using d3's transition() function, the individual parts of the snowman change colors when you roll over them with your mouse. The transition() function is bound to 'mouseover' to change the color when the mouse enters the boundary of the element, and to 'mouseout' to change the color back to the original when the mouse leaves the boundary of the element. 
+
+Note: Example code from Lecture 1 was used as a base, as code from d3's "Three Little Circles" Tutorial https://bost.ocks.org/mike/circles/
+
+
 Assignment 1 - Hello World: GitHub and d3  
 ===
 
