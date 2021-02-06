@@ -144,6 +144,26 @@ frame.append('rect')
   .attr('stroke-width', '0.5%')
   .attr('fill', '#93a3b8');
 
+  frame.append('text')
+   .attr('x', '29%')
+   .attr('y', '16.5%')
+   .style("font-size", 5)
+   .text("The Colors of Sound")
+
+  frame.append('text')
+   .attr('x', '45%')
+   .attr('y', '82%')
+   .style("font-size", 1.3)
+   .text("Frequency (Hz)")
+
+  frame.append('text')
+   .attr('x', '20%')
+   .attr('y', '55%')
+   .attr('transform', 'rotate(270, 20, 55)')
+   .style("font-size", 1.3)
+   .text("Intensity (dB)")
+
+
 
   // Add Circles
   frame.selectAll('circle')
