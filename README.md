@@ -15,7 +15,7 @@ Below the diagonal line of circles, there is a polygon in the shape of the mainl
 
 Below the polygon, there are a set of rectangles that show the number of people with each name in a different way. Like the circles, the position of the rectangle influences the color that it is. 
 
-![Title-Image](/Screen Shot 2021-02-05 at 7.02.49 PM.png)
+![Title-Image](img/circle.png)
 
 Screenshot 2
 
