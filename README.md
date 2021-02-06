@@ -3,7 +3,7 @@ Assignment 1 - Hello World: GitHub and d3
 
 a1-your Gh username-your first name-your lastname
 
-Link to gh-pages: 
+Link to gh-pages: https://alvaradoblancouribe.github.io/01-ghd3/
 
 This project visualizes the most popular names in Puerto Rico from 1998 to 2017, using this dataset (https://www.ssa.gov/oact/babynames/limits.html). 
 
