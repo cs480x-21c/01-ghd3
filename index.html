@@ -1,10 +1,63 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
+<!-- used code from first lecture as an example to start -->
 
+<svg id="vis" width="400" height="400">
+	<rect x= "10" y = "10" width="380" height="390"	/>
+	
+	
+</svg>
 <script>
   console.log(d3); // test if d3 is loaded
   // Add an SVG
+  var svg = d3.select('#vis')
   // Add Rectangles
-  // Add Circles
+  svg.selectAll('rect')
+	.attr('style', 'stroke:red;fill:white')
+  
+  // Add Circles, body of the snowman
+  var circleHeight = [300, 150, 55];
+  svg.selectAll('circle')
+	.data(circleHeight)
+	.enter().append('circle')
+   .attr('cx', 200)
+   .attr('cy', function(d) { console.log(d); return d; } )
+   .attr('r', 10)
+   .attr('fill', 'lightblue')
+   var circleRadius = [100, 60, 40];
+   svg.selectAll('circle')
+	.data(circleRadius)
+	.attr('r', function(d) { console.log(d); return d; } )
+  svg.selectAll('circle')
+    .on('mouseover', function(e, d) {
+		d3.select(this).transition().attr('fill', 'darkblue');})
+	.on('mouseout', function(e, d) {
+		d3.select(this).transition().attr('fill', 'lightblue');})
+		
   // Add Lines
+  var linesX1=[175, 225];
+  var linesX2=[50, 350];
+  var linesY1=[150, 150];
+  var linesY2=[130, 130];
+  svg.selectAll('line')
+	.data(linesX1)
+	.enter().append('line')
+	.attr('x1', function(d) { console.log(d); return d;})
+  svg.selectAll('line')
+	.data(linesX2)
+	.attr('x2', function(d) { console.log(d); return d;})
+  svg.selectAll('line')
+	.data(linesY1)
+	.attr('y1', function(d) { console.log(d); return d;})
+  svg.selectAll('line')
+	.data(linesY2)
+	.attr('y2', function(d) { console.log(d); return d;})
+  svg.selectAll('line')
+	.attr('style', 'fill:brown; stroke:brown; stroke-width:10')
   // Add Polygons
+  var poly=[10];
+  svg.selectAll('polygon')
+	.data(poly)
+	.enter().append('polygon')
+	.attr('points', '200, 55 250,60 200, 65')
+	.attr('fill', 'orange')
 </script>
