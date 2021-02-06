@@ -27,6 +27,12 @@
    svg.selectAll('circle')
 	.data(circleRadius)
 	.attr('r', function(d) { console.log(d); return d; } )
+  svg.selectAll('circle')
+    .on('mouseover', function(e, d) {
+		d3.select(this).transition().attr('fill', 'darkblue');})
+	.on('mouseout', function(e, d) {
+		d3.select(this).transition().attr('fill', 'lightblue');})
+		
   // Add Lines
   var linesX1=[175, 225];
   var linesX2=[50, 350];
