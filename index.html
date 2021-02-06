@@ -1,10 +1,27 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<html>
+<head>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+  <svg width="1100">
 
-<script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
-</script>
+    <!-- to hide the path, it is usually wrapped in a <defs> element -->
+    <!-- <defs> -->
+    <path id="title" fill="rgb(203, 102, 52)"
+    d="M 0,0
+    Q 25,25 50,60
+    t 70,0 70,0 70,0 70,0 160,0 
+    Q 800,0 500,200"/>
+    <!-- </defs> -->
+    <text>
+      <textPath href="#title" font-size="20">
+       Most Popular Names in Puerto Rico based on year of birth from 1998 to 2017
+      </textPath>
+    </text>
+  
+  </svg>
+  <div id="puerto">
+  </div>
+</body>
+<script src="script.js"></script>
+</html>
