@@ -20,11 +20,19 @@ class RandomShapeMaker
     POLYGON = 3;
     COLORS = [];
 
+    /**
+     * standard constructor for creating the game
+     * @param svg the svg created by d3 where shapes will be added
+     * @param width
+     * @param height
+     * @param shapesToMake
+     */
     constructor(svg, width, height, shapesToMake)
     {
         // Colors to choose from
         this.COLORS.push("rgb(255, 200, 200)", "rgb(200, 255, 200)", "rgb(200, 200, 250)",
-            "rgb(200, 255, 255)");
+            "rgb(200, 255, 255)", "rgb(200, 150, 255)", "rgb(150, 200, 255)",
+            "rgb(200, 255, 150)", "rgb(255, 150, 200)", "rgb(150, 255, 200)");
 
         this.svg = svg;
         this.width = width;
@@ -40,6 +48,7 @@ class RandomShapeMaker
         // Makes a random shape, selects the type first, then passes it to a shape generator
         for (let i = 0; i < this.shapesToMake; i++)
         {
+            // Adds a shape to the global shape counter
             addShape();
 
             let shape = d3.randomInt(0, this.NUMBER_OF_SHAPES)();
@@ -164,6 +173,3 @@ class RandomShapeMaker
             });
     }
 }
-
-
-

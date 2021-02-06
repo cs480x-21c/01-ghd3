@@ -1,25 +1,35 @@
+/**
+ * StartGame.js
+ * date created: 1/28/2021
+ * Author: Benjamin M'Sadoques
+ *
+ * Provides functions to start stop and reset the game
+ * Requires HTML buttons for start() and stop()
+ */
+
 let gGameIsRunning = false;
 
 /**
- * Starts the shape game, checks if the game is already running
+ * Starts the shape game or resets if the game is already running
+ * @param startGameButton the html start game button
  */
 function startGame(startGameButton)
 {
-    // If the game is running, the game can be restarted if all shapes are removed
+    // If the game is running reset it
     if (gGameIsRunning)
     {
         resetGame();
     }
+    else
+    {
+        gGameIsRunning = true;
 
-    gGameIsRunning = true;
+        // Change the start button to a re-start button
+        startGameButton.value = "restart";
 
-    console.log(d3); // test if d3 is loaded
-
-    // Change the start button to a re-start button
-    startGameButton.value = "restart";
-
-    // Enable stop button
-    document.getElementById("stopGameButton").disabled = false;
+        // Enable the stop button
+        document.getElementById("stopGameButton").disabled = false;
+    }
 
     // data constants
     const width = 1000;
@@ -31,21 +41,21 @@ function startGame(startGameButton)
     // Get the number of shapes the user input
     let shapes = parseInt(document.getElementById("shapesToMake").value, "10");
 
-    // Checks if the input is valid
-    if (isNaN(shapes))
-    {
-        // TODO: notify the user somehow
-        console.log("SUCC");
-    }
-
     // Create (and start) the game
     let maker = new RandomShapeMaker(svg, width, height, shapes);
     maker.makeShapes();
 
     // start timer
     startTimer('#timerDisplay');
+
+    // Check shapes (in case the user put 0 shapes)
+    checkShapesLeft();
 }
 
+/**
+ * Stops the game
+ * @param stopGameButton the html stop game button
+ */
 function stopGame(stopGameButton)
 {
     resetGame();
@@ -60,10 +70,12 @@ function stopGame(stopGameButton)
     document.getElementById("startGameButton").value = "start";
 }
 
+/**
+ * Resets the game
+ */
 function resetGame()
 {
     removeAllShapes();
-
-    // TODO: stop timer
     stopTimer('#timerDisplay');
+    displayTime('#timerDisplay', 0); // do not display final time
 }

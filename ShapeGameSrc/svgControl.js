@@ -4,6 +4,7 @@
  * Author: Benjamin M'Sadoques
  *
  * Provides functions for making an SVG and global variables used for SVG-related functions
+ * Must call make2DSVG() before anything else is called to set globals.
  */
 
 /**
@@ -49,6 +50,16 @@ function removeShape(typeString, id)
 
     d3.select(gSVGId).select(typeString + '#' + id).remove();
 
+    checkShapesLeft();
+}
+
+/**
+ * /**
+ * Checks how many shapes are left (global)
+ * If no shapes are left the timer is stopped
+ */
+function checkShapesLeft()
+{
     // check if all shapes have been removed
     if (gShapesLeft === 0)
     {
@@ -58,6 +69,7 @@ function removeShape(typeString, id)
 
 /**
  * Removed all the shapes from the svg
+ * Re-adds the border
  */
 function removeAllShapes()
 {
@@ -69,11 +81,17 @@ function removeAllShapes()
     addBorder();
 }
 
+/**
+ * Adds a shape (increments the global shapes left counter)
+ */
 function addShape()
 {
     gShapesLeft++;
 }
 
+/**
+ * adds a border around the svg (a rectangle)
+ */
 function addBorder()
 {
     // Add a border to the SVG
