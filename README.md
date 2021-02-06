@@ -3,7 +3,7 @@ Assignment 1 - Hello World: GitHub and d3
 
 Project Submission
 ---
-[Link to my project site on GH Pages]()
+[Link to my project site on GH Pages](https://lucasfernandes.dev/cs480x-Assignment1/)
 
 Some of my favortie visualizations I've seen online over the years rely heavily on discovery and interactivity. I felt the best way to start learning D3 was to focus on this aspect of design. For this project I developed a game called Hot Streak that challenges the player to click the randomly selected circle in order to keep building a streak. If the player selects any other circle their streak resets and they have to restart it.
 
