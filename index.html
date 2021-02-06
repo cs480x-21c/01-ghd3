@@ -5,18 +5,53 @@
 </head>
 <body>
   <div id="container"></div>
-  <div id="controls"></div>
+  <div id="controls">
+    <h1 id="title">Mouse Clicking Game</h1>
+    <h2 id="subtitle">See how many points you can get in 15 seconds!</h2>
+    <div id="rulesContainer">
+      <h2 id="rules">Rules</h2>
+      <svg id="underline"></svg>
+      <h3 id="listrules">1. Click on the purple circle to gain 1 point</h3>
+      <h3 id="listrules">2. Click on any other circle and lose 1 point</h3>
+    </div>
+
+  </div>
   <script>
     var body = d3.select("body")
       .style("display","flex");
     var controls = d3.select("#controls")
-      .style("background-color", "green")
+      .style("background-color", "rgb(231, 111, 81)")
       .style("height","100%")
       .style("width", "60%");
+    var title = d3.select("#title")
+    .style("color","white")
+    .style("font-size","10vh")
+    .style("width","fit-content")
+    .style("margin","auto");
+    var subtitle = d3.select("#subtitle")
+    .style("color","white")
+    .style("font-size","5vh")
+    .style("width","fit-content")
+    .style("margin","auto")
+    .style("padding-bottom","5vh");
+    var rules = d3.select("#rules")
+    .style("color","white")
+    .style("font-size","8vh")
+    .style("width","fit-content")
+    .style("margin","auto")
+    .style("padding-bottom","1vh");
+    var underline = d3.select("#underline")
+    .append("line");
+    var listrules = d3.selectAll("#listrules")
+    .style("color","white")
+    .style("font-size","4vh")
+    .style("width","fit-content")
+    .style("margin","auto")
+    .style("padding-bottom","2.5vh");
     var svgContainer = d3.select("#container")
       .style("height","100%")
       .style("width", "40%")
-      .style("background-color", "blue");
+      .style("background-color", "rgb(233, 196, 106)");
     var svg = d3.select("#container")
       .append("svg")
       .style("width", "100%")
@@ -28,39 +63,38 @@
       .enter()
       .append("circle")
       .style("cy", function(d,i){
-          if(i<4){return "10vh"}
-          else if(4 <= i && i < 8){return "30vh"}
-          else if(8 <= i && i < 12){return "50vh"}
-          else if(12 <= i < 16){return "70vh"};
+          if(i<4){return "20vh"}
+          else if(4 <= i && i < 8){return "40vh"}
+          else if(8 <= i && i < 12){return "60vh"}
+          else if(12 <= i < 16){return "80vh"};
       })
       .style("cx", function(d, i) { 
         return ((i % 4) * 10 + 5) + "vw"; 
       })
       .attr("r", "4vh")
-      .attr("fill", "rgb(0, 0, 0)")
+      .attr("fill", "rgb(122, 145, 141)")
       .attr('id', function(d,i){return "c"+i;});
     var initialRandom = Math.floor(Math.random() * data.length);
     var totalPoints = 0;
     var newSelection = initialRandom;
-    d3.select("#c"+initialRandom).style("fill", "rgb(255, 0, 0)");
+    d3.select("#c"+initialRandom).style("fill", "rgb(95, 0, 186)");
     //Variables and function to ensure no repeating circles
     circleSet.on("click", function(){
       // Call random to prepare next circle whether a hit or miss
       newSelection = Math.floor(Math.random() * data.length);
-      if(d3.select(this).style("fill") === "rgb(255, 0, 0)"){
+      if(d3.select(this).style("fill") === "rgb(95, 0, 186)"){
         console.log("HIT")
-        d3.select(this).style("fill", "rgb(0, 0, 0)");
-        d3.select("#c" + newSelection).style("fill", "rgb(255, 0, 0)");
+        d3.select(this).style("fill", "rgb(122, 145, 141)");
+        d3.select("#c" + newSelection).style("fill", "rgb(95, 0, 186)");
         totalPoints++;
       } else{
         console.log("MISS")
-        d3.selectAll("circle").style("fill", "rgb(0,0,0)");
-        d3.select("#c" + newSelection).style("fill", "rgb(255, 0, 0)");
+        d3.selectAll("circle").style("fill", "rgb(122, 145, 141)");
+        d3.select("#c" + newSelection).style("fill", "rgb(95, 0, 186)");
         totalPoints--;
       }
       console.log(totalPoints);
       console.log(d3.select(this).attr("id"));
-
     });
   </script>
 </body>
