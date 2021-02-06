@@ -1,3 +1,5 @@
+<h1>Live Link: <Link>https://krhodes-cs4802.herokuapp.com/project1</Link></h1>
+
 <h1>Project Description</h1>
 
 In project a1, I have created a react.js webapp that is hosted on heroku. On the project1 
@@ -26,5 +28,9 @@ react app and serve as a portfolio for my classwork. In addition, hopfully I wil
 the django server and be able to load database information into some d3 visualizations in future projects.
 
 <h1>Design Achievement Description</h1>
-To improve the design of my project I tried to maintain a clean 
+To improve the design of my project I tried to seperate areas of concern for grading by seperating different
+visualizations both in graphically on the page, but then in code via different components as well. I tried to
+use contrasting colors in the visualizations to make them easier to see as well! In order to maintain a good 
+spacing and a reactive sizing of elements I used react to obtain the window size so I could scale visualizations
+for mobile or desktop viewing.
 
