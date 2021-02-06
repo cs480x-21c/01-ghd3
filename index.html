@@ -1,10 +1,110 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<div id="textVal"></div>
+<svg id="testvis"></svg>
+
+
+
+
+
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
+  //console.log(d3); // test if d3 is loaded
+  
+  //positive tests at WPI
+  var data = [0,2,1,0,0,0,1,0,0,3,0,0,3,4,4,7,5,0,3,5,10,3,2,11,5,17,0,5,2,9];
+  
+
+  var windowWidth = 800;
+  var windowHeight = 400;
+  
+  //var wpiCovidData = httpGet("https://www.wpi.edu/we-are-wpi/health-and-safety/dashboard"); :( this doesn't work
+  //console.log(wpiCovidData);
+
+
+  var svg = d3.select('#testvis')
+    .attr('width', windowWidth)
+    .attr('height', windowHeight);
+
+  var xscale = d3.scaleLinear()
+    .domain([0, 100])
+    .range([0, windowWidth]);
+
+  var yscale = d3.scaleLinear()
+  .domain([0, Math.max.apply(null, data)+5]) // make the scale dependant on the height of the max of the data
+  .range([0, windowHeight]);
+
+  var starSave = [];
+  var circleSave = [];
+
+  var widthBar = 10;
+  var starSize = 80;
+  svg.selectAll('rect')
+    .data(data)
+    .enter().append('rect')
+    .attr('x', function(d, i) {if (Math.max.apply(null, data) == d) {
+                              starSave.push([15*i+widthBar/2, windowHeight-(Math.round(yscale(d))+ 10)]);
+                              }
+                              else if (d== 0) {
+                                circleSave.push([15*i+widthBar/2, windowHeight-(Math.round(yscale(d))+ 10)])
+                              }
+                              return 15*i;})
+    .attr('y', function(d) {return windowHeight-yscale(d);})
+    .attr('height', function(d) { return yscale(d); })
+    .attr('width', widthBar)
+    .attr('fill', 'steelblue')
+    .on('mouseover', function(mouseEvent, val) {
+      d3.select(this).attr('stroke-width', 1).attr('stroke', 'black');
+      d3.select("#textVal").text("Cases: "+val)
+    })
+    .on('mouseout', function() {
+      d3.select(this).attr('stroke-width', 0).attr('stroke', 'steelblue');
+    });
+
   // Add Circles
+  //circles wherever I like
+  // star over the top value
+  console.log(circleSave);
+  svg.selectAll('circle')
+    .data(circleSave)
+    .enter().append('circle')
+    .attr('cx', function(d) {console.log(d[1]);return d[0];})
+    .attr('cy', windowHeight - 20)
+    .attr('r', 5)
+    .attr('fill', 'white')
+    .attr('stroke', 'black');
+  
+  
   // Add Lines
-  // Add Polygons
+  //lines over the bars in bar graph
+  var lineGenerator = d3.line();
+  var lineData = []
+  var i;
+  for (i = 0; i < data.length; i++) {
+    lineData.push([i*15+widthBar/2, windowHeight-Math.round(yscale(data[i]))]);
+  }
+  var pathData = lineGenerator(lineData);
+  svg.append("path")
+  .attr("d", pathData)
+  .attr("stroke", "black")
+  .attr("fill", "none");
+
+
+
+// star over the top value
+//symbol gen code found at https://bl.ocks.org/d3indepth/a1fea300b04eaee5abbf58236fe01705
+//modified to fit my data and generalized into lines after
+var symbolGenerator = d3.symbol()
+.type(d3.symbolStar)
+.size(80);
+
+var starData = symbolGenerator(starSave);
+svg.append("path")
+  .data(starSave)
+  .attr("d", starData)
+  .attr("stroke", "red")
+  .attr("fill", "red")
+  .attr('transform', function(d) {
+		return 'translate(' + d + ')';
+	});
+  
 </script>
