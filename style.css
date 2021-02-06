@@ -1,0 +1,189 @@
+/* organization:
+ * ????
+ * 
+ * 
+*/
+
+/*  */
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+  
+canvas {
+    margin: 1em;
+    position: relative;
+    right: 4em;
+}
+
+/* CLASS SPECIFIC */
+
+/* vertical slider from gilly3's answer
+https://stackoverflow.com/questions/15935837/how-to-display-a-range-input-slider-vertically */
+input[type=range].vert
+{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical;
+    width: 15px;
+    height: 275px;
+    padding: 0 5px;
+}
+
+/* toggle switch from https://www.w3schools.com/howto/howto_css_switch.asp */
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 160px;
+    height: 34px;
+    margin: .5em 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    line-height: 26px;
+    color: rgb(37, 39, 43);
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(233, 150, 55);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    height: 26px;
+    width: 80px;
+    content:"";
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(72px);
+    -ms-transform: translateX(72px);
+    transform: translateX(72px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 34px;
+  }
+
+
+/* ID SPECIFIC */
+
+#backgroundPattern {
+    position: absolute;
+    background-color: rgb(33, 35, 41);
+}
+
+#colorWheelInteractive {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+}
+
+#controls {
+    width: calc(160px + 2em);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+#saturationSlider {
+
+}
+
+#saturationText {
+    width: 2em;
+    text-align: center;
+}
+
+#satScrollArea {
+    border: 1px solid rgb(37, 39, 43);
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+
+
+
+#satScrollOverflow {
+    height: 200%;
+    width: 1px;
+    background-color: rgb(33, 35, 41);
+}
+
+#satChromaToggle>.slider:before {
+    content: "HCL";
+}
+
+#satChromaToggle>input:checked + .slider:before{
+    content: "HSL";
+}
+
+#scrollSatToggle>.slider:before {
+    content: "scroll off";
+}
+
+#scrollSatToggle>input:checked + .slider:before{
+    content: "scroll on";
+}
+
+@media (max-width: 500px){
+    canvas {
+        display: block;
+        position: relative;
+        right: 0;
+    }
+
+    #controls {
+        position: relative;
+        width: 100%;
+    }
+
+    input[type=range].vert {
+        writing-mode: lr-tb; /* IE */
+        -webkit-appearance: slider-horizontal;
+        height: 15px;
+        width: 275px;
+    }
+}
