@@ -1,14 +1,119 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
-stuff
-<svg width="400" height="100">
-  <rect width="400" height="100" style="fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />
-</svg>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<div id = "greenRectangle"></div>
+<meta charset="utf-8">
+<div id = "bluePolygon"></div>
+<div id = "line"></div>
 
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+  //Introductory Greeting
+  alert("Welcome to Assignment 1! Hover over the Circle!!!");
+</script>
+<!--
+Interactive Label
+//-->
+<p>
+  <label for="nRadius"
+         style="display: inline-block; width: 240px; text-align: right">
+         radius = <span id="nRadius-value">…</span>
+  </label>
+  <input type="range" min="1" max="150" id="nRadius">
+</p>
+
+<script>
+  var width = 600;
+  var height = 300;
+
+  var holder = d3.select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  // draw the circle
+  holder.append("circle")
+    .attr("class","blueCircle")
+    .attr("cx", 300)
+    .attr("cy", 150)
+    .style("fill", "blue")
+    .style("stroke", "blue")
+    .attr("r", 120);
+
+  // when the input range changes update the circle
+  d3.select("#nRadius").on("input", function() {
+    update(+this.value);
+  });
+
+  // Initial starting radius of the circle
+  update(120);
+
+  // update the elements
+  function update(nRadius) {
+
+    // adjust the text on the range slider
+    d3.select("#nRadius-value").text(nRadius);
+    d3.select("#nRadius").property("value", nRadius);
+
+    // update the circle radius
+    holder.selectAll("circle")
+      .attr("r", nRadius);
+  }
+
+  // when the mouse hovers over the circle, display warning
+  d3.select("circle").on("click", function() {
+    if (d3.select(this).attr("r") != 150) {
+      alert("Change the radius to 150 and try again")
+    }
+    else {
+      d3.select("circle").remove();
+      d3.select("#nRadius").remove();
+      d3.select("label").remove();
+      alert("Click on the shapes to remove them!")
+      var width = 720;
+      var height = 500;
+
+      var holder = d3.select("#greenRectangle")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+      holder.append("rect")
+        .attr("class", "rectangle")
+        .attr("x", 20)
+        .attr("y", 20)
+        .attr("width", 300)
+        .attr("height", 200)
+        .attr("fill", "green")
+    }
+  });
+
+  d3.select("#greenRectangle").on("click", function(){
+    //remove greenRectangle
+    d3.select("#greenRectangle").remove();
+    //building the polygon
+    var holder = d3.select("#bluePolygon")
+      .append("svg")
+      .attr("width", 750)
+      .attr("height", 500);
+    holder.append("polygon")
+      .attr('points', '150, 105 500, 105 525, 130 525, 380 500, 405 150, 405 125, 380 125, 130')
+      .attr("fill", "blue")
+  });
+
+  d3.select("#bluePolygon").on("click", function(){
+    //remove polygon
+    d3.select("#bluePolygon").remove();
+    //building the line
+    var holder = d3.select("#line")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+    holder.append("line")
+      .attr("x1", 100)
+      .attr("y1", 100)
+      .attr("x2", 200)
+      .attr("y2", 200)
+      .style("stroke", "rgb(255,0,0)")
+      .style("stroke-width", 2);
+  })
+  d3.select("#line").on("click", function(){
+    alert("That was the last shape, thank you for viewing! :)")
+  })
 </script>
