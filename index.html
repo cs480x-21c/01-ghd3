@@ -1,10 +1,127 @@
-<script src="https://d3js.org/d3.v6.min.js"></script>
+<html>
 
-<script>
-  console.log(d3); // test if d3 is loaded
+<head>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+
+  <text>
+    Look at the circles changing colors. Click the blue rectangle to reload and refresh the coloring sequence. (The sequence stops at purple)
+  </text>
+
+  <svg id="vis" height="100%" width="100%" onload="transitionalColor()">
+
+
+    <!--Three little circles tutorial-->
+    <circle cx="40" cy="60" r="10"></circle>
+    <circle cx="80" cy="60" r="10"></circle>
+    <circle cx="120" cy="60" r="10"></circle>
+    <rect x="100" y="100" width="75" height="50" style="fill: cadetblue; color: black;" onmousedown="reload()"></rect>
+    <polygon points="100,200 200,400 400,400 400,200 300,200 200,250" fill="none"stroke="green" stroke-width:"5"></polygon>
+  
+  </svg>
+
+<!--  <svg width="720" height="1000">
+    <line stroke="black" x0="50" y0="800" x1="500" y1="0"></line>
+    <rect x="0" y="0" width="50" height="50"></rect>
+  </svg>-->
+
+  <!--
   // Add an SVG
   // Add Rectangles
   // Add Circles
   // Add Lines
   // Add Polygons
-</script>
+  -->
+
+
+  <script>
+
+    //Three little circles tutorial
+
+    function transitionalColor() {
+      var circle = d3.selectAll("circle");
+      circle.style("fill", "purple");
+
+      //Working with transitions tutorial
+      circle.transition().delay(750).duration(500).style("fill", "steelblue");
+
+      circle.transition().delay(1250).duration(500).style("fill", "black");
+
+      circle.transition().delay(1750).duration(500).style("fill", "green");
+
+      circle.transition().delay(2250).duration(500).style("fill", "yellow");
+
+      circle.transition().delay(2750).duration(500).style("fill", "orange");
+
+      circle.transition().delay(3250).duration(500).style("fill", "red");
+
+      circle.transition().delay(4250).duration(500).style("fill", "magenta");
+
+      circle.transition().delay(4750).duration(500).style("fill", "purple");
+
+      //Equally spaced circles --> Back to the three circles tutorial
+      circle.data([64, 100, 144]);
+      circle.attr("r", function(d) {return Math.sqrt(d)});
+      circle.attr("cx", function(d, i) {return i * 100 + 30});
+    }
+
+    function reload() {
+      reload = location.reload();
+    }
+
+    
+    var svg = d3.selectAll("#vis");
+    svg.append("line")
+      .attr("x1", 200)
+      .attr("y1", 400)
+      .attr("x2", 400)
+      .attr("y2", 200)
+      .attr("stroke-width", 5)
+      .attr("stroke", "black")
+      .call(drag);
+      
+
+      
+
+      /*
+      var drag = d3.behavior.drag()
+        .on('start', dragstarted)
+        .on('drag', dragged)
+        .on('end', dragended);
+
+
+      function dragstarted() {
+        d3.select(this).attr("stroke", "magenta");
+      }
+      
+      function dragged(event) {
+        var x = d3.event.x;
+        var y = d3.event.y;
+
+        var line = d3.select(this);
+
+        var attributes = {
+          x1: parseInt(line.attr('x1')) + x,
+          y1: parseInt(line.attr('y1')) + y,
+          x2: parseInt(line.attr('x2')) + x,
+          y2: parseInt(line.attr('y2')) + y,
+        }
+
+        line.attr(attributes);
+      }
+
+      function dragended() {
+        d3.select(this).attr("stroke", "black");
+      }
+
+      */
+
+  </script>
+
+</body>
+
+
+
+</html>
