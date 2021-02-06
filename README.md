@@ -10,7 +10,7 @@ Description
 ===
 I made my recreation of the WPI covid dashboard. The bar graph mimics the WPI style where the graph represents the total number of positive tests on a day. The visual differences I added is a line between each chart as well as a star marker over the day with the highest positive tests. Mousing over a bar highlights it and showes the number in the top left. 
 
-![Screenshot of site](example.png)
+![Screenshot of site](./example.PNG)
 
 Requirements Fullfillment
 ---
