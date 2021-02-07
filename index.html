@@ -1,10 +1,289 @@
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
+<svg id="vis"> </svg>
+
 <script>
-  console.log(d3); // test if d3 is loaded
-  // Add an SVG
-  // Add Rectangles
-  // Add Circles
-  // Add Lines
-  // Add Polygons
+
+  var entireWidth = 1400;
+  var entireHeight = 700;
+
+  var svg = d3.select('#vis')
+    .attr('width', entireWidth)
+    .attr('height', entireHeight);
+
+
+
+
+  var rectangles = [{
+      x: 0,
+      y: 0,
+      width: entireWidth,
+      height: entireHeight,
+      fill: '#a3a8a2'
+    }, //Main Background
+    {
+      x: 0,
+      y: 150,
+      width: entireWidth,
+      height: 67,
+      fill: '#b9c3c4'
+    }, //first stair
+    {
+      x: 0,
+      y: 478,
+      width: entireWidth,
+      height: 67,
+      fill: '#b9c3c4'
+    } //second stair
+  ]
+  //Add Rectangles
+  svg.selectAll('rect')
+    .data(rectangles)
+    .enter().append('rect')
+    .attr('x', function(d) {
+      return d.x
+    })
+    .attr('y', function(d) {
+      return d.y
+    })
+    .attr('width', function(d) {
+      return d.width
+    })
+    .attr('height', function(d) {
+      return d.height
+    })
+    .attr('fill', function(d) {
+      return d.fill
+    });
+
+
+
+
+
+  var elipses = [{
+      cx: 730,
+      cy: 172,
+      rx: 54,
+      ry: 70,
+      fill: '#aa7d79'
+    } // HEAD
+  ]
+  // Add Ellipses
+  svg.selectAll('ellipse')
+    .data([elipses[0]])
+    .enter().append('ellipse')
+    .attr('cx', function(d) {
+      return d.cx
+    })
+    .attr('cy', function(d) {
+      return d.cy
+    })
+    .attr('rx', function(d) {
+      return d.rx
+    })
+    .attr('ry', function(d) {
+      return d.ry
+    })
+    .attr('fill', function(d) {
+      return d.fill
+    });
+
+
+
+
+
+  var circles = [{
+      cx: 708,
+      cy: 166,
+      r: 3,
+      fill: 'black'
+    }, // left EYES
+    {
+      cx: 748,
+      cy: 166,
+      r: 3,
+      fill: 'black'
+    } //Right eye
+  ]
+  //Add Circles
+  svg.selectAll('circle')
+    .data(circles)
+    .enter().append('circle')
+    .attr('cx', function(d) {
+      return d.cx
+    })
+    .attr('cy', function(d) {
+      return d.cy
+    })
+    .attr('r', function(d) {
+      return d.r
+    })
+    .attr('fill', function(d) {
+      return d.fill
+    });
+
+
+
+
+
+  var polygon = [{
+      points: "696,181 727,174 769,179 776,211 765,231 737,247 725,247 710,240 690,225",
+      stroke: 'white',
+      fill: '#92c8eb' //mask
+    },
+    {
+      points: "843,555 758,588 758,660 752,669 773,721 723,743 716,671 708,667  696,810 648,700 654,700 634,591 595,572 574,540 596,480 700,435 730,437",
+      stroke: 'white',
+      fill: 'black' //pants
+    },
+    {
+      points: "584,438 542,375 588,239 647,227 656,193 675,191 691,235 738,247 772,235 789,174 806,176 816,212 865,222 911,369 870,439 875,467 841,553 719,435 594,484 584,438",
+      stroke: 'black',
+      fill: '#535250' // body
+    }
+  ]
+  svg.selectAll('polygon')
+    .data(polygon)
+    .enter()
+    .append('polygon')
+    .attr('points', function(d) {
+      return d.points
+    })
+    .attr('stroke', function(d) {
+      return d.stroke
+    })
+    .attr('fill', function(d) {
+      return d.fill
+    });
+
+
+
+
+//jacket sleeve lines
+  var lines = [{
+    x1: 748,
+    y1: 411,
+    x2: 870,
+    y2: 440,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 758,
+    y1: 358,
+    x2: 748,
+    y2: 411,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 758,
+    y1: 358,
+    x2: 843,
+    y2: 352,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 827,
+    y1: 305,
+    x2: 843,
+    y2: 352,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 584,
+    y1: 438,
+    x2: 702,
+    y2: 352,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 677,
+    y1: 306,
+    x2: 702,
+    y2: 352,
+    stroke: 'black',
+    strokeW: 1
+  },
+  {
+    x1: 677,
+    y1: 306,
+    x2: 590,
+    y2: 356,
+    stroke: 'black',
+    strokeW: 1
+  }
+  ];
+  svg.selectAll('line').data(lines).enter().append('line')
+    .attr('x1', function(d) {
+      return d.x1
+    })
+    .attr('y1', function(d) {
+      return d.y1
+    })
+    .attr('x2', function(d) {
+      return d.x2
+    })
+    .attr('y2', function(d) {
+      return d.y2
+    })
+    .attr('stroke', function(d) {
+      return d.stroke
+    })
+    .attr('stroke-width', function(d) {
+      return d.strokeW
+    });
+
+
+
+    var images = [{
+      link: 'images/mittenRightHand.png',
+      x: 670,
+      y: 270,
+      width: 120,
+      height:120,
+      transform: ''//does not rotate 'rotate(180)'
+    },
+    {
+      link: 'images/mittenLeftHand.png',
+      x: 650,
+      y: 330,
+      width: 120,
+      height:120,
+      transform: ''//does not rotate 'rotate(180)'
+    },
+    {
+      link: 'images/glasses.png',
+      x: 690,
+      y: 115,
+      width: 80,
+      height:100,
+      transform: ''//does not rotate 'rotate(180)'
+    }];
+
+    svg.selectAll('img')
+                    .data(images)
+                    .enter()
+                    .append('svg:image')
+                    .attr('xlink:href',  function(d) {
+                      return d.link
+                    })
+                    .attr('x',  function(d) {
+                      return d.x
+                    })
+                    .attr('y',  function(d) {
+                      return d.y
+                    })
+                    .attr('width',  function(d) {
+                      return d.width
+                    })
+                    .attr('height',  function(d) {
+                      return d.height
+                    })
+                    .attr('transform',  function(d) {
+                      return d.transform
+                    });
 </script>
