@@ -1,7 +1,7 @@
 Assignment 1 - Hello World: GitHub and d3  
 ===
 
-See: https://nyoma-diamond.github.io/01-ghd3/index.html
+See: [https://nyoma-diamond.github.io/CS4802-01-ghd3](https://nyoma-diamond.github.io/CS4802-01-ghd3)
 
 For the assignment, I created a horizontal bar graph representing the exponential growth of the equation 2^x. To show another way of visualizing this exponential growth I also created line chart, underneath which is filled using a polygon.
 
