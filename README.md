@@ -2,7 +2,7 @@ Assignment 1 - Hello World: GitHub and d3
 Josh Lovering
 
 # Github pages link
-[https://jalovering.github.io/01-ghd3/]
+[https://jalovering.github.io/datavis_course_a1_intro/]
 
 # Description:
 For this assignment, I chose to create an apple tree to gain experience creating different primitives. I generated random data and use those points to create leaves, which required me to learn how to import data, similarly to creating a scatterplot.
